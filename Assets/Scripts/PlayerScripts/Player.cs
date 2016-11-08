@@ -102,12 +102,12 @@ public class Player : MonoBehaviour {
     void AnimationControl()
     {
         //checking if joysticks are connected
-        if (Input.GetJoystickNames()[0] == "")
+        if (Input.GetJoystickNames().Length == 0)
         {
             float vertical = Input.GetAxisRaw("Vertical");
             float horizontal = Input.GetAxisRaw("Horizontal");
             animator.speed = 0.8f;
-            if (vertical > .1)
+            if (vertical > .01)
             {
                 animator.SetInteger("Direction", 3);
                 pauseState = "DogAway";
@@ -130,7 +130,7 @@ public class Player : MonoBehaviour {
             else
             {
                 animator.speed = 0.0f;
-                animator.
+                animator.Play(pauseState, 0, 0f);
             }
         }
         else
