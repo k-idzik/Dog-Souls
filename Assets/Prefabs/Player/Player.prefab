@@ -42,6 +42,7 @@ GameObject:
   - 212: {fileID: 212000012968776648}
   - 114: {fileID: 114000012327537096}
   - 61: {fileID: 61000012408765492}
+  - 50: {fileID: 50000012594512034}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -110,6 +111,23 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
+--- !u!50 &50000012594512034
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014032188388}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!61 &61000012408765492
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -172,6 +190,7 @@ MonoBehaviour:
   maxAcceleration: 0.03
   maxDecceleration: 0.007
   sword: {fileID: 1000012101045316, guid: 3573e59c9eeaee34cad9f229223c0e42, type: 2}
+  attackCooldown: 0.5
 --- !u!124 &124000013190515080
 Behaviour:
   m_ObjectHideFlags: 1

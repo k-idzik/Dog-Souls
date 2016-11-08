@@ -16,6 +16,8 @@ public class Player : MonoBehaviour {
     private int health; //Doogo's health
     private float damageCooldown; //The time between when the player can take damage
     private SpriteRenderer playerSR; //The player's sprite renderer
+    private float timer;
+    public float attackCooldown;
 
     public int Health //Health property
     {
@@ -23,6 +25,16 @@ public class Player : MonoBehaviour {
         {
             return health; //Return the player's health
         }
+        set
+        {
+            health = value;
+        }
+    }
+
+    public float DamageCooldown
+    {
+        get { return damageCooldown; }
+        set { damageCooldown = value; }
     }
 
     // Use this for initialization
@@ -33,10 +45,12 @@ public class Player : MonoBehaviour {
         health = 5; //Set the player's health equal to 5
         damageCooldown = 1; //Set the damageCooldown
         playerSR = gameObject.GetComponentInChildren<SpriteRenderer>(); //Get the player's sprite renderer
+        timer = damageCooldown;
     }
 	
 	// Update is called once per frame
 	void Update () {
+        timer += Time.deltaTime;
         AnimationControl();
         Attack();
         Movement();
@@ -179,42 +193,46 @@ public class Player : MonoBehaviour {
 
     void Attack()
     {
-        if(Input.GetButtonDown("Fire1"))
+        if(timer >= attackCooldown)
         {
-            Vector3 pos = this.transform.position;
-            Quaternion q = new Quaternion(0, 0, 0, 0);
-            int dir = animator.GetInteger("Direction");
-            if(dir == 0 || dir == 1)
+            if (Input.GetButtonDown("Fire1"))
             {
-                pos.y -= 1;
-                q = Quaternion.AngleAxis(180, Vector3.forward);
+                Vector3 pos = this.transform.position;
+                Quaternion q = new Quaternion(0, 0, 0, 0);
+                int dir = animator.GetInteger("Direction");
+                if (dir == 0 || dir == 1)
+                {
+                    pos.y -= 1;
+                    q = Quaternion.AngleAxis(180, Vector3.forward);
+                }
+                else if (dir == 2)
+                {
+                    pos.x += 1;
+                    q = Quaternion.AngleAxis(-90, Vector3.forward);
+                }
+                else if (dir == 3)
+                {
+                    pos.y += 1;
+                }
+                else if (dir == 4)
+                {
+                    pos.x -= 1;
+                    q = Quaternion.AngleAxis(90, Vector3.forward);
+                }
+                Instantiate(sword, pos, q, this.transform);
+                timer = 0f;
             }
-            else if(dir == 2)
-            {
-                pos.x += 1;
-                q = Quaternion.AngleAxis(-90, Vector3.forward);
-            }
-            else if(dir == 3)
-            {
-                pos.y += 1;
-            }
-            else if(dir == 4)
-            {
-                pos.x -= 1;
-                q = Quaternion.AngleAxis(90, Vector3.forward);
-            }
-            Instantiate(sword, pos, q, this.transform);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D coll) //When something collides with the player
-    {
-        if (coll.gameObject.tag == "enemy") //If the player is colliding with an enemy
-        {
-            health--; //Decrement the player's health
-            damageCooldown = 1; //Reset the damage cooldown
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D coll) //When something collides with the player
+    //{
+    //    if (coll.gameObject.tag == "enemy") //If the player is colliding with an enemy
+    //    {
+    //        health--; //Decrement the player's health
+    //        damageCooldown = 1; //Reset the damage cooldown
+    //    }
+    //}
 
     private void Blink() //Make Huebert blink while in cooldown
     {
