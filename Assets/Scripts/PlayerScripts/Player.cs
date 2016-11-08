@@ -13,12 +13,26 @@ public class Player : MonoBehaviour {
     private float prevHorizontal = 0;
     public GameObject sword;
     private string pauseState;
+    private int health; //Doogo's health
+    private float damageCooldown; //The time between when the player can take damage
+    private SpriteRenderer playerSR; //The player's sprite renderer
+
+    public int Health //Health property
+    {
+        get
+        {
+            return health; //Return the player's health
+        }
+    }
 
     // Use this for initialization
     void Start () {
         maxSpeed = 0.1f;
         animator = this.GetComponent<Animator>();
         pauseState = "DogTowards";
+        health = 5; //Set the player's health equal to 5
+        damageCooldown = 1; //Set the damageCooldown
+        playerSR = gameObject.GetComponentInChildren<SpriteRenderer>(); //Get the player's sprite renderer
     }
 	
 	// Update is called once per frame
@@ -26,6 +40,7 @@ public class Player : MonoBehaviour {
         AnimationControl();
         Attack();
         Movement();
+        Blink(); //Blink for cooldown
     }
 
     void Movement()
@@ -189,6 +204,39 @@ public class Player : MonoBehaviour {
                 q = Quaternion.AngleAxis(90, Vector3.forward);
             }
             Instantiate(sword, pos, q, this.transform);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D coll) //When something collides with the player
+    {
+        if (coll.gameObject.tag == "enemy") //If the player is colliding with an enemy
+        {
+            health--; //Decrement the player's health
+            damageCooldown = 1; //Reset the damage cooldown
+        }
+    }
+
+    private void Blink() //Make Huebert blink while in cooldown
+    {
+        if (damageCooldown >= 0f) //If Huebert is in cooldown
+        {
+            if (playerSR.enabled) //If Huebert's sprite is on
+            {
+                playerSR.enabled = false; //Turn off Huebert's sprite
+            }
+            else //If Huebert's sprite is off
+            {
+                playerSR.enabled = true; //Turn on Huebert's sprite
+            }
+        }
+        else //If Huebert is not in cooldown
+        {
+            playerSR.enabled = true; //Turn on Huebert's sprite
+        }
+
+        if (damageCooldown > 0f) //If the cooldown between hits is less than two
+        {
+            damageCooldown -= Time.deltaTime; //Increment the cooldown timer
         }
     }
 }
