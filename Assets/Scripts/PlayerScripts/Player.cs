@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
     private float damageCooldown; //The time between when the player can take damage
     private SpriteRenderer playerSR; //The player's sprite renderer
     private Rigidbody2D playerRB; //The player's rigidbody
+    private BoxCollider2D playerBC; //The player's box collider
     private float timer;
     public float attackCooldown;
 
@@ -48,6 +49,7 @@ public class Player : MonoBehaviour {
         damageCooldown = 1; //Set the damageCooldown
         playerSR = gameObject.GetComponentInChildren<SpriteRenderer>(); //Get the player's sprite renderer
         playerRB = gameObject.GetComponentInChildren<Rigidbody2D>(); //Get the player's rigidbody
+        playerBC = gameObject.GetComponentInChildren<BoxCollider2D>(); //Get the player's box collider
         timer = damageCooldown;
     }
 	
@@ -77,6 +79,17 @@ public class Player : MonoBehaviour {
         {
             maxSpeed += 0.25f; //Increase the player's max speed
         }
+
+        //if (verticalInput != 0.0f)
+        //{
+        //    playerBC.offset = new Vector2(-0.04f, 0.0f); //Update the offset of the player's hitbox
+        //    playerBC.size = new Vector2(0.6f, 1.3f); //Update the size of the player's hitbox
+        //}
+        //if (horizontalInput != 0.0f)
+        //{
+        //    playerBC.offset = new Vector2(0.0f, -0.04f); //Update the offset of the player's hitbox
+        //    playerBC.size = new Vector2(1.25f, 1.15f); //Update the size of the player's hitbox
+        //}
 
         Vector2 movementSpeed = new Vector2(horizontalInput, verticalInput).normalized * maxSpeed; //Normalize the player's movement and multiply it by the player's max speed
 
@@ -164,65 +177,81 @@ public class Player : MonoBehaviour {
 
     void AnimationControl()
     {
+        float vertical = Input.GetAxis("Vertical");
+        float horizontal = Input.GetAxis("Horizontal");
+        animator.speed = 0.8f;
+
         //checking if joysticks are connected
-        if (Input.GetJoystickNames().Length == 0)
-        {
-            float vertical = Input.GetAxisRaw("Vertical");
-            float horizontal = Input.GetAxisRaw("Horizontal");
-            animator.speed = 0.8f;
+        //if (Input.GetJoystickNames().Length == 0) //If there are no joysticks connected
+        //{
             if (vertical > .01)
             {
                 animator.SetInteger("Direction", 3);
                 pauseState = "DogAway";
+                playerBC.offset = new Vector2(-0.04f, 0.0f); //Update the offset of the player's hitbox
+                playerBC.size = new Vector2(0.6f, 1.3f); //Update the size of the player's hitbox
             }
             else if (vertical < -.01)
             {
                 animator.SetInteger("Direction", 1);
                 pauseState = "DogTowards";
+                playerBC.offset = new Vector2(-0.04f, 0.0f); //Update the offset of the player's hitbox
+                playerBC.size = new Vector2(0.6f, 1.3f); //Update the size of the player's hitbox
             }
             else if (horizontal > .01)
             {
                 animator.SetInteger("Direction", 2);
                 pauseState = "DogRight";
+                playerBC.offset = new Vector2(0.0f, -0.04f); //Update the offset of the player's hitbox
+                playerBC.size = new Vector2(1.25f, 1.15f); //Update the size of the player's hitbox
             }
             else if (horizontal < -.01)
             {
                 animator.SetInteger("Direction", 4);
                 pauseState = "DogLeft";
+                playerBC.offset = new Vector2(0.0f, -0.04f); //Update the offset of the player's hitbox
+                playerBC.size = new Vector2(1.25f, 1.15f); //Update the size of the player's hitbox
             }
             else
             {
                 animator.speed = 0.0f;
                 animator.Play(pauseState, 0, 0f);
             }
-        }
-        else
-        {
-            float vertical = Input.GetAxis("Vertical");
-            float horizontal = Input.GetAxis("Horizontal");
-            if (Mathf.Abs(prevVertical) > Mathf.Abs(vertical) && Mathf.Abs(prevHorizontal) > Mathf.Abs(horizontal))
-            {
-                animator.SetInteger("Direction", 0);
-            }
-            else if (vertical > .1)
-            {
-                animator.SetInteger("Direction", 3);
-            }
-            else if (vertical < -.01)
-            {
-                animator.SetInteger("Direction", 1);
-            }
-            else if (horizontal > .01)
-            {
-                animator.SetInteger("Direction", 2);
-            }
-            else if (horizontal < -.01)
-            {
-                animator.SetInteger("Direction", 4);
-            }
-            prevHorizontal = horizontal;
-            prevVertical = vertical;
-        }
+        //}
+        //else //If there are joysticks connected
+        //{
+        //    //if (Mathf.Abs(prevVertical) > Mathf.Abs(vertical) && Mathf.Abs(prevHorizontal) > Mathf.Abs(horizontal))
+        //    //{
+        //    //    animator.SetInteger("Direction", 0);
+        //    //    Debug.Log("ADGTasd");
+        //    //}
+        //    if (vertical > .01)
+        //    {
+        //        animator.SetInteger("Direction", 3);
+        //        playerBC.offset = new Vector2(-0.04f, 0.0f); //Update the offset of the player's hitbox
+        //        playerBC.size = new Vector2(0.6f, 1.3f); //Update the size of the player's hitbox
+        //    }
+        //    else if (vertical < -.01)
+        //    {
+        //        animator.SetInteger("Direction", 1);
+        //        playerBC.offset = new Vector2(-0.04f, 0.0f); //Update the offset of the player's hitbox
+        //        playerBC.size = new Vector2(0.6f, 1.3f); //Update the size of the player's hitbox
+        //    }
+        //    else if (horizontal > .01)
+        //    {
+        //        animator.SetInteger("Direction", 2);
+        //        playerBC.offset = new Vector2(0.0f, -0.04f); //Update the offset of the player's hitbox
+        //        playerBC.size = new Vector2(1.25f, 1.15f); //Update the size of the player's hitbox
+        //    }
+        //    else if (horizontal < -.01)
+        //    {
+        //        animator.SetInteger("Direction", 4);
+        //        playerBC.offset = new Vector2(0.0f, -0.04f); //Update the offset of the player's hitbox
+        //        playerBC.size = new Vector2(1.25f, 1.15f); //Update the size of the player's hitbox
+        //    }
+        //    //prevHorizontal = horizontal;
+        //    //prevVertical = vertical;
+        //}
     }
 
     void Attack()

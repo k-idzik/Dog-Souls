@@ -184,11 +184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22b1828ca6dad4048b36a9efa41455ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {x: 0, y: 0, z: 0}
-  maxSpeed: 0
-  acceleration: {x: 0, y: 0, z: 0}
-  maxAcceleration: 0.03
-  maxDecceleration: 0.007
   sword: {fileID: 1000012101045316, guid: 3573e59c9eeaee34cad9f229223c0e42, type: 2}
   attackCooldown: 0.5
 --- !u!124 &124000013190515080
