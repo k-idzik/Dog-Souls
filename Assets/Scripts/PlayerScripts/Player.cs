@@ -4,11 +4,11 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
     private Animator animator;
-    public Vector3 velocity;
-    public float maxSpeed;
-    public Vector3 acceleration;
-    public float maxAcceleration;
-    public float maxDecceleration;
+    //public Vector3 velocity;
+    private float maxSpeed;
+    //public Vector3 acceleration;
+    //public float maxAcceleration;
+    //public float maxDecceleration;
     private float prevVertical = 0;
     private float prevHorizontal = 0;
     public GameObject sword;
@@ -16,6 +16,7 @@ public class Player : MonoBehaviour {
     private int health; //Doogo's health
     private float damageCooldown; //The time between when the player can take damage
     private SpriteRenderer playerSR; //The player's sprite renderer
+    private Rigidbody2D playerRB; //The player's rigidbody
     private float timer;
     public float attackCooldown;
 
@@ -38,13 +39,15 @@ public class Player : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
-        maxSpeed = 0.1f;
+    void Start ()
+    {
+        maxSpeed = 1.0f; //Set doggo's max speed
         animator = this.GetComponent<Animator>();
         pauseState = "DogTowards";
         health = 5; //Set the player's health equal to 5
         damageCooldown = 1; //Set the damageCooldown
         playerSR = gameObject.GetComponentInChildren<SpriteRenderer>(); //Get the player's sprite renderer
+        playerRB = gameObject.GetComponentInChildren<Rigidbody2D>(); //Get the player's rigidbody
         timer = damageCooldown;
     }
 	
@@ -57,75 +60,106 @@ public class Player : MonoBehaviour {
         Blink(); //Blink for cooldown
     }
 
-    void Movement()
+    void Movement() //Move the player
     {
+        float horizontalInput = Input.GetAxisRaw("Horizontal"); //Horizontal input detection
+        float verticalInput = Input.GetAxisRaw("Vertical"); //Vertical input detection
 
-        if (Input.GetKey("w"))
+        if ((horizontalInput != 0.0f || verticalInput != 0.0f) && maxSpeed >= 6) //If the player is moving and at max speed
         {
-            if (velocity.y <= 0)
-            {
-                velocity.x = 0;
-                velocity.y = 0;
-            }
-            acceleration = new Vector3(0, maxAcceleration);
+            maxSpeed = 6.0f; //Increase the player's max speed
         }
-        else if (Input.GetKey("a"))
+        else if (horizontalInput == 0.0f && verticalInput == 0.0f) //If the player is not moving
         {
-            if (velocity.x >= 0)
-            {
-                velocity.x = 0;
-                velocity.y = 0;
-            }
-            acceleration = new Vector3(-maxAcceleration, 0);
+            maxSpeed = 1.0f; //Reset the player's max speed
         }
-        else if (Input.GetKey("s"))
+        else //If the player is moving and not at max speed
         {
-            if (velocity.y >= 0)
-            {
-                velocity.x = 0;
-                velocity.y = 0;
-            }
-            acceleration = new Vector3(0, -maxAcceleration);
-        }
-        else if (Input.GetKey("d"))
-        {
-            if (velocity.x <= 0)
-            {
-                velocity.x = 0;
-                velocity.y = 0;
-            }
-            acceleration = new Vector3(maxAcceleration, 0);
-        }
-        else
-        {
-            if (velocity.x > 0)
-            {
-                acceleration += new Vector3(-maxDecceleration, 0);
-            }
-            if (velocity.x < 0)
-            {
-                acceleration += new Vector3(maxDecceleration, 0);
-            }
-            if (velocity.y > 0)
-            {
-                acceleration += new Vector3(0, -maxDecceleration);
-            }
-            if (velocity.y < 0)
-            {
-                acceleration += new Vector3(0, maxDecceleration);
-            }
+            maxSpeed += 0.25f; //Increase the player's max speed
         }
 
-        if (velocity.x * velocity.x + velocity.y * velocity.y + velocity.z * velocity.z >= maxSpeed * maxSpeed)
-        {
-            velocity.Normalize();
-            velocity *= maxSpeed;
-        }
+        Vector2 movementSpeed = new Vector2(horizontalInput, verticalInput).normalized * maxSpeed; //Normalize the player's movement and multiply it by the player's max speed
 
-        velocity += acceleration;
-        transform.position += velocity;
+        playerRB.velocity = movementSpeed; //Add the input to the player's velocity
 
-        acceleration = new Vector3(0, 0, 0);
+        //if ((velocity.x * velocity.x) + (velocity.y * velocity.y) + (velocity.z * velocity.z) >= maxSpeed * maxSpeed) //If the combination of all velocities squared is greater than or equal to the maximum speed squared
+        //{
+        //    velocity.Normalize(); //Normalize the velocity
+        //    velocity *= maxSpeed; //Set the velocity equal to the maximum speed
+        //}
+        //
+        //velocity += acceleration; //Add the acceleration to the velocity
+        //transform.position += velocity; //Add the velocity to the position of the player
+        //
+        //acceleration = new Vector3(0, 0, 0); //Reset the player's acceleration to zero
+
+
+        //if (Input.GetKey("w"))
+        //{
+        //    if (velocity.y <= 0)
+        //    {
+        //        velocity.x = 0;
+        //        velocity.y = 0;
+        //    }
+        //    acceleration = new Vector3(0, maxAcceleration);
+        //}
+        //else if (Input.GetKey("a"))
+        //{
+        //    if (velocity.x >= 0)
+        //    {
+        //        velocity.x = 0;
+        //        velocity.y = 0;
+        //    }
+        //    acceleration = new Vector3(-maxAcceleration, 0);
+        //}
+        //else if (Input.GetKey("s"))
+        //{
+        //    if (velocity.y >= 0)
+        //    {
+        //        velocity.x = 0;
+        //        velocity.y = 0;
+        //    }
+        //    acceleration = new Vector3(0, -maxAcceleration);
+        //}
+        //else if (Input.GetKey("d"))
+        //{
+        //    if (velocity.x <= 0)
+        //    {
+        //        velocity.x = 0;
+        //        velocity.y = 0;
+        //    }
+        //    acceleration = new Vector3(maxAcceleration, 0);
+        //}
+        //else
+        //{
+        //    if (velocity.x > 0)
+        //    {
+        //        acceleration += new Vector3(-maxDecceleration, 0);
+        //    }
+        //    if (velocity.x < 0)
+        //    {
+        //        acceleration += new Vector3(maxDecceleration, 0);
+        //    }
+        //    if (velocity.y > 0)
+        //    {
+        //        acceleration += new Vector3(0, -maxDecceleration);
+        //    }
+        //    if (velocity.y < 0)
+        //    {
+        //        acceleration += new Vector3(0, maxDecceleration);
+        //    }
+        //}
+        //
+        //if (velocity.x * velocity.x + velocity.y * velocity.y + velocity.z * velocity.z >= maxSpeed * maxSpeed)
+        //{
+        //    velocity.Normalize();
+        //    velocity *= maxSpeed;
+        //}
+        //
+        //velocity += acceleration;
+        //transform.position += velocity;
+        //
+        //acceleration = new Vector3(0, 0, 0);
     }
 
     void AnimationControl()
