@@ -202,15 +202,19 @@ public class Player : MonoBehaviour {
             {
                 animator.SetInteger("Direction", 2);
                 pauseState = "DogRight";
-                playerBC.offset = new Vector2(0.0f, -0.04f); //Update the offset of the player's hitbox
-                playerBC.size = new Vector2(1.25f, 1.15f); //Update the size of the player's hitbox
+                playerBC.offset = new Vector2(0.06f, 0.0f); //Update the offset of the player's hitbox
+                playerBC.size = new Vector2(1.3f, 0.6f); //Update the size of the player's hitbox
+                //playerBC.offset = new Vector2(0.0f, -0.04f); //Update the offset of the player's hitbox
+                //playerBC.size = new Vector2(1.25f, 1.15f); //Update the size of the player's hitbox
             }
             else if (horizontal < -.01)
             {
                 animator.SetInteger("Direction", 4);
                 pauseState = "DogLeft";
-                playerBC.offset = new Vector2(0.0f, -0.04f); //Update the offset of the player's hitbox
-                playerBC.size = new Vector2(1.25f, 1.15f); //Update the size of the player's hitbox
+                playerBC.offset = new Vector2(0.06f, 0.0f); //Update the offset of the player's hitbox
+                playerBC.size = new Vector2(1.3f, 0.6f); //Update the size of the player's hitbox
+                //playerBC.offset = new Vector2(0.0f, -0.04f); //Update the offset of the player's hitbox
+                //playerBC.size = new Vector2(1.25f, 1.15f); //Update the size of the player's hitbox
             }
             else
             {
