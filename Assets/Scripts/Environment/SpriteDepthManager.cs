@@ -14,7 +14,7 @@ public class SpriteDepthManager : MonoBehaviour
 
     void Update() //Update is called once per frame
     {
-        if (player.transform.position.y > (transform.position.y - Mathf.Abs(yPositionModifier))) //If the player is above this object
+        if (player.transform.position.y > (transform.position.y + yPositionModifier)) //If the player is above this object
         {
             sRenderer.sortingLayerName = "Environment"; //Move the sprite to the environment layer
         }
