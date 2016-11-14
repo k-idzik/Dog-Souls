@@ -4,7 +4,7 @@ using System.Collections;
 using UnityEngine.SceneManagement; //Load scenes
 using UnityEngine.EventSystems; //Event systems
 
-public class MenuScripts : MonoBehaviour //KI
+public class MenuScripts : MonoBehaviour
 {
     [SerializeField] private Canvas uIOverlay; //The UI overlay
     //[SerializeField] private UnityStandardAssets._2D.PlatformerCharacter2D playerControlScript; //The player's control script 
