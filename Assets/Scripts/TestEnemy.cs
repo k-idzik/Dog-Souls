@@ -4,7 +4,7 @@ using System.Collections;
 public class TestEnemy : MonoBehaviour
 {
     private Vector3 arcRotation; //How far to move the enemy each frame
-    [SerializeField] float angleOfRotation; //How fast to rotate
+    public float angleOfRotation; //How fast to rotate
 
     void Start() //Use this for initialization
     {

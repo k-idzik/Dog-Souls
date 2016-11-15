@@ -1,12 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Player : MonoBehaviour {
 
+    public int startLayer;
+    public int currLayer;
+    public SpriteRenderer sprite;
+    public SpriteRenderer startStandingSprite;
+    public SpriteRenderer currStandingSprite;
+    public bool canMove;
+
     private Animator animator;
-    //public Vector3 velocity;
     private float maxSpeed;
-    //public Vector3 acceleration;
+    private float speed;
+    public Vector2 velocity;
+    public Vector2 acceleration;
     //public float maxAcceleration;
     //public float maxDecceleration;
     private float prevVertical = 0;
@@ -20,6 +29,18 @@ public class Player : MonoBehaviour {
     private BoxCollider2D playerBC; //The player's box collider
     private float timer;
     public float attackCooldown;
+
+    public float MaxSpeed //Health property
+    {
+        get
+        {
+            return maxSpeed; //Return the player's health
+        }
+        set
+        {
+            maxSpeed = value;
+        }
+    }
 
     public int Health //Health property
     {
@@ -42,7 +63,16 @@ public class Player : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        maxSpeed = 1.0f; //Set doggo's max speed
+        sprite = this.GetComponent<SpriteRenderer>();
+        startLayer = 0;
+        currLayer = startLayer;
+        currStandingSprite = startStandingSprite;
+        canMove = true;
+
+        speed = 1.0f; //Set doggo's max speed
+        maxSpeed = 6.0f;
+        acceleration = new Vector2(0f, 0f);
+        velocity = new Vector2(0f, 0f);
         animator = this.GetComponent<Animator>();
         pauseState = "DogTowards";
         health = 5; //Set the player's health equal to 5
@@ -55,11 +85,81 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        currLayer = sprite.sortingOrder;
+        //go down heights of 1
+        if (sprite.sortingOrder == currStandingSprite.sortingOrder + 1)
+        {
+            sprite.sortingOrder--;
+        }
+        //got up heights of 1
+        if (sprite.sortingOrder == currStandingSprite.sortingOrder - 1)
+        {
+            sprite.sortingOrder++;
+        }
+        if (currStandingSprite == sprite)
+        {
+            knockBack();
+        }
+        /*
+        if (sprite.sortingOrder > currStandingSprite.sortingOrder)
+        {
+            canMove = false;
+            playerRB.velocity = new Vector3(0f, 0f, 0f);
+        }
+        */
+        //Debug.Log("Updating!");
         timer += Time.deltaTime;
         AnimationControl();
         Attack();
         Movement();
         Blink(); //Blink for cooldown
+        canMove = true;
+    }
+
+    //when entering a surface, check to see if it is enterable
+    void OnTriggerEnter2D(Collider2D other)
+    {
+
+        SpriteRenderer rend = sprite;
+        try
+        {
+            SpriteRenderer tempRend = other.gameObject.GetComponent<SpriteRenderer>();
+            if (sprite.sortingOrder <= tempRend.sortingOrder + 1 && tempRend.gameObject.tag == "Land")
+            {
+                rend = other.gameObject.GetComponent<SpriteRenderer>();
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+
+        currStandingSprite = rend;
+
+    }
+
+    //knocks back the player
+    void knockBack()
+    {
+        //Debug.Log("Knockback called!");
+        //Vector3 movementSpeed = -5*this.transform.forward;
+        if (Input.GetAxisRaw("Horizontal") > 0)
+        {
+            playerRB.velocity = new Vector3(-maxSpeed*2, 0f, 0f);
+        }
+        if (Input.GetAxisRaw("Horizontal") < 0)
+        {
+            playerRB.velocity = new Vector3(maxSpeed*2, 0f, 0f);
+        }
+        if (Input.GetAxisRaw("Vertical") > 0)
+        {
+            playerRB.velocity = new Vector3(0f, -maxSpeed*2, 0f);
+        }
+        if (Input.GetAxisRaw("Vertical") < 0)
+        {
+            playerRB.velocity = new Vector3(0f, maxSpeed*2, 0f);
+        }
     }
 
     void Movement() //Move the player
@@ -67,33 +167,68 @@ public class Player : MonoBehaviour {
         float horizontalInput = Input.GetAxisRaw("Horizontal"); //Horizontal input detection
         float verticalInput = Input.GetAxisRaw("Vertical"); //Vertical input detection
 
-        if ((horizontalInput != 0.0f || verticalInput != 0.0f) && maxSpeed >= 6) //If the player is moving and at max speed
+        if (canMove)
         {
-            maxSpeed = 6.0f; //Increase the player's max speed
-        }
-        else if (horizontalInput == 0.0f && verticalInput == 0.0f) //If the player is not moving
-        {
-            maxSpeed = 1.0f; //Reset the player's max speed
-        }
-        else //If the player is moving and not at max speed
-        {
-            maxSpeed += 0.25f; //Increase the player's max speed
-        }
+            if (horizontalInput != 0.0f || verticalInput != 0.0f) //If the player is moving and at max speed
+            {
+                acceleration += new Vector2(horizontalInput, verticalInput); //Increase the player's max speed
+            }
+            else if (horizontalInput == 0.0f && verticalInput == 0.0f) //If the player is not moving
+            {
+                if (velocity.x > 0f)
+                {
+                    velocity.x -= 0.25f;
+                }
+                if (velocity.x < 0f)
+                {
+                    velocity.x += 0.25f;
+                }
+                if (velocity.y > 0f)
+                {
+                    velocity.y -= 0.25f;
+                }
+                if (velocity.y < 0f)
+                {
+                    velocity.y += 0.25f;
+                }
+                //acceleration += new Vector3(horizontalInput, vertical) //Reset the player's max speed
+            }
+            else //If the player is moving and not at max speed
+            {
+                //speed += 0.25f; //Increase the player's max speed
+            }
 
-        //if (verticalInput != 0.0f)
-        //{
-        //    playerBC.offset = new Vector2(-0.04f, 0.0f); //Update the offset of the player's hitbox
-        //    playerBC.size = new Vector2(0.6f, 1.3f); //Update the size of the player's hitbox
-        //}
-        //if (horizontalInput != 0.0f)
-        //{
-        //    playerBC.offset = new Vector2(0.0f, -0.04f); //Update the offset of the player's hitbox
-        //    playerBC.size = new Vector2(1.25f, 1.15f); //Update the size of the player's hitbox
-        //}
+            //if (verticalInput != 0.0f)
+            //{
+            //    playerBC.offset = new Vector2(-0.04f, 0.0f); //Update the offset of the player's hitbox
+            //    playerBC.size = new Vector2(0.6f, 1.3f); //Update the size of the player's hitbox
+            //}
+            //if (horizontalInput != 0.0f)
+            //{
+            //    playerBC.offset = new Vector2(0.0f, -0.04f); //Update the offset of the player's hitbox
+            //    playerBC.size = new Vector2(1.25f, 1.15f); //Update the size of the player's hitbox
+            //}
 
-        Vector2 movementSpeed = new Vector2(horizontalInput, verticalInput).normalized * maxSpeed; //Normalize the player's movement and multiply it by the player's max speed
+            velocity += acceleration;
 
-        playerRB.velocity = movementSpeed; //Add the input to the player's velocity
+            if (velocity.x*velocity.x + velocity.y*velocity.y > maxSpeed*maxSpeed)
+            {
+                velocity = velocity.normalized * maxSpeed;
+            }
+
+            acceleration = new Vector2(0f, 0f);
+
+            playerRB.velocity = velocity;
+
+            if (playerRB.velocity.sqrMagnitude < 0.1)
+            {
+                playerRB.velocity = new Vector2(0f, 0f);
+            }
+
+            //Vector2 movementSpeed = new Vector2(horizontalInput, verticalInput).normalized * speed; //Normalize the player's movement and multiply it by the player's max speed
+
+            //playerRB.velocity = movementSpeed; //Add the input to the player's velocity
+        }
 
         //if ((velocity.x * velocity.x) + (velocity.y * velocity.y) + (velocity.z * velocity.z) >= maxSpeed * maxSpeed) //If the combination of all velocities squared is greater than or equal to the maximum speed squared
         //{
