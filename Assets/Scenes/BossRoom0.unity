@@ -155,7 +155,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 57977547c59abb546bbb1501e3c417db, type: 2}
       propertyPath: m_TagString
-      value: enemy
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 57977547c59abb546bbb1501e3c417db, type: 2}
@@ -213,7 +213,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 57977547c59abb546bbb1501e3c417db, type: 2}
       propertyPath: m_TagString
-      value: enemy
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 57977547c59abb546bbb1501e3c417db, type: 2}
@@ -275,7 +275,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 57977547c59abb546bbb1501e3c417db, type: 2}
       propertyPath: m_TagString
-      value: enemy
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 57977547c59abb546bbb1501e3c417db, type: 2}
@@ -356,6 +356,22 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011073745146, guid: 19e4ebfc5a280014aa6b8e0f5da8b3fa,
+        type: 2}
+      propertyPath: magicMissiles
+      value: 
+      objectReference: {fileID: 1000013236481228, guid: 0bd017e79869dab44b34969e81c8229c,
+        type: 2}
+    - target: {fileID: 114000011073745146, guid: 19e4ebfc5a280014aa6b8e0f5da8b3fa,
+        type: 2}
+      propertyPath: timeBetweenAttacks
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011073745146, guid: 19e4ebfc5a280014aa6b8e0f5da8b3fa,
+        type: 2}
+      propertyPath: missileAttacks
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 60000012292713650, guid: 19e4ebfc5a280014aa6b8e0f5da8b3fa, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 19e4ebfc5a280014aa6b8e0f5da8b3fa, type: 2}
@@ -377,7 +393,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011544559596, guid: d6478618f15d2c4478791bb64e14846e, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011544559596, guid: d6478618f15d2c4478791bb64e14846e, type: 2}
       propertyPath: m_LocalRotation.x
@@ -613,7 +629,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 57977547c59abb546bbb1501e3c417db, type: 2}
       propertyPath: m_TagString
-      value: enemy
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 57977547c59abb546bbb1501e3c417db, type: 2}
@@ -674,7 +690,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2017861133}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
