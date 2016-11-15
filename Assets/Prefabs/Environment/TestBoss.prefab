@@ -22,6 +22,7 @@ GameObject:
   - 212: {fileID: 212000011997650256}
   - 114: {fileID: 114000014028153166}
   - 61: {fileID: 61000012484839072}
+  - 114: {fileID: 114000010952149174}
   m_Layer: 0
   m_Name: TestBoss
   m_TagString: Untagged
@@ -56,6 +57,26 @@ BoxCollider2D:
   m_Offset: {x: -0.017560482, y: -0.98885554}
   serializedVersion: 2
   m_Size: {x: 0.7671819, y: 0.48651087}
+--- !u!114 &114000010952149174
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012367770410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34cf2896ddf7bb34ba86412c7982c6b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  shields:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  magicMissiles: {fileID: 0}
+  timeBetweenAttacks: 0
+  timeAttacks: 0
 --- !u!114 &114000014028153166
 MonoBehaviour:
   m_ObjectHideFlags: 1

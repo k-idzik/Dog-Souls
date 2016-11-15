@@ -4,21 +4,11 @@ using System.Collections;
 public class RoboWiz : MonoBehaviour
 {
     private enum Phases { PHASE1, PHASE2, PHASE3, PHASE4 }; //Finite state machine
-    private int health; //The player's health
+    [SerializeField] private int health; //The player's health
     [SerializeField] private GameObject[] shields; //The shields
     [SerializeField] private GameObject magicMissiles; //The boss's magic missiles
     [SerializeField] private float timeBetweenAttacks; //The time between the boss's attacks
     [SerializeField] private float timeAttacks; //The timeing for the boss's attacks
-
-    void Start() //Use this for initialization
-    {
-
-	}
-
-    IEnumerator Cooldown(float time) //Co-routine timer
-    {
-        yield return new WaitForSeconds(time); //Timer
-    }
 
     void Update() //Update is called once per frame
     {
@@ -32,6 +22,11 @@ public class RoboWiz : MonoBehaviour
             Destroy(gameObject); //He dead
         }
 	}
+
+    IEnumerator Cooldown(float time) //Co-routine timer
+    {
+        yield return new WaitForSeconds(time); //Timer
+    }
 
     private void FirstAttack() //The boss's first attack, sprinkler
     {
