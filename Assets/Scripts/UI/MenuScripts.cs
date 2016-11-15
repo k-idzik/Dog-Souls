@@ -15,6 +15,12 @@ public class MenuScripts : MonoBehaviour
     private UnityEngine.UI.Image[] uIImages; //The UI images for the player's health
     private UnityEngine.UI.Text messageText; //The UI text messages
     private float messageTimer; //How long to display messages for
+    private GameObject[] bossSearch; //The objects stored when looking for the boss
+    private GameObject boss; //The boss
+    private RoboWiz roboWizScript; //The robo wiz's script
+    private UnityEngine.UI.Text bossText; //The UI boss text
+    private UnityEngine.UI.Image bossHealthBar; //The UI boss healthbar
+    private int bossHealth; //The boss's health
     //private UnityEngine.UI.Text qText; //The UI text for weapon changing
     //private UnityEngine.UI.Text eText; //The UI text for weapon changing
     //private UnityEngine.UI.Text lBText; //The UI text for weapon changing
@@ -32,7 +38,15 @@ public class MenuScripts : MonoBehaviour
     void Start() //Use this for initilaization
     {
         uIImages = uIOverlay.GetComponentsInChildren<UnityEngine.UI.Image>(); //Get the images from the children
-        messageTimer = 0; //Initialize the message timer
+
+        for (int i = 0; i < uIImages.Length; i++) //For each UI text element
+        {
+            if (uIImages[i].name == "BossHealth") //If the current gameobject is the boss
+            {
+                bossHealthBar = uIImages[i]; //Set the boss health bar
+                break; //Break out of the loop
+            }
+        }
 
         UnityEngine.UI.Text[] uIText = uIOverlay.GetComponentsInChildren<UnityEngine.UI.Text>(); //Temporarily store all of the UI text
         for (int i = 0; i < uIText.Length; i++) //For each UI text element
@@ -56,7 +70,37 @@ public class MenuScripts : MonoBehaviour
             if (uIText[i].name == "Message") //If the message text is found
             {
                 messageText = uIText[i]; //Save the message text
+                messageTimer = 0; //Initialize the message timer
             }
+            if (uIText[i].name == "BossText") //If the boss text is found
+            {
+                bossText = uIText[i]; //Save the boss text
+            }
+        }
+
+        bossSearch = FindObjectsOfType<GameObject>(); //Get gameobjects from the scene
+
+        for (int i = 0; i < bossSearch.Length; i++) //For each gameobject in the scene
+        {
+            boss = bossSearch[i]; //Save the boss
+
+            if (bossSearch[i].tag == "boss") //If the current gameobject is the boss
+            {
+                switch(bossSearch[i].name) //Switch based on the boss's name
+                {
+                    case "RoboWiz": //If the boss's name is RoboWiz
+                        roboWizScript = bossSearch[i].GetComponent<RoboWiz>(); //Set the boss
+                        bossHealth = roboWizScript.Health; //Set the boss's health
+                        break; //Break out of the loop
+                }
+
+                bossHealthBar.enabled = true; //Enable the boss's health bar
+                bossText.enabled = true; //Enable the boss's text
+                break; //Break out of the loop
+            }
+
+            bossHealthBar.enabled = false; //Disable the boss's health bar
+            bossText.enabled = false; //Disable the boss's text
         }
     }
 
@@ -88,6 +132,11 @@ public class MenuScripts : MonoBehaviour
         HealthUIUpdater(); //Update the player's health UI
         MessageTiming(7.5f); //Time how long messages appear for
 
+        if (bossHealthBar.enabled == true && bossHealth > 0) //If there is a boss
+        {
+            BossUIUpdater(); //Update the boss UI
+        }
+
         if (player.Health <= 0) //If he dead
         {
             SceneManager.LoadScene(0); //Load the scene
@@ -106,6 +155,17 @@ public class MenuScripts : MonoBehaviour
             {
                 uIImages[i].enabled = false; //Disable the player health sprite
             }
+        }
+    }
+
+    private void BossUIUpdater() //Updates the boss's health UI
+    {
+        switch (boss.name) //Switch based on the boss's name
+        {
+            case "RoboWiz": //If the boss's name is RoboWiz
+                bossHealthBar.rectTransform.sizeDelta = new Vector2(roboWizScript.Health * 10, 25); //Rescale the boss's health as it takes damage
+                bossHealth = roboWizScript.Health; //Set the boss's health
+                break; //Break out of the loop
         }
     }
 

@@ -11,9 +11,17 @@ public class RoboWiz : MonoBehaviour
     [SerializeField] private float timeBetweenAttacks; //The time between the boss's attacks
     [SerializeField] private float missileAttacks; //The timing for the boss's attacks
 
+    public int Health //The boss's health
+    {
+        get
+        {
+            return health; //Return the boss's health
+        }
+    }
+
     void Update() //Update is called once per frame
     {
-        if (!phases[0] && !phases[(health - 25) / 25]) //If the boss's health is down by an even quarter
+        if (health <= 75 && health > 0 && !phases[health / 25]) //If the boss's health is down by an even quarter
         {
             PhaseChange(); //Change the phase
         }
@@ -46,14 +54,22 @@ public class RoboWiz : MonoBehaviour
 
     private void PhaseChange() //When the boss should change phases
     {
-        phases[(health - 25) / 25] = true; //Activate the next phase
-        phases[((health - 25) / 25) + 1] = false; //Deactivate the previous phase
+        phases[health / 25] = true; //Activate the next phase
+        phases[(health / 25) + 1] = false; //Deactivate the previous phase
 
         if (shields.Count > 0) //If there are still shields left
         {
             int shieldNumber = Random.Range(0, shields.Count); //Get the shield to destroy
             Destroy(shields[shieldNumber]); //Destory the shield
             shields.RemoveAt(shieldNumber); //Remove the shield from the array
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D coll) //If something collides with the boss
+    {
+        if (coll.gameObject.tag == "weapon") //If the boss collides with the player's weapon
+        {
+            health -= 10; //Decrement health
         }
     }
 }
