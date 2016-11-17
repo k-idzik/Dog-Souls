@@ -17,7 +17,7 @@ public class MenuScripts : MonoBehaviour
     private float messageTimer; //How long to display messages for
     private GameObject[] bossSearch; //The objects stored when looking for the boss
     private GameObject boss; //The boss
-    private RoboWiz roboWizScript; //The robo wiz's script
+    private Boss bossScript; //The inherited boss script
     private UnityEngine.UI.Text bossText; //The UI boss text
     private UnityEngine.UI.Image bossHealthBar; //The UI boss healthbar
     private int bossHealth; //The boss's health
@@ -35,7 +35,7 @@ public class MenuScripts : MonoBehaviour
     //    }
     //}
 
-    void Start() //Use this for initilaization
+    void Start() //Use this for initialization
     {
         uIImages = uIOverlay.GetComponentsInChildren<UnityEngine.UI.Image>(); //Get the images from the children
 
@@ -86,13 +86,8 @@ public class MenuScripts : MonoBehaviour
 
             if (bossSearch[i].tag == "boss") //If the current gameobject is the boss
             {
-                switch(bossSearch[i].name) //Switch based on the boss's name
-                {
-                    case "RoboWiz": //If the boss's name is RoboWiz
-                        roboWizScript = bossSearch[i].GetComponent<RoboWiz>(); //Set the boss
-                        bossHealth = roboWizScript.Health; //Set the boss's health
-                        break; //Break out of the loop
-                }
+                bossScript = bossSearch[i].GetComponent<Boss>(); //Set the boss
+                bossHealth = bossScript.Health; //Set the boss's health
 
                 bossHealthBar.enabled = true; //Enable the boss's health bar
                 bossText.enabled = true; //Enable the boss's text
@@ -136,6 +131,11 @@ public class MenuScripts : MonoBehaviour
         {
             BossUIUpdater(); //Update the boss UI
         }
+        else if (bossHealth <= 0) //If the boss is dead
+        {
+            bossText.enabled = false; //Disable the boss text
+            bossHealthBar.enabled = false; //Disable the boss health bar
+        }
 
         if (player.Health <= 0) //If he dead
         {
@@ -160,13 +160,8 @@ public class MenuScripts : MonoBehaviour
 
     private void BossUIUpdater() //Updates the boss's health UI
     {
-        switch (boss.name) //Switch based on the boss's name
-        {
-            case "RoboWiz": //If the boss's name is RoboWiz
-                bossHealthBar.rectTransform.sizeDelta = new Vector2(roboWizScript.Health * 10, 25); //Rescale the boss's health as it takes damage
-                bossHealth = roboWizScript.Health; //Set the boss's health
-                break; //Break out of the loop
-        }
+        bossHealthBar.rectTransform.sizeDelta = new Vector2(bossScript.Health * 15, 35); //Rescale the boss's health as it takes damage
+        bossHealth = bossScript.Health; //Set the boss's health
     }
 
     private void MessageTiming(float maxTime) //Timing for how long messages should appear

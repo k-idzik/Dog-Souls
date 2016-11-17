@@ -10,7 +10,6 @@ public class SpriteDepthManager : MonoBehaviour
 	void Start() //Use this for initialization
     {
         sRenderer = GetComponent<SpriteRenderer>(); //Get this object's sprite renderer
-        player = GameObject.FindGameObjectWithTag("Player");
 	}
 
     void Update() //Update is called once per frame

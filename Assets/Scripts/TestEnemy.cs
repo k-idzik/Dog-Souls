@@ -19,15 +19,15 @@ public class TestEnemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D coll) //When something collides with the player
     {
-        if (coll.gameObject.tag == "Player") //If the player is colliding with an enemy
-        {
-            Player p = coll.gameObject.GetComponent<Player>();
-            if(p.DamageCooldown <= 0 )
-            {
-                p.Health -= 1; //Decrement the player's health
-                p.DamageCooldown = 1; //Reset the damage cooldown
-            }
-        }
+        //if (coll.gameObject.tag == "Player") //If the player is colliding with an enemy
+        //{
+        //    Player p = coll.gameObject.GetComponent<Player>();
+        //    if(p.DamageCooldown <= 0 )
+        //    {
+        //        p.Health -= 1; //Decrement the player's health
+        //        p.DamageCooldown = 1; //Reset the damage cooldown
+        //    }
+        //}
         if(coll.gameObject.tag == "weapon") //If the enemy is colliding with the player's weapon.
         {
             Destroy(this.gameObject);

@@ -2,24 +2,15 @@
 using System.Collections;
 using System.Collections.Generic; //Lists
 
-public class RoboWiz : MonoBehaviour
+public class RoboWiz : Boss
 {
     private bool[] phases = new bool[4] { false, false, false, true }; //Array of booleans to hold the current state
-    [SerializeField] private int health; //The player's health
     [SerializeField] private List<GameObject> shields; //The shields
     [SerializeField] private GameObject magicMissiles; //The boss's magic missiles
     [SerializeField] private float timeBetweenAttacks; //The time between the boss's attacks
     [SerializeField] private float missileAttacks; //The timing for the boss's attacks
 
-    public int Health //The boss's health
-    {
-        get
-        {
-            return health; //Return the boss's health
-        }
-    }
-
-    void Update() //Update is called once per frame
+    protected override void Update() //Update is called once per frame
     {
         if (health <= 75 && health > 0 && !phases[health / 25]) //If the boss's health is down by an even quarter
         {
@@ -30,12 +21,9 @@ public class RoboWiz : MonoBehaviour
         {
             Destroy(gameObject); //He dead
         }
-	}
 
-    IEnumerator Cooldown(float time) //Co-routine timer
-    {
-        yield return new WaitForSeconds(time); //Timer
-    }
+        base.Update(); //Call the base update method
+	}
 
     private void FirstAttack() //The boss's first attack, sprinkler
     {
@@ -49,7 +37,7 @@ public class RoboWiz : MonoBehaviour
 
     private void ThirdAttack() //The boss's third attack
     {
-
+        
     }
 
     private void PhaseChange() //When the boss should change phases
@@ -65,11 +53,12 @@ public class RoboWiz : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D coll) //If something collides with the boss
+    protected override void OnTriggerStay2D(Collider2D coll) //If something collides with the boss
     {
-        if (coll.gameObject.tag == "weapon") //If the boss collides with the player's weapon
+        if (coll.gameObject.tag == "weapon" && damageCooldown <= 0f) //If the boss collides with the player's weapon
         {
             health -= 10; //Decrement health
+            damageCooldown = 1; //Reset the damage cooldown
         }
     }
 }

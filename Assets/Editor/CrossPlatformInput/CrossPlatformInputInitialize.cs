@@ -85,10 +85,10 @@ namespace UnityStandardAssets.CrossPlatformInput.Inspector
         private static BuildTargetGroup[] buildTargetGroups = new BuildTargetGroup[]
             {
                 BuildTargetGroup.Standalone,
-                BuildTargetGroup.WebPlayer,
+                //BuildTargetGroup.WebPlayer, //This throws warnings, so I got rid of it
                 BuildTargetGroup.Android,
-                BuildTargetGroup.iOS,
-                BuildTargetGroup.WP8
+                BuildTargetGroup.iOS
+                //BuildTargetGroup.WP8 //This throws warnings, so I got rid of it
             };
 
         private static BuildTargetGroup[] mobileBuildTargetGroups = new BuildTargetGroup[]

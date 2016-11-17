@@ -2,33 +2,33 @@
 using System.Collections;
 using System;
 
-public class Player : MonoBehaviour {
-
-    public int startLayer;
-    public int currLayer;
-    public SpriteRenderer sprite;
-    public SpriteRenderer startStandingSprite;
-    public SpriteRenderer currStandingSprite;
-    public bool canMove;
+public class Player : MonoBehaviour
+{
+    private int startLayer;
+    private int currLayer;
+    //[SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private SpriteRenderer startStandingSprite;
+    private SpriteRenderer currStandingSprite;
+    //[SerializeField] private bool canMove;
 
     private Animator animator;
     private float maxSpeed;
     private float speed;
-    public Vector2 velocity;
-    public Vector2 acceleration;
+    private Vector2 velocity;
+    private Vector2 acceleration;
     //public float maxAcceleration;
     //public float maxDecceleration;
     private float prevVertical = 0;
     private float prevHorizontal = 0;
-    public GameObject sword;
+    [SerializeField] private GameObject sword;
     private string pauseState;
-    private int health; //Doogo's health
+    private int health; //Doggo's health
     private float damageCooldown; //The time between when the player can take damage
     private SpriteRenderer playerSR; //The player's sprite renderer
     private Rigidbody2D playerRB; //The player's rigidbody
     private BoxCollider2D playerBC; //The player's box collider
     private float timer;
-    public float attackCooldown;
+    [SerializeField] private float attackCooldown;
 
     public float MaxSpeed //Health property
     {
@@ -63,11 +63,11 @@ public class Player : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        sprite = this.GetComponent<SpriteRenderer>();
+        //sprite = GetComponent<SpriteRenderer>();
         startLayer = 0;
         currLayer = startLayer;
         currStandingSprite = startStandingSprite;
-        canMove = true;
+        //canMove = true;
 
         speed = 1.0f; //Set doggo's max speed
         maxSpeed = 6.0f;
@@ -77,29 +77,30 @@ public class Player : MonoBehaviour {
         pauseState = "DogTowards";
         health = 5; //Set the player's health equal to 5
         damageCooldown = 1; //Set the damageCooldown
-        playerSR = gameObject.GetComponentInChildren<SpriteRenderer>(); //Get the player's sprite renderer
-        playerRB = gameObject.GetComponentInChildren<Rigidbody2D>(); //Get the player's rigidbody
-        playerBC = gameObject.GetComponentInChildren<BoxCollider2D>(); //Get the player's box collider
         timer = damageCooldown;
+
+        playerSR = GetComponent<SpriteRenderer>(); //Get the player's sprite renderer
+        playerRB = GetComponent<Rigidbody2D>(); //Get the player's rigidbody
+        playerBC = GetComponent<BoxCollider2D>(); //Get the player's box collider
     }
 	
 	// Update is called once per frame
-	void Update () {
-
-        currLayer = sprite.sortingOrder;
+	void Update ()
+    {
+        currLayer = playerSR.sortingOrder;
         //go down heights of 1
-        if (sprite.sortingOrder == currStandingSprite.sortingOrder + 1)
+        if (playerSR.sortingOrder == currStandingSprite.sortingOrder + 1)
         {
-            sprite.sortingOrder--;
+            playerSR.sortingOrder--;
         }
         //got up heights of 1
-        if (sprite.sortingOrder == currStandingSprite.sortingOrder - 1)
+        if (playerSR.sortingOrder == currStandingSprite.sortingOrder - 1)
         {
-            sprite.sortingOrder++;
+            playerSR.sortingOrder++;
         }
-        if (currStandingSprite == sprite)
+        if (currStandingSprite == playerSR)
         {
-            knockBack();
+            KnockBack();
         }
         /*
         if (sprite.sortingOrder > currStandingSprite.sortingOrder)
@@ -109,38 +110,17 @@ public class Player : MonoBehaviour {
         }
         */
         //Debug.Log("Updating!");
+
         timer += Time.deltaTime;
         AnimationControl();
         Attack();
         Movement();
         Blink(); //Blink for cooldown
-        canMove = true;
-    }
-
-    //when entering a surface, check to see if it is enterable
-    void OnTriggerEnter2D(Collider2D other)
-    {
-
-        SpriteRenderer rend = sprite;
-        try
-        {
-            SpriteRenderer tempRend = other.gameObject.GetComponent<SpriteRenderer>();
-            if (sprite.sortingOrder <= tempRend.sortingOrder + 1 && tempRend.gameObject.tag == "Land")
-            {
-                rend = other.gameObject.GetComponent<SpriteRenderer>();
-            }
-        }
-        catch (Exception e)
-        {
-
-        }
-
-        currStandingSprite = rend;
-
+        //canMove = true;
     }
 
     //knocks back the player
-    void knockBack()
+    void KnockBack()
     {
         //Debug.Log("Knockback called!");
         //Vector3 movementSpeed = -5*this.transform.forward;
@@ -167,8 +147,8 @@ public class Player : MonoBehaviour {
         float horizontalInput = Input.GetAxisRaw("Horizontal"); //Horizontal input detection
         float verticalInput = Input.GetAxisRaw("Vertical"); //Vertical input detection
 
-        if (canMove)
-        {
+        //if (canMove)
+        //{
             if (horizontalInput != 0.0f || verticalInput != 0.0f) //If the player is moving and at max speed
             {
                 acceleration += new Vector2(horizontalInput, verticalInput); //Increase the player's max speed
@@ -228,7 +208,7 @@ public class Player : MonoBehaviour {
             //Vector2 movementSpeed = new Vector2(horizontalInput, verticalInput).normalized * speed; //Normalize the player's movement and multiply it by the player's max speed
 
             //playerRB.velocity = movementSpeed; //Add the input to the player's velocity
-        }
+        //}
 
         //if ((velocity.x * velocity.x) + (velocity.y * velocity.y) + (velocity.z * velocity.z) >= maxSpeed * maxSpeed) //If the combination of all velocities squared is greater than or equal to the maximum speed squared
         //{
@@ -427,36 +407,56 @@ public class Player : MonoBehaviour {
         }
     }
 
-    //private void OnTriggerEnter2D(Collider2D coll) //When something collides with the player
-    //{
-    //    if (coll.gameObject.tag == "enemy") //If the player is colliding with an enemy
-    //    {
-    //        health--; //Decrement the player's health
-    //        damageCooldown = 1; //Reset the damage cooldown
-    //    }
-    //}
-
-    private void Blink() //Make Huebert blink while in cooldown
+    private void OnTriggerStay2D(Collider2D coll) //When something collides with the player
     {
-        if (damageCooldown >= 0f) //If Huebert is in cooldown
+        if (coll.gameObject.tag == "enemy" && damageCooldown <= 0f) //If the player is colliding with an enemy
         {
-            if (playerSR.enabled) //If Huebert's sprite is on
-            {
-                playerSR.enabled = false; //Turn off Huebert's sprite
-            }
-            else //If Huebert's sprite is off
-            {
-                playerSR.enabled = true; //Turn on Huebert's sprite
-            }
-        }
-        else //If Huebert is not in cooldown
-        {
-            playerSR.enabled = true; //Turn on Huebert's sprite
+            health--; //Decrement the player's health
+            damageCooldown = 1; //Reset the damage cooldown
         }
 
-        if (damageCooldown > 0f) //If the cooldown between hits is less than two
+        //when entering a surface, check to see if it is enterable
+        SpriteRenderer rend = playerSR;
+        try
         {
-            damageCooldown -= Time.deltaTime; //Increment the cooldown timer
+            if (coll.gameObject.tag == "Land") //If the player is colliding with land
+            {
+                SpriteRenderer tempRend = coll.gameObject.GetComponent<SpriteRenderer>();
+                if (playerSR.sortingOrder <= tempRend.sortingOrder + 1 && tempRend)
+                {
+                    rend = coll.gameObject.GetComponent<SpriteRenderer>();
+                }
+            }
+        }
+        catch (Exception)
+        {
+
+        }
+
+        currStandingSprite = rend;
+    }
+
+    private void Blink() //Make the player blink while in cooldown
+    {
+        if (damageCooldown >= 0f) //If the player is in cooldown
+        {
+            if (playerSR.color.a == 1) //If the player's sprite is on
+            {
+                playerSR.color = new Color(playerSR.color.r, playerSR.color.g, playerSR.color.b, 0); //Make the player's sprite transparent
+            }
+            else //If the player's sprite is off
+            {
+                playerSR.color = new Color(playerSR.color.r, playerSR.color.g, playerSR.color.b, 1); //Make the player's sprite not transparent
+            }
+        }
+        else //If the player is not in cooldown
+        {
+            playerSR.color = new Color(playerSR.color.r, playerSR.color.g, playerSR.color.b, 1); //Make the player's sprite not transparent
+        }
+
+        if (damageCooldown > 0f) //If the cooldown is active
+        {
+            damageCooldown -= Time.deltaTime; //Decrement the cooldown timer
         }
     }
 }
