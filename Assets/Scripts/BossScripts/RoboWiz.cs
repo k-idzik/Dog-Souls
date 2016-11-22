@@ -103,6 +103,18 @@ public class RoboWiz : Boss
             // decrement the timer
             missileTimer -= Time.deltaTime;
 
+            if (minionTimer <= 0)
+            {
+                // call second attack if timer is up
+                SecondAttack();
+
+                // reset timer
+                minionTimer = minionCooldown;
+            }
+
+            // decrement timer
+            minionTimer -= Time.deltaTime;
+
             if (beamTimer <= 0)
             {
                 ThirdAttack(); //IT'S BEAM TIME
@@ -113,18 +125,47 @@ public class RoboWiz : Boss
 
             // decrement the timer
             beamTimer -= Time.deltaTime;
+        }
 
-            //if (minionTimer <= 0)
-            //{
-            //    // call second attack if timer is up
-            //    SecondAttack();
-            //
-            //    // reset timer
-            //    minionTimer = minionCooldown;
-            //}
-            //
-            //// decrement timer
-            //minionTimer -= Time.deltaTime;
+        // FOURTH PHASE
+        if (phases[0])
+        {
+            if (missileTimer <= 0)
+            {
+                // call first attack if timer is up
+                FirstAttack();
+
+                // reset timer
+                missileTimer = missileCooldown;
+            }
+
+            // decrement the timer
+            missileTimer -= Time.deltaTime;
+
+            if (minionTimer <= 0)
+            {
+                // call second attack if timer is up
+                SecondAttack();
+
+                // reset timer
+                minionTimer = minionCooldown;
+            }
+
+            // decrement timer
+            minionTimer -= Time.deltaTime;
+
+            if (beamTimer <= 0)
+            {
+                ThirdAttack(); //IT'S BEAM TIME
+
+                beamCooldown = 3; //Halve the beam cooldown
+
+                // reset timer
+                beamTimer = beamCooldown;
+            }
+
+            // decrement the timer
+            beamTimer -= Time.deltaTime;
         }
 
         if (health <= 75 && health > 0 && !phases[health / 25]) //If the boss's health is down by an even quarter
