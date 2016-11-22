@@ -4,16 +4,18 @@ using System.Collections.Generic; //Lists
 
 public class RoboWiz : Boss
 {
-    private bool[] phases = new bool[4] { false, false, false, true }; //Array of booleans to hold the current state
+    private bool[] phases = new bool[4] { false, false, true, false }; //Array of booleans to hold the current state
     [SerializeField] private List<GameObject> shields; //The shields
     [SerializeField] private GameObject magicMissile; //The boss's magic missiles
     [SerializeField] private GameObject beam; //The boss's SPECIAL BEAM CANNON
+    [SerializeField] private GameObject minion;
     [SerializeField] private float timeBetweenAttacks; //The time between the boss's attacks
     [SerializeField] private float missileAttacks; //The timing for the boss's attacks
     [SerializeField] private float numMissiles; // number of missiles
-    [SerializeField]
-    private float missileCooldown; // time between missile barrages
-    private float missileTimer = 0; // to count down between barrages of missiles
+    [SerializeField] private float missileCooldown; // time between missile barrages
+    private float missileTimer; // to count down between barrages of missiles
+    private float minionTimer;
+    [SerializeField] private float minionCooldown;
     private float missileAngle; // current angle of the missile, should always start at 0
     private float angleBetweenMissiles; // angle between each missile, should be 360 / numMissiles
     private float numSpawned; // counter for the number of missiles spawned in each attack
@@ -28,6 +30,10 @@ public class RoboWiz : Boss
 
         // calculate angle between missiles spawning
         angleBetweenMissiles = 360 / numMissiles;
+
+        missileTimer = missileCooldown;
+
+        minionTimer = minionCooldown;
     } 
     protected override void Update() //Update is called once per frame
     {
@@ -47,6 +53,34 @@ public class RoboWiz : Boss
             missileTimer -= Time.deltaTime;
 
             //Debug.Log(missileTimer);
+        }
+
+        // SECOND PHASE
+        if(phases[2] == true)
+        {
+            if (missileTimer <= 0)
+            {
+                // call first attack if timer is up
+                FirstAttack();
+
+                // reset timer
+                missileTimer = missileCooldown;
+            }
+
+            // decrement the timer
+            missileTimer -= Time.deltaTime;
+
+            if (minionTimer <= 0)
+            {
+                // call second attack if timer is up
+                SecondAttack();
+
+                // reset timer
+                minionTimer = minionCooldown;
+            }
+
+            // decrement timer
+            minionTimer -= Time.deltaTime;
         }
 
         if (health <= 75 && health > 0 && !phases[health / 25]) //If the boss's health is down by an even quarter
@@ -92,6 +126,11 @@ public class RoboWiz : Boss
 
     private void SecondAttack() //The boss's second attack, minion spawning
     {
+        float randx = Random.Range(GameObject.FindGameObjectWithTag("Player").transform.position.x - 5, GameObject.FindGameObjectWithTag("Player").transform.position.x + 5);
+        float randy = Random.Range(GameObject.FindGameObjectWithTag("Player").transform.position.y - 5, GameObject.FindGameObjectWithTag("Player").transform.position.y + 5);
+
+        // instantiate new enemy at random location
+        Instantiate(minion, new Vector3(randx, randy, 0), Quaternion.identity);
 
     }
 
