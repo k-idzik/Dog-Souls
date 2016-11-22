@@ -4,7 +4,7 @@ using System.Collections.Generic; //Lists
 
 public class RoboWiz : Boss
 {
-    private bool[] phases = new bool[4] { false, false, true, false }; //Array of booleans to hold the current state
+    private bool[] phases = new bool[4] { false, false, false, true }; //Array of booleans to hold the current state
     [SerializeField] private List<GameObject> shields; //The shields
     [SerializeField] private GameObject magicMissile; //The boss's magic missiles
     [SerializeField]
