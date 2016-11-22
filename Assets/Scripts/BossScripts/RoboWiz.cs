@@ -203,7 +203,7 @@ public class RoboWiz : Boss
     private void SpawnMissile(Vector3 direction)
     {
         // add this missile to the list
-        GameObject newMissile =  GameObject.Instantiate(magicMissile, (transform.position + direction) * 3, Quaternion.identity) as GameObject;
+        GameObject newMissile =  GameObject.Instantiate(magicMissile, (transform.position + direction) * 2, Quaternion.identity) as GameObject;
 
         // assign newMissile's direction using the setter
         newMissile.GetComponent<MagicMissile>().Direction = direction;
