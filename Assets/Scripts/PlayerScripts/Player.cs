@@ -142,155 +142,178 @@ public class Player : MonoBehaviour
         }
     }
 
+    //void Movement() //Move the player (with acceleration)
+    //{
+    //    float horizontalInput = Input.GetAxisRaw("Horizontal"); //Horizontal input detection
+    //    float verticalInput = Input.GetAxisRaw("Vertical"); //Vertical input detection
+    //
+    //    //if (canMove)
+    //    //{
+    //        if (horizontalInput != 0.0f || verticalInput != 0.0f) //If the player is moving and at max speed
+    //        {
+    //            acceleration += new Vector2(horizontalInput, verticalInput); //Increase the player's max speed
+    //        }
+    //        else if (horizontalInput == 0.0f && verticalInput == 0.0f) //If the player is not moving
+    //        {
+    //            if (velocity.x > 0f)
+    //            {
+    //                velocity.x -= 0.25f;
+    //            }
+    //            if (velocity.x < 0f)
+    //            {
+    //                velocity.x += 0.25f;
+    //            }
+    //            if (velocity.y > 0f)
+    //            {
+    //                velocity.y -= 0.25f;
+    //            }
+    //            if (velocity.y < 0f)
+    //            {
+    //                velocity.y += 0.25f;
+    //            }
+    //            //acceleration += new Vector3(horizontalInput, vertical) //Reset the player's max speed
+    //        }
+    //        else //If the player is moving and not at max speed
+    //        {
+    //            //speed += 0.25f; //Increase the player's max speed
+    //        }
+    //
+    //        //if (verticalInput != 0.0f)
+    //        //{
+    //        //    playerBC.offset = new Vector2(-0.04f, 0.0f); //Update the offset of the player's hitbox
+    //        //    playerBC.size = new Vector2(0.6f, 1.3f); //Update the size of the player's hitbox
+    //        //}
+    //        //if (horizontalInput != 0.0f)
+    //        //{
+    //        //    playerBC.offset = new Vector2(0.0f, -0.04f); //Update the offset of the player's hitbox
+    //        //    playerBC.size = new Vector2(1.25f, 1.15f); //Update the size of the player's hitbox
+    //        //}
+    //
+    //        velocity += acceleration;
+    //
+    //        if (velocity.x*velocity.x + velocity.y*velocity.y > maxSpeed*maxSpeed)
+    //        {
+    //            velocity = velocity.normalized * maxSpeed;
+    //        }
+    //
+    //        acceleration = new Vector2(0f, 0f);
+    //
+    //        playerRB.velocity = velocity;
+    //
+    //        if (playerRB.velocity.sqrMagnitude < 0.1)
+    //        {
+    //            playerRB.velocity = new Vector2(0f, 0f);
+    //        }
+    //
+    //        //Vector2 movementSpeed = new Vector2(horizontalInput, verticalInput).normalized * speed; //Normalize the player's movement and multiply it by the player's max speed
+    //
+    //        //playerRB.velocity = movementSpeed; //Add the input to the player's velocity
+    //    //}
+    //
+    //    //if ((velocity.x * velocity.x) + (velocity.y * velocity.y) + (velocity.z * velocity.z) >= maxSpeed * maxSpeed) //If the combination of all velocities squared is greater than or equal to the maximum speed squared
+    //    //{
+    //    //    velocity.Normalize(); //Normalize the velocity
+    //    //    velocity *= maxSpeed; //Set the velocity equal to the maximum speed
+    //    //}
+    //    //
+    //    //velocity += acceleration; //Add the acceleration to the velocity
+    //    //transform.position += velocity; //Add the velocity to the position of the player
+    //    //
+    //    //acceleration = new Vector3(0, 0, 0); //Reset the player's acceleration to zero
+    //
+    //
+    //    //if (Input.GetKey("w"))
+    //    //{
+    //    //    if (velocity.y <= 0)
+    //    //    {
+    //    //        velocity.x = 0;
+    //    //        velocity.y = 0;
+    //    //    }
+    //    //    acceleration = new Vector3(0, maxAcceleration);
+    //    //}
+    //    //else if (Input.GetKey("a"))
+    //    //{
+    //    //    if (velocity.x >= 0)
+    //    //    {
+    //    //        velocity.x = 0;
+    //    //        velocity.y = 0;
+    //    //    }
+    //    //    acceleration = new Vector3(-maxAcceleration, 0);
+    //    //}
+    //    //else if (Input.GetKey("s"))
+    //    //{
+    //    //    if (velocity.y >= 0)
+    //    //    {
+    //    //        velocity.x = 0;
+    //    //        velocity.y = 0;
+    //    //    }
+    //    //    acceleration = new Vector3(0, -maxAcceleration);
+    //    //}
+    //    //else if (Input.GetKey("d"))
+    //    //{
+    //    //    if (velocity.x <= 0)
+    //    //    {
+    //    //        velocity.x = 0;
+    //    //        velocity.y = 0;
+    //    //    }
+    //    //    acceleration = new Vector3(maxAcceleration, 0);
+    //    //}
+    //    //else
+    //    //{
+    //    //    if (velocity.x > 0)
+    //    //    {
+    //    //        acceleration += new Vector3(-maxDecceleration, 0);
+    //    //    }
+    //    //    if (velocity.x < 0)
+    //    //    {
+    //    //        acceleration += new Vector3(maxDecceleration, 0);
+    //    //    }
+    //    //    if (velocity.y > 0)
+    //    //    {
+    //    //        acceleration += new Vector3(0, -maxDecceleration);
+    //    //    }
+    //    //    if (velocity.y < 0)
+    //    //    {
+    //    //        acceleration += new Vector3(0, maxDecceleration);
+    //    //    }
+    //    //}
+    //    //
+    //    //if (velocity.x * velocity.x + velocity.y * velocity.y + velocity.z * velocity.z >= maxSpeed * maxSpeed)
+    //    //{
+    //    //    velocity.Normalize();
+    //    //    velocity *= maxSpeed;
+    //    //}
+    //    //
+    //    //velocity += acceleration;
+    //    //transform.position += velocity;
+    //    //
+    //    //acceleration = new Vector3(0, 0, 0);
+    //}
+
     void Movement() //Move the player
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal"); //Horizontal input detection
         float verticalInput = Input.GetAxisRaw("Vertical"); //Vertical input detection
 
-        //if (canMove)
-        //{
-            if (horizontalInput != 0.0f || verticalInput != 0.0f) //If the player is moving and at max speed
-            {
-                acceleration += new Vector2(horizontalInput, verticalInput); //Increase the player's max speed
-            }
-            else if (horizontalInput == 0.0f && verticalInput == 0.0f) //If the player is not moving
-            {
-                if (velocity.x > 0f)
-                {
-                    velocity.x -= 0.25f;
-                }
-                if (velocity.x < 0f)
-                {
-                    velocity.x += 0.25f;
-                }
-                if (velocity.y > 0f)
-                {
-                    velocity.y -= 0.25f;
-                }
-                if (velocity.y < 0f)
-                {
-                    velocity.y += 0.25f;
-                }
-                //acceleration += new Vector3(horizontalInput, vertical) //Reset the player's max speed
-            }
-            else //If the player is moving and not at max speed
-            {
-                //speed += 0.25f; //Increase the player's max speed
-            }
+        if ((horizontalInput != 0.0f || verticalInput != 0.0f) && maxSpeed >= 6) //If the player is moving and at max speed
+        {
+            maxSpeed = 6.0f; //Increase the player's max speed
+        }
+        else if (horizontalInput == 0.0f && verticalInput == 0.0f) //If the player is not moving
+        {
+            maxSpeed = 1.0f; //Reset the player's max speed
+        }
+        else //If the player is moving and not at max speed
+        {
+            maxSpeed += 0.25f; //Increase the player's max speed
+        }
 
-            //if (verticalInput != 0.0f)
-            //{
-            //    playerBC.offset = new Vector2(-0.04f, 0.0f); //Update the offset of the player's hitbox
-            //    playerBC.size = new Vector2(0.6f, 1.3f); //Update the size of the player's hitbox
-            //}
-            //if (horizontalInput != 0.0f)
-            //{
-            //    playerBC.offset = new Vector2(0.0f, -0.04f); //Update the offset of the player's hitbox
-            //    playerBC.size = new Vector2(1.25f, 1.15f); //Update the size of the player's hitbox
-            //}
+        Vector2 movementSpeed = new Vector2(horizontalInput, verticalInput).normalized * maxSpeed; //Normalize the player's movement and multiply it by the player's max speed
 
-            velocity += acceleration;
-
-            if (velocity.x*velocity.x + velocity.y*velocity.y > maxSpeed*maxSpeed)
-            {
-                velocity = velocity.normalized * maxSpeed;
-            }
-
-            acceleration = new Vector2(0f, 0f);
-
-            playerRB.velocity = velocity;
-
-            if (playerRB.velocity.sqrMagnitude < 0.1)
-            {
-                playerRB.velocity = new Vector2(0f, 0f);
-            }
-
-            //Vector2 movementSpeed = new Vector2(horizontalInput, verticalInput).normalized * speed; //Normalize the player's movement and multiply it by the player's max speed
-
-            //playerRB.velocity = movementSpeed; //Add the input to the player's velocity
-        //}
-
-        //if ((velocity.x * velocity.x) + (velocity.y * velocity.y) + (velocity.z * velocity.z) >= maxSpeed * maxSpeed) //If the combination of all velocities squared is greater than or equal to the maximum speed squared
-        //{
-        //    velocity.Normalize(); //Normalize the velocity
-        //    velocity *= maxSpeed; //Set the velocity equal to the maximum speed
-        //}
-        //
-        //velocity += acceleration; //Add the acceleration to the velocity
-        //transform.position += velocity; //Add the velocity to the position of the player
-        //
-        //acceleration = new Vector3(0, 0, 0); //Reset the player's acceleration to zero
-
-
-        //if (Input.GetKey("w"))
-        //{
-        //    if (velocity.y <= 0)
-        //    {
-        //        velocity.x = 0;
-        //        velocity.y = 0;
-        //    }
-        //    acceleration = new Vector3(0, maxAcceleration);
-        //}
-        //else if (Input.GetKey("a"))
-        //{
-        //    if (velocity.x >= 0)
-        //    {
-        //        velocity.x = 0;
-        //        velocity.y = 0;
-        //    }
-        //    acceleration = new Vector3(-maxAcceleration, 0);
-        //}
-        //else if (Input.GetKey("s"))
-        //{
-        //    if (velocity.y >= 0)
-        //    {
-        //        velocity.x = 0;
-        //        velocity.y = 0;
-        //    }
-        //    acceleration = new Vector3(0, -maxAcceleration);
-        //}
-        //else if (Input.GetKey("d"))
-        //{
-        //    if (velocity.x <= 0)
-        //    {
-        //        velocity.x = 0;
-        //        velocity.y = 0;
-        //    }
-        //    acceleration = new Vector3(maxAcceleration, 0);
-        //}
-        //else
-        //{
-        //    if (velocity.x > 0)
-        //    {
-        //        acceleration += new Vector3(-maxDecceleration, 0);
-        //    }
-        //    if (velocity.x < 0)
-        //    {
-        //        acceleration += new Vector3(maxDecceleration, 0);
-        //    }
-        //    if (velocity.y > 0)
-        //    {
-        //        acceleration += new Vector3(0, -maxDecceleration);
-        //    }
-        //    if (velocity.y < 0)
-        //    {
-        //        acceleration += new Vector3(0, maxDecceleration);
-        //    }
-        //}
-        //
-        //if (velocity.x * velocity.x + velocity.y * velocity.y + velocity.z * velocity.z >= maxSpeed * maxSpeed)
-        //{
-        //    velocity.Normalize();
-        //    velocity *= maxSpeed;
-        //}
-        //
-        //velocity += acceleration;
-        //transform.position += velocity;
-        //
-        //acceleration = new Vector3(0, 0, 0);
+        playerRB.velocity = movementSpeed; //Add the input to the player's velocity
     }
 
-    void AnimationControl()
+        void AnimationControl()
     {
         float vertical = Input.GetAxis("Vertical");
         float horizontal = Input.GetAxis("Horizontal");
