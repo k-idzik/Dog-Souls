@@ -23,6 +23,7 @@ GameObject:
   - 58: {fileID: 58000011724058232}
   - 114: {fileID: 114000012598040102}
   - 50: {fileID: 50000011687521130}
+  - 95: {fileID: 95000011442125830}
   m_Layer: 0
   m_Name: BallODank
   m_TagString: enemy
@@ -74,6 +75,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.64
+--- !u!95 &95000011442125830
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013236481228}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 54c4d0cf2656b4e45aed465976a66aa2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114000012598040102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -116,7 +134,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3dd9dd44272545a4fa9e2b1a52b7f112, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9011e398b5341984ca5b4a303f00276a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

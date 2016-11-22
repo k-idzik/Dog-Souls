@@ -20,6 +20,15 @@ public class MagicMissile : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
+        //rotates the sprite in the direction it's facing
+        if(direction.x < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, -Vector3.Angle(direction, new Vector3(0, -1, 0)));
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 0, Vector3.Angle(direction, new Vector3(0, -1, 0)));
+        }
 	}
 	
 	// Update is called once per frame
