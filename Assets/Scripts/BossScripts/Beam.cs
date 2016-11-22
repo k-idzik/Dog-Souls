@@ -3,7 +3,16 @@ using System.Collections;
 
 public class Beam : MonoBehaviour
 {
-    [SerializeField] private float angleOfRotation; //How fast to rotate
+    [SerializeField]
+    private float angleOfRotation; //How fast to rotate
+    private bool canRotate; //If the beam can rotate
+    int randomDirection; //Which direction the beam should rotate
+
+    void Start() //Use this for initialization
+    {
+        canRotate = false; //The beam cannot rotate
+        randomDirection = Random.Range(0, 2); //Choose which direction to shoot the beam
+    }
 
     void Update() //Update is called once per frame
     {
@@ -12,29 +21,34 @@ public class Beam : MonoBehaviour
 
     private void BeamAttack() //The wizard's beam attack
     {
-        StartCoroutine(Cooldown(5)); //Wait before attacking
-        transform.RotateAround(transform.position, new Vector3(0, 0, 1), angleOfRotation); //Rotate the beam
+        if (!canRotate) //If the beam cannot rotate
+        {
+            StartCoroutine(Cooldown(1)); //Wait before attacking
+        }
+        else //If the beam can rotate
+        {
+            if (randomDirection == 0) //If the random number generated is 0
+            {
+                transform.RotateAround(transform.position, new Vector3(0, 0, 1), angleOfRotation); //Rotate the beam counterclockwise
+            }
+            if (randomDirection == 1) //If the random number generated is 1
+            {
+                transform.RotateAround(transform.position, new Vector3(0, 0, 1), -angleOfRotation); //Rotate the beam clockwise
+            }
+        }
     }
 
     private IEnumerator Cooldown(float time) //Co-routine timer
     {
         yield return new WaitForSeconds(time); //Timer
+        canRotate = true; //Set canRotate as true
     }
 
     private void OnTriggerEnter2D(Collider2D coll) //When something collides with the beam
     {
-        //if (coll.gameObject.tag == "Player") //If the player is colliding with an enemy
-        //{
-        //    Player p = coll.gameObject.GetComponent<Player>();
-        //    if(p.DamageCooldown <= 0 )
-        //    {
-        //        p.Health -= 1; //Decrement the player's health
-        //        p.DamageCooldown = 1; //Reset the damage cooldown
-        //    }
-        //}
-        if(coll.gameObject.tag == "weapon") //If the enemy is colliding with the player's weapon.
+        if (coll.transform.tag == "barrier") //If the beam is colliding with a barrier
         {
-            Destroy(this.gameObject);
+            Destroy(this.gameObject); //Destroy the beam
         }
     }
 }

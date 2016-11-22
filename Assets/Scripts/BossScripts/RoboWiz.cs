@@ -13,9 +13,11 @@ public class RoboWiz : Boss
     [SerializeField] private float missileAttacks; //The timing for the boss's attacks
     [SerializeField] private float numMissiles; // number of missiles
     [SerializeField] private float missileCooldown; // time between missile barrages
+    [SerializeField] private float minionCooldown;
+    [SerializeField] private float beamCooldown; //Time between beams
     private float missileTimer; // to count down between barrages of missiles
     private float minionTimer;
-    [SerializeField] private float minionCooldown;
+    private float beamTimer; //The beam timer
     private float missileAngle; // current angle of the missile, should always start at 0
     private float angleBetweenMissiles; // angle between each missile, should be 360 / numMissiles
     private float numSpawned; // counter for the number of missiles spawned in each attack
@@ -34,7 +36,10 @@ public class RoboWiz : Boss
         missileTimer = missileCooldown;
 
         minionTimer = minionCooldown;
-    } 
+
+        beamTimer = beamCooldown; //Set the beam timer equal to the beam cooldown
+    }
+
     protected override void Update() //Update is called once per frame
     {
         // FIRST PHASE
@@ -81,6 +86,45 @@ public class RoboWiz : Boss
 
             // decrement timer
             minionTimer -= Time.deltaTime;
+        }
+
+        // THIRD PHASE
+        if (phases[1])
+        {
+            if (missileTimer <= 0)
+            {
+                // call first attack if timer is up
+                FirstAttack();
+
+                // reset timer
+                missileTimer = missileCooldown;
+            }
+
+            // decrement the timer
+            missileTimer -= Time.deltaTime;
+
+            if (beamTimer <= 0)
+            {
+                ThirdAttack(); //IT'S BEAM TIME
+
+                // reset timer
+                beamTimer = beamCooldown;
+            }
+
+            // decrement the timer
+            beamTimer -= Time.deltaTime;
+
+            //if (minionTimer <= 0)
+            //{
+            //    // call second attack if timer is up
+            //    SecondAttack();
+            //
+            //    // reset timer
+            //    minionTimer = minionCooldown;
+            //}
+            //
+            //// decrement timer
+            //minionTimer -= Time.deltaTime;
         }
 
         if (health <= 75 && health > 0 && !phases[health / 25]) //If the boss's health is down by an even quarter
@@ -136,7 +180,7 @@ public class RoboWiz : Boss
 
     private void ThirdAttack() //The boss's third attack
     {
-        
+        Instantiate(beam, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, Random.Range(0, 4) * 90)); //Instantiate a beam object
     }
 
     private void PhaseChange() //When the boss should change phases
