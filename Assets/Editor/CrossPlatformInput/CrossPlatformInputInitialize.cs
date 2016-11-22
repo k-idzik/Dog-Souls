@@ -32,7 +32,7 @@ namespace UnityStandardAssets.CrossPlatformInput.Inspector
             {
                 case BuildTarget.Android:
                 case BuildTarget.iOS:
-                case BuildTarget.WP8Player:
+                //case BuildTarget.WP8Player: //This throws warnings, so I got rid of it
                 case BuildTarget.PSM: 
                 case BuildTarget.WSAPlayer:
                     EditorUtility.DisplayDialog("Mobile Input",
@@ -65,10 +65,10 @@ namespace UnityStandardAssets.CrossPlatformInput.Inspector
             {
                 case BuildTarget.Android:
                 case BuildTarget.iOS:
-                case BuildTarget.WP8Player:
-                    EditorUtility.DisplayDialog("Mobile Input",
-                                                "You have disabled Mobile Input. Mobile control rigs won't be visible, and the Cross Platform Input functions will always return standalone controls.",
-                                                "OK");
+                //case BuildTarget.WP8Player:  //This throws warnings, so I got rid of it
+                //    EditorUtility.DisplayDialog("Mobile Input",
+                //                                "You have disabled Mobile Input. Mobile control rigs won't be visible, and the Cross Platform Input functions will always return standalone controls.",
+                //                                "OK");
                     break;
             }
         }
@@ -95,7 +95,7 @@ namespace UnityStandardAssets.CrossPlatformInput.Inspector
             {
                 BuildTargetGroup.Android,
                 BuildTargetGroup.iOS,
-                BuildTargetGroup.WP8,
+                //BuildTargetGroup.WP8, //This throws warnings, so I got rid of it
                 BuildTargetGroup.PSM, 
                 BuildTargetGroup.SamsungTV,
                 BuildTargetGroup.Tizen,

@@ -115,6 +115,7 @@ MonoBehaviour:
   - {fileID: 0}
   magicMissile: {fileID: 1000013236481228, guid: 0bd017e79869dab44b34969e81c8229c,
     type: 2}
+  beam: {fileID: 1000012934314826, guid: d434fddf8a6d97f49b12408d2c18435a, type: 2}
   timeBetweenAttacks: 5
   missileAttacks: 12
   numMissiles: 14

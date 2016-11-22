@@ -1,23 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TestEnemy : MonoBehaviour
+public class Beam : MonoBehaviour
 {
-    private Vector3 arcRotation; //How far to move the enemy each frame
     [SerializeField] private float angleOfRotation; //How fast to rotate
-
-    void Start() //Use this for initialization
-    {
-        arcRotation = transform.position - new Vector3(0, 0, 0); //Get the radius of the circle
-    }
 
     void Update() //Update is called once per frame
     {
-        arcRotation = Quaternion.AngleAxis(angleOfRotation * Time.deltaTime, Vector3.forward) * arcRotation; //Calculate the arc rotation
-        transform.position = new Vector3(0, 0, 0) + arcRotation; //Apply the circle's rotation
+        BeamAttack(); //Use the beam attack
     }
 
-    private void OnTriggerEnter2D(Collider2D coll) //When something collides with the player
+    private void BeamAttack() //The wizard's beam attack
+    {
+        StartCoroutine(Cooldown(5)); //Wait before attacking
+        transform.RotateAround(transform.position, new Vector3(0, 0, 1), angleOfRotation); //Rotate the beam
+    }
+
+    private IEnumerator Cooldown(float time) //Co-routine timer
+    {
+        yield return new WaitForSeconds(time); //Timer
+    }
+
+    private void OnTriggerEnter2D(Collider2D coll) //When something collides with the beam
     {
         //if (coll.gameObject.tag == "Player") //If the player is colliding with an enemy
         //{

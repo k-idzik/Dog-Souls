@@ -7,6 +7,7 @@ public class RoboWiz : Boss
     private bool[] phases = new bool[4] { false, false, false, true }; //Array of booleans to hold the current state
     [SerializeField] private List<GameObject> shields; //The shields
     [SerializeField] private GameObject magicMissile; //The boss's magic missiles
+    [SerializeField] private GameObject beam; //The boss's SPECIAL BEAM CANNON
     [SerializeField] private float timeBetweenAttacks; //The time between the boss's attacks
     [SerializeField] private float missileAttacks; //The timing for the boss's attacks
     [SerializeField] private float numMissiles; // number of missiles
