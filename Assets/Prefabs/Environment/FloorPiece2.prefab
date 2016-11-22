@@ -20,6 +20,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012212136590}
   - 212: {fileID: 212000010422867372}
+  - 68: {fileID: 68000013991517618}
+  - 68: {fileID: 68000010089179982}
+  - 68: {fileID: 68000014006449594}
+  - 68: {fileID: 68000010510046802}
   m_Layer: 0
   m_Name: FloorPiece2
   m_TagString: Untagged
@@ -40,6 +44,66 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!68 &68000010089179982
+EdgeCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013575826336}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 10}
+  m_Points:
+  - {x: -10, y: 0}
+  - {x: 10, y: 0}
+--- !u!68 &68000010510046802
+EdgeCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013575826336}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 10, y: 0}
+  m_Points:
+  - {x: 0, y: -10}
+  - {x: 0, y: 10}
+--- !u!68 &68000013991517618
+EdgeCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013575826336}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: -10}
+  m_Points:
+  - {x: -10, y: 0}
+  - {x: 10, y: 0}
+--- !u!68 &68000014006449594
+EdgeCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013575826336}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: -10, y: 0}
+  m_Points:
+  - {x: 0, y: -10}
+  - {x: 0, y: 10}
 --- !u!212 &212000010422867372
 SpriteRenderer:
   m_ObjectHideFlags: 1

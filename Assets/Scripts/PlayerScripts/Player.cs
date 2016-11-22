@@ -313,7 +313,7 @@ public class Player : MonoBehaviour
         playerRB.velocity = movementSpeed; //Add the input to the player's velocity
     }
 
-        void AnimationControl()
+    void AnimationControl()
     {
         float vertical = Input.GetAxis("Vertical");
         float horizontal = Input.GetAxis("Horizontal");
