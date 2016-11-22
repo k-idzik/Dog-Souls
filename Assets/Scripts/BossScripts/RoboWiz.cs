@@ -6,12 +6,48 @@ public class RoboWiz : Boss
 {
     private bool[] phases = new bool[4] { false, false, false, true }; //Array of booleans to hold the current state
     [SerializeField] private List<GameObject> shields; //The shields
-    [SerializeField] private GameObject magicMissiles; //The boss's magic missiles
+    [SerializeField] private GameObject magicMissile; //The boss's magic missiles
     [SerializeField] private float timeBetweenAttacks; //The time between the boss's attacks
     [SerializeField] private float missileAttacks; //The timing for the boss's attacks
+    [SerializeField] private float numMissiles; // number of missiles
+    [SerializeField]
+    private float missileCooldown; // time between missile barrages
+    private float missileTimer = 0; // to count down between barrages of missiles
+    private float missileAngle; // current angle of the missile, should always start at 0
+    private float angleBetweenMissiles; // angle between each missile, should be 360 / numMissiles
+    private float numSpawned; // counter for the number of missiles spawned in each attack
+    private List<GameObject> missiles; // for keeping track of missiles
 
+    protected override void Start()
+    {
+        base.Start();
+
+        // assign missileAngle to 0
+        missileAngle = 0;
+
+        // calculate angle between missiles spawning
+        angleBetweenMissiles = 360 / numMissiles;
+    } 
     protected override void Update() //Update is called once per frame
     {
+        // FIRST PHASE
+        if (phases[3] == true)
+        {
+            if (missileTimer <= 0)
+            {
+                // call first attack if timer is up
+                FirstAttack();
+
+                // reset timer
+                missileTimer = missileCooldown;
+            }
+            
+            // decrement the timer
+            missileTimer -= Time.deltaTime;
+
+            //Debug.Log(missileTimer);
+        }
+
         if (health <= 75 && health > 0 && !phases[health / 25]) //If the boss's health is down by an even quarter
         {
             PhaseChange(); //Change the phase
@@ -25,9 +61,32 @@ public class RoboWiz : Boss
         base.Update(); //Call the base update method
 	}
 
+    /// <summary>
+    /// will be a "sprinkler" attack, using a timer to determine when each missile
+    /// should be spawned
+    /// </summary>
     private void FirstAttack() //The boss's first attack, sprinkler
     {
+        for (int i = 0; i < numMissiles; i++)
+        {
+            // spawn a missile at whatever the current missileAngle is
+            SpawnMissile(Quaternion.AngleAxis(missileAngle, transform.position) * transform.up);
 
+            // calculate angle of next missile
+            missileAngle += angleBetweenMissiles;
+        }
+    }
+
+    /// <summary>
+    /// Spawns a magic missile in whatever direction is given to it
+    /// </summary>
+    private void SpawnMissile(Vector3 direction)
+    {
+        // add this missile to the list
+        GameObject newMissile =  GameObject.Instantiate(magicMissile, (transform.position + direction) * 2, Quaternion.identity) as GameObject;
+
+        // assign newMissile's direction using the setter
+        newMissile.GetComponent<MagicMissile>().Direction = direction;
     }
 
     private void SecondAttack() //The boss's second attack, minion spawning

@@ -15,7 +15,7 @@ public abstract class Boss : MonoBehaviour
         }
     }
 
-    protected void Start() //Use this for initialization
+    protected virtual void Start() //Use this for initialization
     {
         bossSR = GetComponent<SpriteRenderer>(); //Get the boss's sprite renderer
         damageCooldown = -1; //Set the damageCooldown

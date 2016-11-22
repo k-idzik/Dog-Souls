@@ -21,6 +21,8 @@ GameObject:
   - 4: {fileID: 4000012746522962}
   - 212: {fileID: 212000011223865160}
   - 58: {fileID: 58000011724058232}
+  - 114: {fileID: 114000012598040102}
+  - 50: {fileID: 50000011687521130}
   m_Layer: 0
   m_Name: BallODank
   m_TagString: Untagged
@@ -41,6 +43,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!50 &50000011687521130
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013236481228}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!58 &58000011724058232
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -55,6 +74,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.64
+--- !u!114 &114000012598040102
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013236481228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e622a92e27be0c94b906c4acfea40ff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  despawnTimer: 5
 --- !u!212 &212000011223865160
 SpriteRenderer:
   m_ObjectHideFlags: 1
