@@ -276,6 +276,36 @@ Prefab:
       propertyPath: m_TagString
       value: Land
       objectReference: {fileID: 0}
+    - target: {fileID: 212000012866371272, guid: de1b0e745c4bdf6409da9cea37302740,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9a108d52963a175458a5aa4db14abdf0,
+        type: 3}
+    - target: {fileID: 212000013417949582, guid: de1b0e745c4bdf6409da9cea37302740,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9a108d52963a175458a5aa4db14abdf0,
+        type: 3}
+    - target: {fileID: 212000011255662986, guid: de1b0e745c4bdf6409da9cea37302740,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9a108d52963a175458a5aa4db14abdf0,
+        type: 3}
+    - target: {fileID: 212000013076767702, guid: de1b0e745c4bdf6409da9cea37302740,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9a108d52963a175458a5aa4db14abdf0,
+        type: 3}
+    - target: {fileID: 212000011037845182, guid: de1b0e745c4bdf6409da9cea37302740,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9a108d52963a175458a5aa4db14abdf0,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: de1b0e745c4bdf6409da9cea37302740, type: 2}
   m_IsPrefabParent: 0

@@ -9,77 +9,47 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1000012315812788}
+  m_RootGameObject: {fileID: 1000012133187902}
   m_IsPrefabParent: 1
---- !u!1 &1000012315812788
+--- !u!1 &1000012133187902
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 4000011544559596}
-  - 212: {fileID: 212000010939212984}
-  - 68: {fileID: 68000014005987758}
-  - 68: {fileID: 68000010450721738}
-  - 68: {fileID: 68000013723897854}
-  - 68: {fileID: 68000011339661332}
+  - 4: {fileID: 4000014234200864}
+  - 212: {fileID: 212000014273836172}
+  - 68: {fileID: 68000011946784088}
+  - 68: {fileID: 68000013398085994}
+  - 68: {fileID: 68000010094174380}
+  - 68: {fileID: 68000011344606316}
   m_Layer: 0
-  m_Name: BossRoom0Sprite
+  m_Name: BossRoom1Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4000011544559596
+--- !u!4 &4000014234200864
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012315812788}
+  m_GameObject: {fileID: 1000012133187902}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 16, y: 16, z: 1}
+  m_LocalScale: {x: 8, y: 24, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!68 &68000010450721738
+--- !u!68 &68000010094174380
 EdgeCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012315812788}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0.64}
-  m_Points:
-  - {x: -0.64, y: 0}
-  - {x: 0.64, y: 0}
---- !u!68 &68000011339661332
-EdgeCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012315812788}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0.64, y: 0}
-  m_Points:
-  - {x: 0, y: -0.64}
-  - {x: 0, y: 0.64}
---- !u!68 &68000013723897854
-EdgeCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012315812788}
+  m_GameObject: {fileID: 1000012133187902}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -89,12 +59,27 @@ EdgeCollider2D:
   m_Points:
   - {x: 0, y: -0.64}
   - {x: 0, y: 0.64}
---- !u!68 &68000014005987758
+--- !u!68 &68000011344606316
 EdgeCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012315812788}
+  m_GameObject: {fileID: 1000012133187902}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.64, y: 0}
+  m_Points:
+  - {x: 0, y: -0.64}
+  - {x: 0, y: 0.64}
+--- !u!68 &68000011946784088
+EdgeCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012133187902}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -104,12 +89,27 @@ EdgeCollider2D:
   m_Points:
   - {x: -0.64, y: 0}
   - {x: 0.64, y: 0}
---- !u!212 &212000010939212984
+--- !u!68 &68000013398085994
+EdgeCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012133187902}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0.64}
+  m_Points:
+  - {x: -0.64, y: 0}
+  - {x: 0.64, y: 0}
+--- !u!212 &212000014273836172
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012315812788}
+  m_GameObject: {fileID: 1000012133187902}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
