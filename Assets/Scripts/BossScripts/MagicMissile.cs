@@ -26,4 +26,12 @@ public class MagicMissile : MonoBehaviour {
 	void Update () {
         rb.velocity = direction * speed;
 	}
+
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        if (coll.transform.tag != "Player" && coll.transform.tag != "enemy" && coll.transform.tag != "boss")
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
