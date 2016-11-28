@@ -3,7 +3,8 @@ using System.Collections;
 
 public abstract class Boss : MonoBehaviour
 {
-    protected int health; //The player's health
+    protected bool[] phases = new bool[4] { true, false, false, false }; //Array of booleans to hold the current state
+    [SerializeField] protected int health; //The player's health
     private SpriteRenderer bossSR; //The boss's sprite renderer
     protected float damageCooldown; //The time between when the player can take damage
 
@@ -17,7 +18,6 @@ public abstract class Boss : MonoBehaviour
 
     protected virtual void Start() //Use this for initialization
     {
-        health = 10; //Set the health to 10
         bossSR = GetComponent<SpriteRenderer>(); //Get the boss's sprite renderer
         damageCooldown = -1; //Set the damageCooldown
     }
@@ -25,6 +25,11 @@ public abstract class Boss : MonoBehaviour
     protected virtual void Update() //Update is called once per frame
     {
         Blink(); //Blink
+        
+        if ((health * 10) <= 75 && health > 0 && !phases[(100 - (health * 10)) / 25]) //If the boss's health is down by an even quarter
+        {
+            PhaseChange(); //Change the phase
+        }
     }
 
     protected IEnumerator Cooldown(float time) //Co-routine timer
@@ -38,6 +43,19 @@ public abstract class Boss : MonoBehaviour
         {
             health -= 1; //Decrement health
             damageCooldown = 1; //Reset the damage cooldown
+        }
+    }
+
+    protected virtual void PhaseChange() //When the boss should change phases
+    {
+        for (int i = 0; i < phases.Length; i++) //For each phase
+        {
+            if (phases[i] == true) //If the phase is active
+            {
+                phases[i] = false; //Deactivate the previous phase
+                phases[i + 1] = true; //Activate the next phase
+                break; //Leave the loop
+            }
         }
     }
 

@@ -1605,7 +1605,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2025945835}
   m_Layer: 0
-  m_Name: MovingWalls
+  m_Name: PYLONS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
