@@ -3,7 +3,7 @@ using System.Collections;
 
 public abstract class Boss : MonoBehaviour
 {
-    [SerializeField] protected int health; //The player's health
+    protected int health; //The player's health
     private SpriteRenderer bossSR; //The boss's sprite renderer
     protected float damageCooldown; //The time between when the player can take damage
 
@@ -17,6 +17,7 @@ public abstract class Boss : MonoBehaviour
 
     protected virtual void Start() //Use this for initialization
     {
+        health = 10; //Set the health to 10
         bossSR = GetComponent<SpriteRenderer>(); //Get the boss's sprite renderer
         damageCooldown = -1; //Set the damageCooldown
     }
