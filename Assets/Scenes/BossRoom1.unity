@@ -239,7 +239,7 @@ GameObject:
   - 114: {fileID: 610859562}
   m_Layer: 0
   m_Name: ElectricBarrier3
-  m_TagString: Electric
+  m_TagString: barrier
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -316,7 +316,7 @@ GameObject:
   - 114: {fileID: 674334806}
   m_Layer: 0
   m_Name: ElectricBarrier4
-  m_TagString: Electric
+  m_TagString: barrier
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -393,7 +393,7 @@ GameObject:
   - 114: {fileID: 683820911}
   m_Layer: 0
   m_Name: ElectricBarrier2
-  m_TagString: Electric
+  m_TagString: barrier
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -623,7 +623,7 @@ GameObject:
   - 114: {fileID: 1320443531}
   m_Layer: 0
   m_Name: ElectricBarrier1
-  m_TagString: Electric
+  m_TagString: barrier
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
