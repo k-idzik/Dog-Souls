@@ -14,7 +14,10 @@ public class BirdInTheNight : Boss {
     float maxSpeed;
 
 	// Use this for initialization
-	protected override void Start () {
+	protected override void Start()
+    {
+        base.Start(); //Call the base start method
+
         fieldMinX = field.transform.position.x - 0.65f * field.transform.localScale.x;
         fieldMaxX = field.transform.position.x + 0.65f * field.transform.localScale.x;
         fieldMinY = field.transform.position.y - 0.65f * field.transform.localScale.y;
@@ -27,7 +30,10 @@ public class BirdInTheNight : Boss {
 	}
 	
 	// Update is called once per frame
-	protected override void Update () {
+	protected override void Update()
+    {
+        base.Update(); //Call the base update method
+
         currentTime += Time.deltaTime;
 
         if (currentTime >= 4f)

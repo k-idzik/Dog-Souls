@@ -42,6 +42,8 @@ public class RoboWiz : Boss
 
     protected override void Update() //Update is called once per frame
     {
+        base.Update(); //Call the base update method
+
         // FIRST PHASE
         if (phases[3] == true)
         {
@@ -177,8 +179,6 @@ public class RoboWiz : Boss
         {
             Destroy(gameObject); //He dead
         }
-
-        base.Update(); //Call the base update method
 	}
 
     /// <summary>
