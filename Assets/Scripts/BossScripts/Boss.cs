@@ -31,7 +31,14 @@ public abstract class Boss : MonoBehaviour
         yield return new WaitForSeconds(time); //Timer
     }
 
-    protected abstract void OnTriggerStay2D(Collider2D coll); //If something collides with the boss
+    protected virtual void OnTriggerStay2D(Collider2D coll) //If something collides with the boss
+    {
+        if (coll.gameObject.tag == "weapon" && damageCooldown <= 0f) //If the boss collides with the player's weapon
+        {
+            health -= 1; //Decrement health
+            damageCooldown = 1; //Reset the damage cooldown
+        }
+    }
 
     private void Blink() //Make the boss blink while in cooldown
     {
