@@ -112,8 +112,8 @@ MonoBehaviour:
   settleColor: {r: 0, g: 0, b: 0, a: 0}
   currentTime: 0
   savedTime: 0
---- !u!60 &89338710
-PolygonCollider2D:
+--- !u!61 &89338710
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -124,12 +124,8 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
-  m_Points:
-    m_Paths:
-    - - {x: -1.28, y: 2.56}
-      - {x: -1.28, y: -2.56}
-      - {x: 1.28, y: -2.56}
-      - {x: 1.28, y: 2.56}
+  serializedVersion: 2
+  m_Size: {x: 2.56, y: 5.12}
 --- !u!114 &218652747 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114000010357402008, guid: 46d04bf0cb3d56a47b44c4e21e044bad,
@@ -258,7 +254,8 @@ GameObject:
   - 4: {fileID: 610859561}
   - 212: {fileID: 610859560}
   - 114: {fileID: 610859562}
-  - 60: {fileID: 610859564}
+  - 61: {fileID: 610859563}
+  - 50: {fileID: 610859564}
   m_Layer: 0
   m_Name: ElectricBarrier3
   m_TagString: barrier
@@ -325,8 +322,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tower1: {fileID: 89338709}
   tower2: {fileID: 218652747}
---- !u!60 &610859564
-PolygonCollider2D:
+--- !u!61 &610859563
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -337,12 +334,25 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
-  m_Points:
-    m_Paths:
-    - - {x: 0.5, y: -0.5}
-      - {x: 0.5, y: 0.5}
-      - {x: -0.5, y: 0.5}
-      - {x: -0.5, y: -0.5}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+--- !u!50 &610859564
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 610859559}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &674334803
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,7 +363,8 @@ GameObject:
   - 4: {fileID: 674334805}
   - 212: {fileID: 674334804}
   - 114: {fileID: 674334806}
-  - 60: {fileID: 674334808}
+  - 61: {fileID: 674334807}
+  - 50: {fileID: 674334808}
   m_Layer: 0
   m_Name: ElectricBarrier4
   m_TagString: barrier
@@ -420,8 +431,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tower1: {fileID: 1048335409}
   tower2: {fileID: 218652747}
---- !u!60 &674334808
-PolygonCollider2D:
+--- !u!61 &674334807
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -432,12 +443,25 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
-  m_Points:
-    m_Paths:
-    - - {x: 0.5, y: -0.5}
-      - {x: 0.5, y: 0.5}
-      - {x: -0.5, y: 0.5}
-      - {x: -0.5, y: -0.5}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.0000001}
+--- !u!50 &674334808
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 674334803}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &745486914
 Prefab:
   m_ObjectHideFlags: 0
@@ -490,8 +514,8 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000011759938798, guid: e36b8fae7fdef6a4f8a79948ab2a0910,
     type: 2}
   m_PrefabInternal: {fileID: 1361612814}
---- !u!60 &1048335407
-PolygonCollider2D:
+--- !u!61 &1048335407
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -502,12 +526,8 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
-  m_Points:
-    m_Paths:
-    - - {x: -1.28, y: 2.56}
-      - {x: -1.28, y: -2.56}
-      - {x: 1.28, y: -2.56}
-      - {x: 1.28, y: 2.56}
+  serializedVersion: 2
+  m_Size: {x: 2.56, y: 5.12}
 --- !u!114 &1048335409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -744,13 +764,32 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e36b8fae7fdef6a4f8a79948ab2a0910, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1419425142 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012412412994, guid: 46d04bf0cb3d56a47b44c4e21e044bad,
+    type: 2}
+  m_PrefabInternal: {fileID: 2083354950}
+--- !u!61 &1419425143
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1419425142}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 2.56, y: 5.12}
 --- !u!1 &1493047819 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000012946433822, guid: 5d03dc57f471ba042a0bc17a76d797ef,
     type: 2}
   m_PrefabInternal: {fileID: 2045530846}
---- !u!60 &1493047824
-PolygonCollider2D:
+--- !u!61 &1493047823
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -761,12 +800,25 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
-  m_Points:
-    m_Paths:
-    - - {x: 0.5, y: -0.5}
-      - {x: 0.5, y: 0.5}
-      - {x: -0.5, y: 0.5}
-      - {x: -0.5, y: -0.5}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.0000001}
+--- !u!50 &1493047824
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1493047819}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1608255840 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000011759938798, guid: e36b8fae7fdef6a4f8a79948ab2a0910,
@@ -789,8 +841,8 @@ MonoBehaviour:
   settleColor: {r: 0, g: 0, b: 0, a: 0}
   currentTime: 0
   savedTime: 0
---- !u!60 &1608255842
-PolygonCollider2D:
+--- !u!61 &1608255842
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -801,12 +853,8 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
-  m_Points:
-    m_Paths:
-    - - {x: -1.28, y: 2.56}
-      - {x: -1.28, y: -2.56}
-      - {x: 1.28, y: -2.56}
-      - {x: 1.28, y: 2.56}
+  serializedVersion: 2
+  m_Size: {x: 2.56, y: 5.12}
 --- !u!1001 &1679837309
 Prefab:
   m_ObjectHideFlags: 0
@@ -995,9 +1043,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e41c21b3cfd2a4b48a539f04b1b60d72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 80
+  health: 10
   field: {fileID: 1825805606}
-  vulnerable: 0
+  vulnerable: 1
 --- !u!1001 &2083354950
 Prefab:
   m_ObjectHideFlags: 0
@@ -1058,7 +1106,8 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.67416644
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 60000010258751910, guid: 46d04bf0cb3d56a47b44c4e21e044bad, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 46d04bf0cb3d56a47b44c4e21e044bad, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &2089245853 stripped
@@ -1066,8 +1115,8 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000011883827062, guid: 9fc9624ed9226e94187edd87aa1555cc,
     type: 2}
   m_PrefabInternal: {fileID: 1199434850}
---- !u!60 &2089245858
-PolygonCollider2D:
+--- !u!61 &2089245857
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -1078,12 +1127,25 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
-  m_Points:
-    m_Paths:
-    - - {x: 0.5, y: -0.5}
-      - {x: 0.5, y: 0.5}
-      - {x: -0.5, y: 0.5}
-      - {x: -0.5, y: -0.5}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+--- !u!50 &2089245858
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2089245853}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &2134279810
 Prefab:
   m_ObjectHideFlags: 0

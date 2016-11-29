@@ -7,6 +7,8 @@ public class BirdInTheNight : Boss {
     float fieldMaxX;
     float fieldMinY;
     float fieldMaxY;
+    float fieldMidX;
+    float fieldMidY;
     [SerializeField] private GameObject field; //input in Unity
     double currentTime;
     int sideMovement;
@@ -23,6 +25,8 @@ public class BirdInTheNight : Boss {
         fieldMaxX = field.transform.position.x + 0.8f * field.transform.localScale.x;
         fieldMinY = field.transform.position.y - 0.8f * field.transform.localScale.y;
         fieldMaxY = field.transform.position.y + 0.8f * field.transform.localScale.y;
+        fieldMidX = field.transform.position.x;
+        fieldMidY = field.transform.position.y;
         currentTime = 0;
         sideMovement = 0;
         velocity = new Vector2(0f, 0f);
@@ -48,10 +52,14 @@ public class BirdInTheNight : Boss {
             }
 
             Fly();
-
-            transform.position += new Vector3(velocity.x, velocity.y, 0f);
         }
-	}
+        else
+        {
+            FlyToCenter();
+        }
+
+        transform.position += new Vector3(velocity.x, velocity.y, 0f);
+    }
 
     //resets the position to the edge of the boss room platform and returns the side it picked
     protected int ResetPosition()
@@ -103,33 +111,49 @@ public class BirdInTheNight : Boss {
         }
     }
 
+    protected void FlyToCenter()
+    {
+        if (transform.position.x > fieldMidX)
+        {
+            velocity.x = Mathf.Pow(2, 0.5f) / 2 * -maxSpeed;
+        }
+        else if (transform.position.x < fieldMidX)
+        {
+            velocity.x = Mathf.Pow(2, 0.5f)/2 * maxSpeed;
+        }
+        if (transform.position.y > fieldMidY)
+        {
+            velocity.y = Mathf.Pow(2, 0.5f) / 2 * -maxSpeed;
+        }
+        else if (transform.position.y < fieldMidY)
+        {
+            velocity.y = Mathf.Pow(2, 0.5f) / 2 * maxSpeed;
+        }
+    }
+
     //temporarily always vulnerable for testing purposes
     //please change
     protected bool isVulnerable()
     {
         return vulnerable;
     }
-<<<<<<< HEAD
 
     protected override void OnTriggerStay2D(Collider2D coll) //If something collides with the boss
     {
-
-        if (coll.gameObject.tag == "barrier")
+        
+        if (coll.gameObject.tag == "barrier" && coll.gameObject.GetComponent<SpriteRenderer>().GetComponent<Renderer>().enabled)
         {
             vulnerable = true;
         }
 
         if (coll.gameObject.tag == "weapon" && damageCooldown <= 0f) //If the boss collides with the player's weapon
         {
-            health -= 10; //Decrement health
+            health -= 1; //Decrement health
             damageCooldown = 1; //Reset the damage cooldown
-            vulnerable = true;
         }
 
         //Debug.Log(coll.transform.name);
 
 
     }
-=======
->>>>>>> 557e27e1b4153356c32dfafa2505e29990990a83
 }
