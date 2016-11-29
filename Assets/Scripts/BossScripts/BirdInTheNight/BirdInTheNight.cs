@@ -109,7 +109,6 @@ public class BirdInTheNight : Boss {
     {
         return vulnerable;
     }
-<<<<<<< HEAD
 
     protected override void OnTriggerStay2D(Collider2D coll) //If something collides with the boss
     {
@@ -130,6 +129,4 @@ public class BirdInTheNight : Boss {
 
 
     }
-=======
->>>>>>> 557e27e1b4153356c32dfafa2505e29990990a83
 }

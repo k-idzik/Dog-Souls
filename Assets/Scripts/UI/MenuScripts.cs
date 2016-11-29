@@ -91,6 +91,7 @@ public class MenuScripts : MonoBehaviour
 
                 bossHealthBar.enabled = true; //Enable the boss's health bar
                 bossText.enabled = true; //Enable the boss's text
+                messageText.enabled = false; //Disable the message text
                 break; //Break out of the loop
             }
 
