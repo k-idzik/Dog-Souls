@@ -27,7 +27,7 @@ public class EnergyTowers : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         currentTime += Time.deltaTime;
-        if (currentTime >= savedTime + 10)
+        if (currentTime >= savedTime + 6)
         {
             sprite.color = baseColor;
         }
@@ -39,7 +39,7 @@ public class EnergyTowers : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D coll)
     {
-        if (coll.gameObject.tag == "weapon" && sprite.color == baseColor)
+        if (coll.gameObject.tag == "weapon" && sprite.color != hitColor)
         {
             sprite.color = hitColor;
             savedTime = currentTime;

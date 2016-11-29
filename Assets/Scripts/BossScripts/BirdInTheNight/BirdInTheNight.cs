@@ -7,25 +7,27 @@ public class BirdInTheNight : Boss {
     float fieldMaxX;
     float fieldMinY;
     float fieldMaxY;
-    public GameObject field; //input in Unity
-    public double currentTime;
-    public int sideMovement;
-    public Vector2 velocity;
+    [SerializeField] private GameObject field; //input in Unity
+    double currentTime;
+    int sideMovement;
+    Vector2 velocity;
     float maxSpeed;
+    public bool vulnerable;
 
 	// Use this for initialization
 	protected override void Start()
     {
         base.Start(); //Call the base start method
 
-        fieldMinX = field.transform.position.x - 0.65f * field.transform.localScale.x;
-        fieldMaxX = field.transform.position.x + 0.65f * field.transform.localScale.x;
-        fieldMinY = field.transform.position.y - 0.65f * field.transform.localScale.y;
-        fieldMaxY = field.transform.position.y + 0.65f * field.transform.localScale.y;
+        fieldMinX = field.transform.position.x - 0.8f * field.transform.localScale.x;
+        fieldMaxX = field.transform.position.x + 0.8f * field.transform.localScale.x;
+        fieldMinY = field.transform.position.y - 0.8f * field.transform.localScale.y;
+        fieldMaxY = field.transform.position.y + 0.8f * field.transform.localScale.y;
         currentTime = 0;
         sideMovement = 0;
         velocity = new Vector2(0f, 0f);
         maxSpeed = 0.15f;
+        vulnerable = false;
         //transform.position = new Vector2(fieldMaxX, fieldMinY);
 	}
 	
@@ -34,17 +36,21 @@ public class BirdInTheNight : Boss {
     {
         base.Update(); //Call the base update method
 
-        currentTime += Time.deltaTime;
 
-        if (currentTime >= 4f)
+        if (!isVulnerable())
         {
-            sideMovement = ResetPosition();
-            currentTime = 0f;
+            currentTime += Time.deltaTime;
+
+            if (currentTime >= 2.5f)
+            {
+                sideMovement = ResetPosition();
+                currentTime = 0f;
+            }
+
+            Fly();
+
+            transform.position += new Vector3(velocity.x, velocity.y, 0f);
         }
-
-        Fly();
-
-        transform.position += new Vector3(velocity.x, velocity.y, 0f);
 	}
 
     //resets the position to the edge of the boss room platform and returns the side it picked
@@ -101,15 +107,26 @@ public class BirdInTheNight : Boss {
     //please change
     protected bool isVulnerable()
     {
-        return true;
+        return vulnerable;
     }
 
     protected override void OnTriggerStay2D(Collider2D coll) //If something collides with the boss
     {
-        if (coll.gameObject.tag == "weapon" && damageCooldown <= 0f && isVulnerable()) //If the boss collides with the player's weapon
+
+        if (coll.gameObject.tag == "barrier")
+        {
+            vulnerable = true;
+        }
+
+        if (coll.gameObject.tag == "weapon" && damageCooldown <= 0f) //If the boss collides with the player's weapon
         {
             health -= 10; //Decrement health
             damageCooldown = 1; //Reset the damage cooldown
+            vulnerable = true;
         }
+
+        //Debug.Log(coll.transform.name);
+
+
     }
 }
