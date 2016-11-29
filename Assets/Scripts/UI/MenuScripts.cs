@@ -160,7 +160,7 @@ public class MenuScripts : MonoBehaviour
 
     private void BossUIUpdater() //Updates the boss's health UI
     {
-        bossHealthBar.rectTransform.sizeDelta = new Vector2(bossScript.Health * 15, 35); //Rescale the boss's health as it takes damage
+        bossHealthBar.rectTransform.sizeDelta = new Vector2(bossScript.Health * 150, 35); //Rescale the boss's health as it takes damage
         bossHealth = bossScript.Health; //Set the boss's health
     }
 

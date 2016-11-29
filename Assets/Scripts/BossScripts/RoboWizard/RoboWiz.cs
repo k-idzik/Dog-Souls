@@ -4,7 +4,6 @@ using System.Collections.Generic; //Lists
 
 public class RoboWiz : Boss
 {
-    private bool[] phases = new bool[4] { false, false, false, true }; //Array of booleans to hold the current state
     [SerializeField] private List<GameObject> shields; //The shields
     [SerializeField] private GameObject magicMissile; //The boss's magic missiles
     [SerializeField] private GameObject beam; //The boss's SPECIAL BEAM CANNON
@@ -45,7 +44,7 @@ public class RoboWiz : Boss
         base.Update(); //Call the base update method
 
         // FIRST PHASE
-        if (phases[3] == true)
+        if (phases[0] == true)
         {
             if (missileTimer <= 0)
             {
@@ -63,7 +62,7 @@ public class RoboWiz : Boss
         }
 
         // SECOND PHASE
-        if(phases[2] == true)
+        if(phases[1] == true)
         {
             if (missileTimer <= 0)
             {
@@ -91,7 +90,7 @@ public class RoboWiz : Boss
         }
 
         // THIRD PHASE
-        if (phases[1])
+        if (phases[2])
         {
             if (missileTimer <= 0)
             {
@@ -130,7 +129,7 @@ public class RoboWiz : Boss
         }
 
         // FOURTH PHASE
-        if (phases[0])
+        if (phases[3])
         {
             if (missileTimer <= 0)
             {
@@ -168,11 +167,6 @@ public class RoboWiz : Boss
 
             // decrement the timer
             beamTimer -= Time.deltaTime;
-        }
-
-        if (health <= 75 && health > 0 && !phases[health / 25]) //If the boss's health is down by an even quarter
-        {
-            PhaseChange(); //Change the phase
         }
 
         if(health == 0) //If the boss is dead
@@ -216,7 +210,6 @@ public class RoboWiz : Boss
 
         // instantiate new enemy at random location
         Instantiate(minion, new Vector3(randx, randy, 0), Quaternion.identity);
-
     }
 
     private void ThirdAttack() //The boss's third attack
@@ -224,25 +217,15 @@ public class RoboWiz : Boss
         Instantiate(beam, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, Random.Range(0, 4) * 90)); //Instantiate a beam object
     }
 
-    private void PhaseChange() //When the boss should change phases
+    protected override void PhaseChange() //When the boss should change phases
     {
-        phases[health / 25] = true; //Activate the next phase
-        phases[(health / 25) + 1] = false; //Deactivate the previous phase
+        base.PhaseChange(); //Call the base PhaseChange method
 
         if (shields.Count > 0) //If there are still shields left
         {
             int shieldNumber = Random.Range(0, shields.Count); //Get the shield to destroy
             Destroy(shields[shieldNumber]); //Destory the shield
             shields.RemoveAt(shieldNumber); //Remove the shield from the array
-        }
-    }
-
-    protected override void OnTriggerStay2D(Collider2D coll) //If something collides with the boss
-    {
-        if (coll.gameObject.tag == "weapon" && damageCooldown <= 0f) //If the boss collides with the player's weapon
-        {
-            health -= 10; //Decrement health
-            damageCooldown = 1; //Reset the damage cooldown
         }
     }
 }

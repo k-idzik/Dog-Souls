@@ -1156,7 +1156,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49153a2b9536e14cbd1141bac2504ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
 --- !u!1001 &1624376771
 Prefab:
   m_ObjectHideFlags: 0
@@ -1606,7 +1605,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2025945835}
   m_Layer: 0
-  m_Name: MovingWalls
+  m_Name: PYLONS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

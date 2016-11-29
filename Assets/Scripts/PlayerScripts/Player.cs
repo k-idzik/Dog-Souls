@@ -438,6 +438,12 @@ public class Player : MonoBehaviour
             damageCooldown = 1; //Reset the damage cooldown
         }
 
+        if (coll.gameObject.tag == "boss" && damageCooldown <= 0f && coll.gameObject.name != "RoboWiz") //If the player is colliding with an enemy
+        {
+            health--; //Decrement the player's health
+            damageCooldown = 1; //Reset the damage cooldown
+        }
+
         //when entering a surface, check to see if it is enterable
         SpriteRenderer rend = playerSR;
         try
