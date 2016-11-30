@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
-using System; //Exceptions
+//using System; //Exceptions
 using System.Collections;
+using System.Collections.Generic; //Dictionary
 using UnityEngine.SceneManagement; //Load scenes
 using UnityEngine.EventSystems; //Event systems
 
@@ -8,19 +9,18 @@ public class MenuScripts : MonoBehaviour
 {
     [SerializeField] private Canvas uIOverlay; //The UI overlay
     //[SerializeField] private UnityStandardAssets._2D.PlatformerCharacter2D playerControlScript; //The player's control script 
-    [SerializeField] private Player player; //The player script
     [SerializeField] private Canvas pauseMenu; //The pause menu UI
     [SerializeField] private Canvas keyboardControlMenu; //The keyboard controls menu UI
     [SerializeField] private Canvas controllerControlMenu; //The controller controls menu UI
-    private UnityEngine.UI.Image[] uIImages; //The UI images for the player's health
     private UnityEngine.UI.Text messageText; //The UI text messages
     private float messageTimer; //How long to display messages for
-    private GameObject[] bossSearch; //The objects stored when looking for the boss
-    private GameObject boss; //The boss
+    private UnityEngine.UI.Image[] playerHealthIcons = new UnityEngine.UI.Image[5]; //The UI images for the player's health
+    private UnityEngine.UI.Image[] pHealthOutlineIcons = new UnityEngine.UI.Image[5]; //The UI images for the player's health outlines
+    private Player playerScript; //The player script
+    private UnityEngine.UI.Image[] bossHealthIcons = new UnityEngine.UI.Image[10]; //The UI images for the boss's health
+    private UnityEngine.UI.Image[] bHealthOutlineIcons = new UnityEngine.UI.Image[10]; //The UI images for the boss's health outlines
     private Boss bossScript; //The inherited boss script
-    private UnityEngine.UI.Text bossText; //The UI boss text
-    private UnityEngine.UI.Image bossHealthBar; //The UI boss healthbar
-    private int bossHealth; //The boss's health
+    private int bossHealth = 0; //The boss's health
     //private UnityEngine.UI.Text qText; //The UI text for weapon changing
     //private UnityEngine.UI.Text eText; //The UI text for weapon changing
     //private UnityEngine.UI.Text lBText; //The UI text for weapon changing
@@ -37,66 +37,111 @@ public class MenuScripts : MonoBehaviour
 
     void Start() //Use this for initialization
     {
-        uIImages = uIOverlay.GetComponentsInChildren<UnityEngine.UI.Image>(); //Get the images from the children
+        UnityEngine.UI.Image[] uIImages = uIOverlay.GetComponentsInChildren<UnityEngine.UI.Image>(); //Get the images from the children
+        int playerHealthArrayTracker = 0; //The tracker for placing icons in the player's health
+        int pHealthOutlineArrayTracker = 0; //The tracker for placing icons in the player's health outline
+        int bossHealthArrayTracker = 0; //The tracker for placing icons in the boss's health
+        int bHealthOutlineArrayTracker = 0; //The tracker for placing icons in the boss's health outline
 
         for (int i = 0; i < uIImages.Length; i++) //For each UI text element
         {
-            if (uIImages[i].name == "BossHealth") //If the current gameobject is the boss
+            if (uIImages[i].name.Contains("PlayerHealth")) //If the current UI image is the player's health
             {
-                bossHealthBar = uIImages[i]; //Set the boss health bar
-                break; //Break out of the loop
+                playerHealthIcons[playerHealthArrayTracker] = uIImages[i]; //Set the player's health icons
+                playerHealthArrayTracker++; //Increment the tracker
+            }
+            else if (uIImages[i].name.Contains("PHealthOutline")) //If the current UI image is the player's health outline
+            {
+                pHealthOutlineIcons[pHealthOutlineArrayTracker] = uIImages[i]; //Set the player's health outline icons
+                pHealthOutlineArrayTracker++; //Increment the tracker
+            }
+            else if (uIImages[i].name.Contains("BossHealth")) //If the current UI image is the boss's health
+            {
+                bossHealthIcons[bossHealthArrayTracker] = uIImages[i]; //Set the boss's health icons
+                bossHealthArrayTracker++; //Increment the tracker
+            }
+            else if (uIImages[i].name.Contains("BHealthOutline")) //If the current UI image is the boss's health outline
+            {
+                bHealthOutlineIcons[bHealthOutlineArrayTracker] = uIImages[i]; //Set the boss's health outline icons
+                bHealthOutlineArrayTracker++; //Increment the tracker
             }
         }
 
         UnityEngine.UI.Text[] uIText = uIOverlay.GetComponentsInChildren<UnityEngine.UI.Text>(); //Temporarily store all of the UI text
         for (int i = 0; i < uIText.Length; i++) //For each UI text element
         {
-        //    if (uIText[i].name == "Q") //If the Q text is found
-        //    {
-        //        qText = uIText[i]; //Save the Q text
-        //    }
-        //    else if (uIText[i].name == "E") //If the E text is found
-        //    {
-        //        eText = uIText[i]; //Save the E text
-        //    }
-        //    else if (uIText[i].name == "LB") //If the LB text is found
-        //    {
-        //        lBText = uIText[i]; //Save the LB text
-        //    }
-        //    else if (uIText[i].name == "RB") //If the RB text is found
-        //    {
-        //        rBText = uIText[i]; //Save the RB text
-        //    }
+            //    if (uIText[i].name == "Q") //If the Q text is found
+            //    {
+            //        qText = uIText[i]; //Save the Q text
+            //    }
+            //    else if (uIText[i].name == "E") //If the E text is found
+            //    {
+            //        eText = uIText[i]; //Save the E text
+            //    }
+            //    else if (uIText[i].name == "LB") //If the LB text is found
+            //    {
+            //        lBText = uIText[i]; //Save the LB text
+            //    }
+            //    else if (uIText[i].name == "RB") //If the RB text is found
+            //    {
+            //        rBText = uIText[i]; //Save the RB text
+            //    }
             if (uIText[i].name == "Message") //If the message text is found
             {
                 messageText = uIText[i]; //Save the message text
                 messageTimer = 0; //Initialize the message timer
             }
-            if (uIText[i].name == "BossText") //If the boss text is found
+        }
+
+        GameObject[] search = FindObjectsOfType<GameObject>(); //Get gameobjects from the scene
+
+        Dictionary<string, Color> bossRoomColors = new Dictionary<string, Color>(); //Create a dictionary to store the boss rooms and associated colors
+        bossRoomColors.Add("BossRoom0", new Color(184, 3, 144)); //Add the first boss room to the dictionary
+        bossRoomColors.Add("BossRoom1", new Color(0, 255, 0)); //Add the second boss room to the dictionary
+        bossRoomColors.Add("BossRoom2", new Color(255, 0, 0)); //Add the third boss room to the dictionary
+        Color bossOutlineColor; //The color for the outline of the boss's health
+
+        for (int i = 0; i < search.Length; i++) //For each gameobject in the scene
+        {
+            if (search[i].tag == "Player") //If the current gameobject is the player
             {
-                bossText = uIText[i]; //Save the boss text
+                playerScript = search[i].GetComponent<Player>(); //Set the player
+            }
+            else if (search[i].tag == "boss") //If the current gameobject is the boss
+            {
+                bossScript = search[i].GetComponent<Boss>(); //Set the boss
+                bossHealth = bossScript.Health; //Set the boss's health
+
+                bossRoomColors.TryGetValue(gameObject.scene.name, out bossOutlineColor); //Get the color for the outline of the boss's health
+
+                for (int j = 0; j < bossHealthIcons.Length; j++) //Loop to enable the boss's health icons
+                {
+                    bossHealthIcons[j].enabled = true; //Enable the boss's health icons
+                    bHealthOutlineIcons[j].enabled = true; //Enable the boss's health outline icons
+                    bHealthOutlineIcons[j].color = new Color(bossOutlineColor.r / 255, bossOutlineColor.g / 255, bossOutlineColor.b / 255); //Set the color for the outline of the boss's health
+                }
+
+                for (int j = 0; j < pHealthOutlineIcons.Length; j++) //Loop to change the color of the player's health outline icons
+                {
+                    pHealthOutlineIcons[j].color = new Color(bossOutlineColor.r / 255, bossOutlineColor.g / 255, bossOutlineColor.b / 255); //Set the color for the outline of the player's health
+                }
+
+                messageText.enabled = false; //Disable the message text
             }
         }
 
-        bossSearch = FindObjectsOfType<GameObject>(); //Get gameobjects from the scene
-
-        for (int i = 0; i < bossSearch.Length; i++) //For each gameobject in the scene
+        if (bossHealth == 0) //If there is no boss
         {
-            boss = bossSearch[i]; //Save the boss
-
-            if (bossSearch[i].tag == "boss") //If the current gameobject is the boss
+            for (int i = 0; i < bossHealthIcons.Length; i++) //Loop to disable the health icons
             {
-                bossScript = bossSearch[i].GetComponent<Boss>(); //Set the boss
-                bossHealth = bossScript.Health; //Set the boss's health
-
-                bossHealthBar.enabled = true; //Enable the boss's health bar
-                bossText.enabled = true; //Enable the boss's text
-                messageText.enabled = false; //Disable the message text
-                break; //Break out of the loop
+                bossHealthIcons[i].enabled = false; //Disable the boss's health icons
+                bHealthOutlineIcons[i].enabled = false; //Disable the boss's health outline icons
             }
 
-            bossHealthBar.enabled = false; //Disable the boss's health bar
-            bossText.enabled = false; //Disable the boss's text
+            for (int i = 0; i < pHealthOutlineIcons.Length; i++) //Loop to change the color of the player's health outline icons
+            {
+                pHealthOutlineIcons[i].color = Color.grey; //Set the color for the outline of the player's health
+            }
         }
     }
 
@@ -128,19 +173,14 @@ public class MenuScripts : MonoBehaviour
         HealthUIUpdater(); //Update the player's health UI
         MessageTiming(7.5f); //Time how long messages appear for
 
-        if (bossHealthBar.enabled == true && bossHealth > 0) //If there is a boss
+        if (bossHealthIcons[0].enabled) //If there is a boss and he's not dead
         {
             BossUIUpdater(); //Update the boss UI
         }
-        else if (bossHealth <= 0) //If the boss is dead
-        {
-            bossText.enabled = false; //Disable the boss text
-            bossHealthBar.enabled = false; //Disable the boss health bar
-        }
 
-        if (player.Health <= 0) //If he dead
+        if (playerScript.Health <= 0) //If he dead
         {
-            SceneManager.LoadScene(0); //Load the scene
+            SceneManager.LoadScene(gameObject.scene.name); //Load the scene
         }
     }
 
@@ -148,20 +188,34 @@ public class MenuScripts : MonoBehaviour
     {
         for (int i = 0; i < 5; i++) //For each unit of health the player has
         {
-            if (player.Health >= i + 1) //For each unit of health the player has
+            if (playerScript.Health >= i + 1) //For each unit of health the player has
             {
-                uIImages[i].enabled = true; //Enable the player health sprite
+                playerHealthIcons[i].enabled = true; //Enable the player health sprite
+                pHealthOutlineIcons[i].enabled = true; //Enable the player health sprite outline
             }
             else
             {
-                uIImages[i].enabled = false; //Disable the player health sprite
+                playerHealthIcons[i].enabled = false; //Disable the player health sprite
+                pHealthOutlineIcons[i].enabled = false; //Disable the player health sprite outline
             }
         }
     }
 
     private void BossUIUpdater() //Updates the boss's health UI
     {
-        bossHealthBar.rectTransform.sizeDelta = new Vector2(bossScript.Health * 150, 35); //Rescale the boss's health as it takes damage
+        for (int i = 0; i < 10; i++) //For each unit of health the boss has
+        {
+            if (bossScript.Health >= i + 1) //For each unit of health the boss has
+            {
+                bossHealthIcons[i].enabled = true; //Enable the boss health sprite
+                bHealthOutlineIcons[i].enabled = true; //Enable the boss health sprite outline
+            }
+            else
+            {
+                bossHealthIcons[i].enabled = false; //Disable the boss health sprite
+                bHealthOutlineIcons[i].enabled = false; //Disable the boss health sprite outline
+            }
+        }
         bossHealth = bossScript.Health; //Set the boss's health
     }
 

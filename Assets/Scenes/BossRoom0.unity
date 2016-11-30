@@ -481,7 +481,7 @@ SpriteRenderer:
   m_PrefabParentObject: {fileID: 212000010422867372, guid: 20e18f76b4060ac4599c85af2bcf6bd9,
     type: 2}
   m_PrefabInternal: {fileID: 1116911486}
---- !u!1001 &745486914
+--- !u!1001 &898937978
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -520,11 +520,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012230618270, guid: 9d064da00d241d849838ad2b79eceee9,
-        type: 2}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1088010392}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9d064da00d241d849838ad2b79eceee9, type: 2}
   m_IsPrefabParent: 0
@@ -563,12 +558,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1088010392 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000012327537096, guid: d1b62da1b5b242648a1c0ec5122ee90d,
-    type: 2}
-  m_PrefabInternal: {fileID: 2134279810}
-  m_Script: {fileID: 11500000, guid: 22b1828ca6dad4048b36a9efa41455ba, type: 3}
 --- !u!1001 &1116911486
 Prefab:
   m_ObjectHideFlags: 0
