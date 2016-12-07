@@ -3,6 +3,12 @@ using System.Collections;
 
 public class BirdInTheNight : Boss {
 
+    private bool[] phases = { true, false };
+    private float bombTimer; // when this drops below 0, bomb will drop
+    [SerializeField]
+    private float bombCooldown; // cooldown between bombs
+    [SerializeField]
+    private GameObject bomb;
     float fieldMinX;
     float fieldMaxX;
     float fieldMinY;
@@ -27,6 +33,9 @@ public class BirdInTheNight : Boss {
         velocity = new Vector2(0f, 0f);
         maxSpeed = 0.15f;
         //transform.position = new Vector2(fieldMaxX, fieldMinY);
+
+        // assign bombTimer to bombCooldown
+        bombTimer = bombCooldown;
 	}
 	
 	// Update is called once per frame
@@ -41,6 +50,16 @@ public class BirdInTheNight : Boss {
             sideMovement = ResetPosition();
             currentTime = 0f;
         }
+
+        // PHASE 1
+        if (bombTimer <= 0)
+        {
+            FirstAttack();
+
+            bombTimer = bombCooldown;
+        }
+
+        bombTimer -= Time.deltaTime;
 
         Fly();
 
@@ -95,6 +114,16 @@ public class BirdInTheNight : Boss {
         {
             velocity = new Vector2(maxSpeed, 0f);
         }
+    }
+
+    /// <summary>
+    /// This is the bomb dropping attack, a new bomb will be
+    /// instantiated at the bird's location every time the timer 
+    /// reaches 0
+    /// </summary>
+    private void FirstAttack()
+    {
+        GameObject.Instantiate(bomb, transform.position, Quaternion.identity);
     }
 
     //temporarily always vulnerable for testing purposes

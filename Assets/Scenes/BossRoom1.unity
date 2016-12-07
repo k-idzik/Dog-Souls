@@ -109,6 +109,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   baseColor: {r: 0, g: 0, b: 0, a: 0}
   hitColor: {r: 0, g: 0, b: 0, a: 0}
+  settleColor: {r: 0, g: 0, b: 0, a: 0}
   currentTime: 0
   savedTime: 0
 --- !u!60 &89338710
@@ -542,6 +543,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   baseColor: {r: 0, g: 0, b: 0, a: 0}
   hitColor: {r: 0, g: 0, b: 0, a: 0}
+  settleColor: {r: 0, g: 0, b: 0, a: 0}
   currentTime: 0
   savedTime: 0
 --- !u!1001 &1082177326
@@ -758,6 +760,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   baseColor: {r: 0, g: 0, b: 0, a: 0}
   hitColor: {r: 0, g: 0, b: 0, a: 0}
+  settleColor: {r: 0, g: 0, b: 0, a: 0}
   currentTime: 0
   savedTime: 0
 --- !u!60 &1608255842
@@ -861,6 +864,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  bombCooldown: 0.25
+  bomb: {fileID: 1000010594573080, guid: 0ae4c2c176ca5484595b970c9f84fe94, type: 2}
   field: {fileID: 1825805606}
   currentTime: 0
   sideMovement: 0
