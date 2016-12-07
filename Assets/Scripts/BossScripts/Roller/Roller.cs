@@ -9,11 +9,20 @@ public class Roller : Boss
     private int[] selectedPylons; //The pylons to move
     private Vector3[] startPosition; //The start position of each pylon
     private Vector3[] endPosition; //The end position of each pylon
+    private bool vulnerable = true;
+    private GameObject player;
 
     // knockback variables
     private bool canKnockback = true; // bool for tracking whether or not the boss can knockback the player
     [SerializeField]
     private float knockbackScale; 
+
+    // spike shooting variables
+    [SerializeField]
+    private float aimTime; // amount of time before spike fires
+    GameObject reticle;
+    private float aimTimer; // timer to track when a new missile will spawn
+    private bool hasNotFired = true;
 
     new void Start() //Use this for initialization
     {
@@ -22,6 +31,14 @@ public class Roller : Boss
         pylons = GameObject.FindGameObjectsWithTag("barrier"); //Find all the pylons
 
         timer = 0; //Set the timer to 0
+
+        player = GameObject.FindGameObjectWithTag("Player");
+
+        aimTimer = aimTime;
+
+        reticle = GameObject.FindGameObjectWithTag("Reticle");
+
+        reticle.SetActive(false);
     }
 
     protected override void Update() //Update is called once per frame
@@ -46,6 +63,12 @@ public class Roller : Boss
         if (timer >= 25) //To reset the cycle
         {
             timer = 0; //Reset the timer
+        }
+
+        // if boss is vulnerable
+        if(vulnerable)
+        {
+            ShootSpike();
         }
     }
 
@@ -121,18 +144,54 @@ public class Roller : Boss
     }
 
     /// <summary>
+    /// this will target the player and shoot a spike after a cerain amount of time
+    /// </summary>
+    private void ShootSpike()
+    {
+        // activate the reticle
+        reticle.SetActive(true);
+
+        if (hasNotFired)
+        {
+            // fire spike
+            if (aimTimer <= 0)
+            {
+                SpawnMissile(TrackPlayer().normalized, transform.position);
+
+                aimTimer = aimTime;
+
+                hasNotFired = false;
+            }
+            else
+            {
+                aimTimer -= Time.deltaTime;
+
+                reticle.transform.position = player.transform.position;
+            }
+        }
+    }
+
+    /// <summary>
     /// Will find the player and apply a knockback force to them
     /// </summary>
     private void Knockback()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-
         // calculate distance from player center to roller center
         // normalize this vector, reverse it and this will be the 
         // vector on which knockback will be applied
 
+        player.transform.GetComponent<Rigidbody2D>().AddForce(TrackPlayer().normalized * knockbackScale);
+    }
+
+    /// <summary>
+    /// calculates a vector between the boss and player
+    /// </summary>
+    /// <returns>that vector</returns>
+    private Vector3 TrackPlayer()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
         Vector3 dist = player.transform.position - this.transform.position;
-        player.transform.GetComponent<Rigidbody2D>().AddForce(dist.normalized * knockbackScale);
+        return dist;
     }
 
     /// <summary>
