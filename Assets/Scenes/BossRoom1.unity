@@ -106,12 +106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35df6c01602364149aecba5eed3e3663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  baseColor: {r: 0, g: 0, b: 0, a: 0}
-  hitColor: {r: 0, g: 0, b: 0, a: 0}
-  settleColor: {r: 0, g: 0, b: 0, a: 0}
-  currentTime: 0
-  savedTime: 0
 --- !u!60 &89338710
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -238,6 +232,7 @@ GameObject:
   - 4: {fileID: 610859561}
   - 212: {fileID: 610859560}
   - 114: {fileID: 610859562}
+  - 61: {fileID: 610859563}
   m_Layer: 0
   m_Name: ElectricBarrier3
   m_TagString: barrier
@@ -274,7 +269,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4c390e829461be84eb3be15f3fbac41d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2d6aafa9e22005043868e7d514c88717, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -284,10 +279,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 610859559}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 18.42, y: -0.19, z: 0}
-  m_LocalScale: {x: 1, y: 22, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 11, y: 11, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
@@ -304,7 +299,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tower1: {fileID: 89338709}
   tower2: {fileID: 218652747}
-  sprite: {fileID: 0}
+--- !u!61 &610859563
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 610859559}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 2.1999998, y: 0.099999994}
 --- !u!1 &674334803
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,6 +323,7 @@ GameObject:
   - 4: {fileID: 674334805}
   - 212: {fileID: 674334804}
   - 114: {fileID: 674334806}
+  - 61: {fileID: 674334807}
   m_Layer: 0
   m_Name: ElectricBarrier4
   m_TagString: barrier
@@ -351,7 +360,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4c390e829461be84eb3be15f3fbac41d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2d6aafa9e22005043868e7d514c88717, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -363,7 +372,7 @@ Transform:
   m_GameObject: {fileID: 674334803}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.34, y: -13.28, z: 0}
-  m_LocalScale: {x: 20, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -381,7 +390,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tower1: {fileID: 1048335409}
   tower2: {fileID: 218652747}
-  sprite: {fileID: 0}
+--- !u!61 &674334807
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 674334803}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 2.2, y: 0.1}
 --- !u!1 &683820908
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,6 +414,7 @@ GameObject:
   - 4: {fileID: 683820910}
   - 212: {fileID: 683820909}
   - 114: {fileID: 683820911}
+  - 61: {fileID: 683820912}
   m_Layer: 0
   m_Name: ElectricBarrier2
   m_TagString: barrier
@@ -428,7 +451,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4c390e829461be84eb3be15f3fbac41d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2d6aafa9e22005043868e7d514c88717, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -438,10 +461,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 683820908}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -4.15, y: -0.19, z: 0}
-  m_LocalScale: {x: 1, y: 22, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 11, y: 11, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
@@ -458,7 +481,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tower1: {fileID: 1608255841}
   tower2: {fileID: 1048335409}
-  sprite: {fileID: 0}
+--- !u!61 &683820912
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 683820908}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 2.1999998, y: 0.099999994}
 --- !u!1001 &745486914
 Prefab:
   m_ObjectHideFlags: 0
@@ -540,12 +576,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35df6c01602364149aecba5eed3e3663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  baseColor: {r: 0, g: 0, b: 0, a: 0}
-  hitColor: {r: 0, g: 0, b: 0, a: 0}
-  settleColor: {r: 0, g: 0, b: 0, a: 0}
-  currentTime: 0
-  savedTime: 0
 --- !u!1001 &1082177326
 Prefab:
   m_ObjectHideFlags: 0
@@ -623,6 +653,7 @@ GameObject:
   - 4: {fileID: 1320443530}
   - 212: {fileID: 1320443529}
   - 114: {fileID: 1320443531}
+  - 61: {fileID: 1320443532}
   m_Layer: 0
   m_Name: ElectricBarrier1
   m_TagString: barrier
@@ -659,7 +690,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4c390e829461be84eb3be15f3fbac41d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2d6aafa9e22005043868e7d514c88717, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -671,7 +702,7 @@ Transform:
   m_GameObject: {fileID: 1320443528}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.34, y: 12.596172, z: 0}
-  m_LocalScale: {x: 20, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -689,7 +720,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tower1: {fileID: 1608255841}
   tower2: {fileID: 89338709}
-  sprite: {fileID: 0}
+--- !u!61 &1320443532
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1320443528}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 2.2, y: 0.1}
 --- !u!212 &1347289799 stripped
 SpriteRenderer:
   m_PrefabParentObject: {fileID: 212000014273836172, guid: d7a434eae3e846742a3b865324727580,
@@ -757,12 +801,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35df6c01602364149aecba5eed3e3663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  baseColor: {r: 0, g: 0, b: 0, a: 0}
-  hitColor: {r: 0, g: 0, b: 0, a: 0}
-  settleColor: {r: 0, g: 0, b: 0, a: 0}
-  currentTime: 0
-  savedTime: 0
 --- !u!60 &1608255842
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -834,7 +872,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000011160158774, guid: 83c5650c6fa274347a307d9b36aecea9, type: 2}
       propertyPath: m_TagString
-      value: Untagged
+      value: boss
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000012508299674, guid: 83c5650c6fa274347a307d9b36aecea9, type: 2}
@@ -863,13 +901,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e41c21b3cfd2a4b48a539f04b1b60d72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 10
   bombCooldown: 0.25
-  bomb: {fileID: 1000010594573080, guid: 0ae4c2c176ca5484595b970c9f84fe94, type: 2}
+  bomb: {fileID: 1000011797434896, guid: 8e1d8e3193ded214d9c0c85678fbeda7, type: 2}
   field: {fileID: 1825805606}
-  currentTime: 0
-  sideMovement: 0
-  velocity: {x: 0, y: 0}
+--- !u!50 &2049971343
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2049971337}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &2083354950
 Prefab:
   m_ObjectHideFlags: 0
