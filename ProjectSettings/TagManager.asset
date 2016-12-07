@@ -9,6 +9,7 @@ TagManager:
   - shield
   - boss
   - barrier
+  - barr
   layers:
   - Default
   - TransparentFX

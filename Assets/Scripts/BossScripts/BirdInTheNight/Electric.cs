@@ -3,9 +3,9 @@ using System.Collections;
 
 public class Electric : MonoBehaviour {
 
-    public EnergyTowers tower1;
-    public EnergyTowers tower2;
-    public SpriteRenderer sprite;
+    [SerializeField] private EnergyTowers tower1;
+    [SerializeField] private EnergyTowers tower2;
+    SpriteRenderer sprite;
 
     // Use this for initialization
     void Start()
