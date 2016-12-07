@@ -4,20 +4,23 @@ using System.Collections;
 public class BirdInTheNight : Boss {
 
     private bool[] phases = { true, false };
-    private float bombTimer; // when this drops below 0, bomb will drop
+    private float setBombTimer; // when this drops below 0, bomb will drop
     [SerializeField]
     private float bombCooldown; // cooldown between bombs
     [SerializeField]
     private GameObject bomb;
-    float fieldMinX;
-    float fieldMaxX;
-    float fieldMinY;
-    float fieldMaxY;
-    public GameObject field; //input in Unity
-    public double currentTime;
-    public int sideMovement;
-    public Vector2 velocity;
-    float maxSpeed;
+    private float fieldMinX;
+    private float fieldMaxX;
+    private float fieldMinY;
+    private float fieldMaxY;
+    private bool vulnerable;
+    [SerializeField] private GameObject field; //input in Unity
+    private double currentTime;
+    private int sideMovement;
+    private Vector2 velocity;
+    private float maxSpeed;
+    private float zapTimer;
+    private float timeStaysZapped;
 
 	// Use this for initialization
 	protected override void Start()
@@ -30,12 +33,15 @@ public class BirdInTheNight : Boss {
         fieldMaxY = field.transform.position.y + 0.65f * field.transform.localScale.y;
         currentTime = 0;
         sideMovement = 0;
+        zapTimer = 0;
+        timeStaysZapped = 6.0f;
         velocity = new Vector2(0f, 0f);
         maxSpeed = 0.15f;
+        vulnerable = false;
         //transform.position = new Vector2(fieldMaxX, fieldMinY);
 
         // assign bombTimer to bombCooldown
-        bombTimer = bombCooldown;
+        setBombTimer = bombCooldown;
 	}
 	
 	// Update is called once per frame
@@ -45,23 +51,42 @@ public class BirdInTheNight : Boss {
 
         currentTime += Time.deltaTime;
 
-        if (currentTime >= 4f)
+        if (currentTime >= 4f && !isVulnerable())
         {
             sideMovement = ResetPosition();
             currentTime = 0f;
         }
 
         // PHASE 1
-        if (bombTimer <= 0)
+        if (setBombTimer <= 0 && !isVulnerable())
         {
             FirstAttack();
 
-            bombTimer = bombCooldown;
+            setBombTimer = bombCooldown;
         }
 
-        bombTimer -= Time.deltaTime;
+        setBombTimer -= Time.deltaTime;
+        zapTimer -= Time.deltaTime;
 
-        Fly();
+        if (!isVulnerable())
+        {
+            Fly();
+            this.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+        }
+        else
+        {
+            this.GetComponent<SpriteRenderer>().color = new Color(100, 255, 100);
+            FlyToCenter();
+        }
+        
+
+        //check to see if he stops being vulnerable
+        
+
+        if (zapTimer <= 0)
+        {
+            vulnerable = false;
+        }
 
         transform.position += new Vector3(velocity.x, velocity.y, 0f);
 	}
@@ -116,6 +141,49 @@ public class BirdInTheNight : Boss {
         }
     }
 
+    protected void FlyToCenter()
+    {
+        if (transform.position.x < (fieldMaxX + fieldMinX)/2 && velocity.x != 0)
+        {
+            velocity.x = maxSpeed*Mathf.Pow(2, 0.5f)/2;
+        }
+        if (transform.position.x > (fieldMaxX + fieldMinX) / 2 && velocity.x != 0)
+        {
+            velocity.x = -maxSpeed*Mathf.Pow(2, 0.5f)/2;
+        }
+        if (transform.position.y < (fieldMaxY + fieldMinY) / 2 && velocity.y != 0)
+        {
+            velocity.y = maxSpeed*Mathf.Pow(2, 0.5f)/2;
+        }
+        if (transform.position.y > (fieldMaxY + fieldMinY) / 2 && velocity.y != 0)
+        {
+            velocity.y = -maxSpeed*Mathf.Pow(2, 0.5f)/2;
+        }
+        if (transform.position.x == (fieldMaxX + fieldMinX) / 2)
+        {
+            velocity.x = 0;
+        }
+        if (transform.position.y == (fieldMaxY + fieldMinY) / 2)
+        {
+            velocity.y = 0;
+        }
+    }
+
+    protected override void OnTriggerStay2D(Collider2D coll)
+    {
+        if (coll.gameObject.tag == "barrier" && coll.GetComponent<SpriteRenderer>().GetComponent<Renderer>().enabled)
+        {
+            vulnerable = true;
+            zapTimer = timeStaysZapped;
+            timeStaysZapped = Random.Range(4.0f, 6.5f);
+        }
+        if (coll.gameObject.tag == "weapon" && damageCooldown <= 0f && isVulnerable()) //If the boss collides with the player's weapon
+        {
+            health -= 1; //Decrement health
+            damageCooldown = 1; //Reset the damage cooldown
+        }
+    }
+
     /// <summary>
     /// This is the bomb dropping attack, a new bomb will be
     /// instantiated at the bird's location every time the timer 
@@ -130,6 +198,6 @@ public class BirdInTheNight : Boss {
     //please change
     protected bool isVulnerable()
     {
-        return true;
+        return vulnerable;
     }
 }

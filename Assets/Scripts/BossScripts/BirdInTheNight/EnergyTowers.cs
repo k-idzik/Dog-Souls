@@ -3,14 +3,15 @@ using System.Collections;
 
 public class EnergyTowers : MonoBehaviour {
 
-    public SpriteRenderer sprite;
-    public Color baseColor;
-    public Color hitColor;
-    public Color settleColor;
-    public double currentTime;
-    public double savedTime;
-    float blueInc;
-    float greenInc;
+    private SpriteRenderer sprite;
+    private Color baseColor;
+    private Color hitColor;
+    private Color settleColor;
+    //private float randomResetTime;
+    private double currentTime;
+    private double savedTime;
+    private float blueInc;
+    private float greenInc;
 
 	// Use this for initialization
 	void Start () {
@@ -27,7 +28,7 @@ public class EnergyTowers : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         currentTime += Time.deltaTime;
-        if (currentTime >= savedTime + 6)
+        if (currentTime >= savedTime + Random.Range(7.0f, 15.0f))
         {
             sprite.color = baseColor;
         }
