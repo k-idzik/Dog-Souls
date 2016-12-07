@@ -5,7 +5,6 @@ using System.Collections.Generic; //Lists
 public class RoboWiz : Boss
 {
     [SerializeField] private List<GameObject> shields; //The shields
-    [SerializeField] private GameObject magicMissile; //The boss's magic missiles
     [SerializeField] private GameObject beam; //The boss's SPECIAL BEAM CANNON
     [SerializeField] private GameObject minion;
     [SerializeField] private float timeBetweenAttacks; //The time between the boss's attacks
@@ -184,23 +183,11 @@ public class RoboWiz : Boss
         for (int i = 0; i < numMissiles; i++)
         {
             // spawn a missile at whatever the current missileAngle is
-            SpawnMissile(Quaternion.AngleAxis(missileAngle, transform.position) * transform.up);
+            SpawnMissile(Quaternion.AngleAxis(missileAngle, transform.position) * transform.up, (transform.position + Quaternion.AngleAxis(missileAngle, transform.position) * transform.up) * 2);
 
             // calculate angle of next missile
             missileAngle += angleBetweenMissiles;
         }
-    }
-
-    /// <summary>
-    /// Spawns a magic missile in whatever direction is given to it
-    /// </summary>
-    private void SpawnMissile(Vector3 direction)
-    {
-        // add this missile to the list
-        GameObject newMissile =  GameObject.Instantiate(magicMissile, (transform.position + direction) * 2, Quaternion.identity) as GameObject;
-
-        // assign newMissile's direction using the setter
-        newMissile.GetComponent<MagicMissile>().Direction = direction;
     }
 
     private void SecondAttack() //The boss's second attack, minion spawning

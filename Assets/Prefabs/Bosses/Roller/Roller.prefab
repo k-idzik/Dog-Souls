@@ -19,11 +19,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010729340774}
-  - 212: {fileID: 212000010529587314}
   - 114: {fileID: 114000011270349444}
   - 58: {fileID: 58000012713144986}
   - 58: {fileID: 58000012750179280}
   - 50: {fileID: 50000013374917188}
+  - 212: {fileID: 212000012556828340}
   m_Layer: 0
   m_Name: Roller
   m_TagString: boss
@@ -101,9 +101,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
---- !u!212 &212000010529587314
+  missile: {fileID: 0}
+  vulnerableSprite: {fileID: 0}
+  knockbackScale: 3000
+  aimTime: 0
+--- !u!212 &212000012556828340
 SpriteRenderer:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011249763930}

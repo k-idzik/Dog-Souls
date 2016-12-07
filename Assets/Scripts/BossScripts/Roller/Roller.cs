@@ -11,6 +11,20 @@ public class Roller : Boss
     private Vector2[] startPosition; //The start position of each pylon
     private Vector2[] endPosition; //The end position of each pylon
     private bool stop; //If the roller should stop
+    private bool vulnerable = true;
+    private GameObject player;
+
+    // knockback variables
+    private bool canKnockback = true; // bool for tracking whether or not the boss can knockback the player
+    [SerializeField]
+    private float knockbackScale; 
+
+    // spike shooting variables
+    [SerializeField]
+    private float aimTime; // amount of time before spike fires
+    GameObject reticle;
+    private float aimTimer; // timer to track when a new missile will spawn
+    private bool hasNotFired = true;
 
     new void Start() //Use this for initialization
     {
@@ -21,6 +35,14 @@ public class Roller : Boss
         timer = 0; //Set the timer to 0
 
         stop = false; //The boss should not stop
+
+        player = GameObject.FindGameObjectWithTag("Player");
+
+        aimTimer = aimTime;
+
+        reticle = GameObject.FindGameObjectWithTag("Reticle");
+
+        reticle.SetActive(false);
     }
 
     protected override void Update() //Update is called once per frame
@@ -49,6 +71,12 @@ public class Roller : Boss
         if (timer >= 25) //To reset the cycle
         {
             timer = 0; //Reset the timer
+        }
+
+        // if boss is vulnerable
+        if(vulnerable)
+        {
+            ShootSpike();
         }
     }
 
@@ -130,9 +158,70 @@ public class Roller : Boss
         bossSR.color = Color.white; //Change the color of the boss to indicate anger
     }
 
+    /// <summary>
+    /// this will target the player and shoot a spike after a cerain amount of time
+    /// </summary>
+    private void ShootSpike()
+    {
+        // activate the reticle
+        reticle.SetActive(true);
+
+        if (hasNotFired)
+        {
+            // fire spike
+            if (aimTimer <= 0)
+            {
+                SpawnMissile(TrackPlayer().normalized, transform.position);
+
+                aimTimer = aimTime;
+
+                hasNotFired = false;
+            }
+            else
+            {
+                aimTimer -= Time.deltaTime;
+
+                reticle.transform.position = player.transform.position;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Will find the player and apply a knockback force to them
+    /// </summary>
+    private void Knockback()
+    {
+        // calculate distance from player center to roller center
+        // normalize this vector, reverse it and this will be the 
+        // vector on which knockback will be applied
+
+        player.transform.GetComponent<Rigidbody2D>().AddForce(TrackPlayer().normalized * knockbackScale);
+    }
+
+    /// <summary>
+    /// calculates a vector between the boss and player
+    /// </summary>
+    /// <returns>that vector</returns>
+    private Vector3 TrackPlayer()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Vector3 dist = player.transform.position - this.transform.position;
+        return dist;
+    }
+
+    /// <summary>
+    /// this will be where the knockback function is called, should be called whenever the roller
+    /// collides with a player
+    /// </summary>
+    /// <param name="coll">collision parameter</param>
     private void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.name == "BossRoom2Sprite") //If colliding with the room
+        if (coll.transform.tag == "Player")
+        {
+            Debug.Log("Player colliding");
+            Knockback();
+        }
+        else if (coll.gameObject.name == "BossRoom2Sprite") //If colliding with the room
         {
             stop = true; //Make the roller stop
             bossSR.sprite = vulnerableSprite; //Switch the roller's sprite
