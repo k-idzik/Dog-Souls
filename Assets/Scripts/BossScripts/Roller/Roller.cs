@@ -3,12 +3,14 @@ using System.Collections;
 
 public class Roller : Boss
 {
+    [SerializeField] private Sprite vulnerableSprite; //The roller's vulnerable sprite
     private GameObject []pylons; //The moving pylons
     private float timer; //Timer for battle sequencing
     private int maxPylons; //The maximum number of pylons
     private int[] selectedPylons; //The pylons to move
-    private Vector3[] startPosition; //The start position of each pylon
-    private Vector3[] endPosition; //The end position of each pylon
+    private Vector2[] startPosition; //The start position of each pylon
+    private Vector2[] endPosition; //The end position of each pylon
+    private bool stop; //If the roller should stop
 
     new void Start() //Use this for initialization
     {
@@ -17,6 +19,8 @@ public class Roller : Boss
         pylons = GameObject.FindGameObjectsWithTag("barrier"); //Find all the pylons
 
         timer = 0; //Set the timer to 0
+
+        stop = false; //The boss should not stop
     }
 
     protected override void Update() //Update is called once per frame
@@ -30,6 +34,10 @@ public class Roller : Boss
         else if (timer >= 5 && timer < 10) //To move pylons
         {
             MovePylons(); //Move the pylons
+        }
+        else if (!stop && timer >= 10 && timer < 20) //Make the boss attack
+        {
+            Attack(); //Attack
         }
         else if (timer >= 20 && timer < 25) //To move pylons
         {
@@ -49,8 +57,8 @@ public class Roller : Boss
         int numberPylons = 0; //Keep track of the number of pylons to move
         maxPylons = Random.Range(4, 12); //The maximum number of pylons
         selectedPylons = new int[maxPylons]; //The pylons to move
-        startPosition = new Vector3[maxPylons]; //The start position of each pylon
-        endPosition = new Vector3[maxPylons]; //The end position of each pylon
+        startPosition = new Vector2[maxPylons]; //The start position of each pylon
+        endPosition = new Vector2[maxPylons]; //The end position of each pylon
 
         while (numberPylons < maxPylons) //While not all of the pylons are chosen
         {
@@ -91,11 +99,11 @@ public class Roller : Boss
         {
             if (pylons[selectedPylons[i]].name.Contains("R") && pylons[selectedPylons[i]].transform.position.x > endPosition[i].x) //If this is a right side pylon
             {
-                pylons[selectedPylons[i]].transform.position -= endPosition[i] * Time.deltaTime * 3; //Move the pylon
+                pylons[selectedPylons[i]].transform.position -= (Vector3)endPosition[i] * Time.deltaTime * 3; //Move the pylon
             }
             else if (pylons[selectedPylons[i]].name.Contains("L") && pylons[selectedPylons[i]].transform.position.x < endPosition[i].x) //If this is a left side pylon
             {
-                pylons[selectedPylons[i]].transform.position -= endPosition[i] * Time.deltaTime * 3; //Move the pylon
+                pylons[selectedPylons[i]].transform.position -= (Vector3)endPosition[i] * Time.deltaTime * 3; //Move the pylon
             }
         }
     }
@@ -106,12 +114,28 @@ public class Roller : Boss
         {
             if (pylons[selectedPylons[i]].name.Contains("R") && pylons[selectedPylons[i]].transform.position.x < startPosition[i].x) //If this is a right side pylon
             {
-                pylons[selectedPylons[i]].transform.position += startPosition[i] * Time.deltaTime * .5f; //Move the pylon
+                pylons[selectedPylons[i]].transform.position += (Vector3)startPosition[i] * Time.deltaTime * .5f; //Move the pylon
             }
             else if (pylons[selectedPylons[i]].name.Contains("L") && pylons[selectedPylons[i]].transform.position.x > startPosition[i].x) //If this is a left side pylon
             {
-                pylons[selectedPylons[i]].transform.position += startPosition[i] * Time.deltaTime * .5f; //Move the pylon
+                pylons[selectedPylons[i]].transform.position += (Vector3)startPosition[i] * Time.deltaTime * .5f; //Move the pylon
             }
+        }
+    }
+
+    private void Attack() //Make the boss attack
+    {
+        bossSR.color = Color.red; //Change the color of the boss to indicate anger
+        transform.position += new Vector3(0, -8.5f, 0) * Time.deltaTime; //Move the boss to attack
+        bossSR.color = Color.white; //Change the color of the boss to indicate anger
+    }
+
+    private void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.name == "BossRoom2Sprite") //If colliding with the room
+        {
+            stop = true; //Make the roller stop
+            bossSR.sprite = vulnerableSprite; //Switch the roller's sprite
         }
     }
 }

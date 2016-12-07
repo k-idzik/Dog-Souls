@@ -13,12 +13,12 @@ public class CollisionTest : MonoBehaviour
 	
 	}
 
-    void OnTriggerEnter2D(Collider2D coll) //If something triggers this object
+    void OnTriggerStay2D(Collider2D coll) //If something triggers this object
     {
         Debug.Log("Trigger: " + coll.gameObject.name); //Log the trigger
     }
 
-    void OnCollisionEnter2D(Collision2D coll) //If something collides with this object
+    void OnCollisionStay2D(Collision2D coll) //If something collides with this object
     {
         Debug.Log("Collider: " + coll.gameObject.name); //Log the collision
     }
