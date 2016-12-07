@@ -10,6 +10,11 @@ public class Roller : Boss
     private Vector3[] startPosition; //The start position of each pylon
     private Vector3[] endPosition; //The end position of each pylon
 
+    // knockback variables
+    private bool canKnockback = true; // bool for tracking whether or not the boss can knockback the player
+    [SerializeField]
+    private float knockbackScale; 
+
     new void Start() //Use this for initialization
     {
         base.Start(); //Call the base start method
@@ -112,6 +117,35 @@ public class Roller : Boss
             {
                 pylons[selectedPylons[i]].transform.position += startPosition[i] * Time.deltaTime * .5f; //Move the pylon
             }
+        }
+    }
+
+    /// <summary>
+    /// Will find the player and apply a knockback force to them
+    /// </summary>
+    private void Knockback()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        // calculate distance from player center to roller center
+        // normalize this vector, reverse it and this will be the 
+        // vector on which knockback will be applied
+
+        Vector3 dist = player.transform.position - this.transform.position;
+        player.transform.GetComponent<Rigidbody2D>().AddForce(dist.normalized * knockbackScale);
+    }
+
+    /// <summary>
+    /// this will be where the knockback function is called, should be called whenever the roller
+    /// collides with a player
+    /// </summary>
+    /// <param name="coll">collision parameter</param>
+    private void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.transform.tag == "Player")
+        {
+            Debug.Log("Player colliding");
+            Knockback();
         }
     }
 }

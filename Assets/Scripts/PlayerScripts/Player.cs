@@ -54,6 +54,15 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Get player's rigidbody for use in knockback application
+    /// </summary>
+    public Rigidbody2D PlayerRB
+    {
+        get { return playerRB; }
+        set { playerRB = value; }
+    }
+
     public float DamageCooldown
     {
         get { return damageCooldown; }
