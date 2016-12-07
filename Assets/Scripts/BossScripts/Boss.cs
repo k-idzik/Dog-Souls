@@ -5,7 +5,7 @@ public abstract class Boss : MonoBehaviour
 {
     protected bool[] phases = new bool[4] { true, false, false, false }; //Array of booleans to hold the current state
     [SerializeField] protected int health; //The player's health
-    private SpriteRenderer bossSR; //The boss's sprite renderer
+    protected SpriteRenderer bossSR; //The boss's sprite renderer
     protected float damageCooldown; //The time between when the player can take damage
 
     public int Health //The boss's health
