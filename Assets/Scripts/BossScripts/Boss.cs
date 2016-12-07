@@ -7,6 +7,8 @@ public abstract class Boss : MonoBehaviour
     [SerializeField] protected int health; //The player's health
     protected SpriteRenderer bossSR; //The boss's sprite renderer
     protected float damageCooldown; //The time between when the player can take damage
+    [SerializeField]
+    private GameObject missile; //The boss's magic missiles
 
     public int Health //The boss's health
     {
@@ -81,5 +83,17 @@ public abstract class Boss : MonoBehaviour
         {
             damageCooldown -= Time.deltaTime; //Decrement the cooldown timer
         }
+    }
+
+    /// <summary>
+    /// Spawns a magic missile in whatever direction is given to it
+    /// </summary>
+    protected void SpawnMissile(Vector3 direction, Vector3 initialPos)
+    {
+        // add this missile to the list
+        GameObject newMissile = GameObject.Instantiate(missile, initialPos, Quaternion.identity) as GameObject;
+
+        // assign newMissile's direction using the setter
+        newMissile.GetComponent<MagicMissile>().Direction = direction;
     }
 }

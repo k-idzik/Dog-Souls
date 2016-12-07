@@ -10,6 +10,8 @@ TagManager:
   - boss
   - barrier
   - barr
+  - Land
+  - Reticle
   layers:
   - Default
   - TransparentFX

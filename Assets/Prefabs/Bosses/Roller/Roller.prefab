@@ -83,6 +83,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  knockbackScale: 3000
 --- !u!212 &212000012556828340
 SpriteRenderer:
   m_ObjectHideFlags: 1
