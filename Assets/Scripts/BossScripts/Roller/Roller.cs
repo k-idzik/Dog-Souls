@@ -59,6 +59,7 @@ public class Roller : Boss
 
         if (health == 0) //If the boss is dead
         {
+            reticle.SetActive(false); //Disable the reticle
             Destroy(gameObject); //He dead
         }
 
