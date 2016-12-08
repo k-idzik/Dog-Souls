@@ -101,13 +101,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  missile: {fileID: 0}
-  vulnerableSprite: {fileID: 0}
-  knockbackScale: 3000
-  aimTime: 0
+  missile: {fileID: 1000013236481228, guid: 0bd017e79869dab44b34969e81c8229c, type: 2}
+  vulnerableSprite: {fileID: 21300000, guid: 1c4ed7920a519df4fb3df6f91a05eb36, type: 3}
+  knockbackScale: 1500
+  aimTime: 1.75
 --- !u!212 &212000012556828340
 SpriteRenderer:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011249763930}
@@ -134,7 +134,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300002, guid: 1c4ed7920a519df4fb3df6f91a05eb36, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

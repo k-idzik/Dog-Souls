@@ -66,7 +66,7 @@ public abstract class Boss : MonoBehaviour
         }
     }
 
-    private void Blink() //Make the boss blink while in cooldown
+    protected void Blink() //Make the boss blink while in cooldown
     {
         if (damageCooldown >= 0f) //If the boss is in cooldown
         {
