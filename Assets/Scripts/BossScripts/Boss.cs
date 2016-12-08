@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement; //Load scenes
 
 public abstract class Boss : MonoBehaviour
 {
@@ -36,6 +37,15 @@ public abstract class Boss : MonoBehaviour
         if (health == 0) //If the boss is dead
         {
             Destroy(gameObject); //He dead
+            
+            if (gameObject.scene.name == "BossRoom0") //If this is the first boss
+            {
+                SceneManager.LoadScene("BossRoom1"); //Load the second boss
+            }
+            if (gameObject.scene.name == "BossRoom1") //If this is the second boss
+            {
+                SceneManager.LoadScene("BossRoom2"); //Load the third boss
+            }
         }
     }
 

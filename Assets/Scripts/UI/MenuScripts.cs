@@ -97,7 +97,7 @@ public class MenuScripts : MonoBehaviour
 
         Dictionary<string, Color> bossRoomColors = new Dictionary<string, Color>(); //Create a dictionary to store the boss rooms and associated colors
         bossRoomColors.Add("BossRoom0", new Color(184, 3, 144)); //Add the first boss room to the dictionary
-        bossRoomColors.Add("BossRoom1", new Color(0, 255, 0)); //Add the second boss room to the dictionary
+        bossRoomColors.Add("BossRoom1", new Color(253, 248, 5)); //Add the second boss room to the dictionary
         bossRoomColors.Add("BossRoom2", new Color(67, 165, 184)); //Add the third boss room to the dictionary
         Color bossOutlineColor; //The color for the outline of the boss's health
 

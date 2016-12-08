@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BirdInTheNight : Boss {
 
-    private bool[] phases = { true, false };
+    //private bool[] phases = { true, false };
     private float setBombTimer; // when this drops below 0, bomb will drop
     [SerializeField]
     private float bombCooldown; // cooldown between bombs
@@ -31,14 +31,14 @@ public class BirdInTheNight : Boss {
     [SerializeField]
     Sprite spriteLeft;
 
-    private SpriteRenderer sr;
+    //private SpriteRenderer sr;
 
     // Use this for initialization
     protected override void Start()
     {
         base.Start(); //Call the base start method
 
-        sr = this.GetComponent<SpriteRenderer>();
+        //sr = this.GetComponent<SpriteRenderer>();
 
         startingHealth = 10;
         health = startingHealth;
@@ -116,30 +116,30 @@ public class BirdInTheNight : Boss {
         //top
         if (side == 0)
         {
-            sr.sprite = spriteDown;
+            bossSR.sprite = spriteDown;
             transform.position = new Vector2(Random.Range(fieldMinX, fieldMaxX), fieldMaxY);
         }
         //right
         else if (side == 1)
         {
-            if(sr.flipX)
+            if(bossSR.flipX)
             {
-                sr.flipX = false;
+                bossSR.flipX = false;
             }
-            sr.sprite = spriteLeft;
+            bossSR.sprite = spriteLeft;
             transform.position = new Vector2(fieldMaxX, Random.Range(fieldMinY, fieldMaxY));
         }
         //bottom
         else if (side == 2)
         {
-            sr.sprite = spriteUp;
+            bossSR.sprite = spriteUp;
             transform.position = new Vector2(Random.Range(fieldMinX, fieldMaxX), fieldMinY);
         }
         //left
         else
         {
-            sr.sprite = spriteLeft;
-            sr.flipX = true;
+            bossSR.sprite = spriteLeft;
+            bossSR.flipX = true;
             transform.position = new Vector2(fieldMinX, Random.Range(fieldMinY, fieldMaxY));
         }
 
