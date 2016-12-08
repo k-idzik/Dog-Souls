@@ -908,8 +908,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   missile: {fileID: 0}
-  bombCooldown: 0.4
-  bomb: {fileID: 1000011797434896, guid: 8e1d8e3193ded214d9c0c85678fbeda7, type: 2}
+  bombCooldown: 0.33
+  bomb: {fileID: 1000013586818772, guid: 954c6bb52cc3545458dc9fcdae478a33, type: 2}
   field: {fileID: 1825805606}
 --- !u!50 &2049971343
 Rigidbody2D:
