@@ -57,6 +57,11 @@ public class Roller : Boss
     {
         Blink(); //Call the blink method
 
+        if (health == 0) //If the boss is dead
+        {
+            Destroy(gameObject); //He dead
+        }
+
         if (timer == 0) //To select pylons
         {
             SelectPylons(); //Select the pylons
@@ -78,20 +83,19 @@ public class Roller : Boss
         {
             RollingAttack(new Vector2(0, 20f), -7.5f); //Roll
         }
-        else if (timer >= 6.75 && timer < 13.75) //Make the boss attack
+        else if (timer >= 6.75 && timer < 14.25) //Make the boss attack
         {
             ShootSpike(); //Pew pew
         }
-        else if (timer >= 13.75 && timer < 13.8) //Before the reverse
+        else if (timer >= 14.25 && timer < 14.3) //Before the reverse
         {
-            reticle.SetActive(false); //Disable the reticle
             bossSR.color = Color.red; //Change the color of the boss to indicate anger
         }
-        else if (timer >= 13.8 && timer < 14.5) //Before the reverse
+        else if (timer >= 14.3 && timer < 15) //Before the reverse
         {
             bossSR.color = Color.white; //Change the color of the boss back to default
         }
-        else if (timer >= 14.5 && timer < 16.5) //To move pylons
+        else if (timer >= 15 && timer < 17) //To move pylons
         {
             bossSR.sprite = normalSprite; //Reset the sprite
             ReverseRollingAttack(new Vector2(0, 10f), 7.5f); //Roll
@@ -100,7 +104,7 @@ public class Roller : Boss
 
         timer += Time.deltaTime; //Increment the timer
 
-        if (timer >= 16.5) //To reset the cycle
+        if (timer >= 17) //To reset the cycle
         {
             timer = 0; //Reset the timer
             cCollider.isTrigger = false; //Make the collider normal
@@ -111,7 +115,7 @@ public class Roller : Boss
     private void SelectPylons() //Select the pylons
     {
         int numberPylons = 0; //Keep track of the number of pylons to move
-        maxPylons = Random.Range(4, 12); //The maximum number of pylons
+        maxPylons = Random.Range(6, 12); //The maximum number of pylons
         selectedPylons = new int[maxPylons]; //The pylons to move
         startPosition = new Vector2[maxPylons]; //The start position of each pylon
         endPosition = new Vector2[maxPylons]; //The end position of each pylon
@@ -209,7 +213,7 @@ public class Roller : Boss
         // activate the reticle
         reticle.SetActive(true);
 
-        if (hasNotFired)
+        if (hasNotFired && timer < 13.75)
         {
             // fire spike
             if (aimTimer <= 0)
@@ -222,20 +226,18 @@ public class Roller : Boss
 
                 reticleSR.color = Color.white; //Change the color of the reticle
             }
-            else if (aimTimer <= .5f && aimTimer > 0)
-            {
-                aimTimer -= Time.deltaTime;
-
-                reticle.transform.position = player.transform.position;
-
-                reticleSR.color = Color.red; //Change the color of the reticle
-            }
             else
             {
                 aimTimer -= Time.deltaTime;
-
+                
                 reticle.transform.position = player.transform.position;
+
+                reticleSR.color = Color.Lerp(Color.red, Color.white, aimTimer); //Change the color of the reticle
             }
+        }
+        else if (timer >= 13.75)
+        {
+            reticle.SetActive(false); //Disable the reticle
         }
         else //Reset
         {
@@ -251,8 +253,10 @@ public class Roller : Boss
         // calculate distance from player center to roller center
         // normalize this vector, reverse it and this will be the 
         // vector on which knockback will be applied
-
-        player.transform.GetComponent<Rigidbody2D>().AddForce(TrackPlayer().normalized * knockbackScale);
+        if (bossSR.sprite != vulnerableSprite)
+        {
+            player.transform.GetComponent<Rigidbody2D>().AddForce(TrackPlayer().normalized * knockbackScale);
+        }
     }
 
     /// <summary>
