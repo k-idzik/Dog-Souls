@@ -8,12 +8,16 @@ public class Bomb : MonoBehaviour {
     [SerializeField]
     private int damage; // damage the bomb does
     [SerializeField]
-    private Explosion explosion;
+    private GameObject explosion;
     [SerializeField]
     private GameObject itself;
 
+    private SpriteRenderer spriteRender;
+    private float maxFuse;
+
 	// Use this for initialization
 	void Start () {
+        spriteRender = this.GetComponent<SpriteRenderer>();
         int random = Random.Range(0, 3);
         switch(random)
         {
@@ -30,11 +34,13 @@ public class Bomb : MonoBehaviour {
                 break;
         }
         fuse = Random.Range(2.0f, 10.0f);
+        maxFuse = fuse;
 	}
 	
 	// Update is called once per frame
 	void Update () {
         fuse -= Time.deltaTime;
+        spriteRender.color = Color.Lerp(Color.white, Color.black, 1 - (fuse/maxFuse));
         if (fuse <= 0)
         {
             Explode();

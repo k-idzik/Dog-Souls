@@ -24,10 +24,22 @@ public class BirdInTheNight : Boss {
     private float zapTimer;
     private float timeStaysZapped;
 
-	// Use this for initialization
-	protected override void Start()
+    [SerializeField]
+    Sprite spriteUp;
+    [SerializeField]
+    Sprite spriteDown;
+    [SerializeField]
+    Sprite spriteLeft;
+
+    private SpriteRenderer sr;
+
+    // Use this for initialization
+    protected override void Start()
     {
         base.Start(); //Call the base start method
+
+        sr = this.GetComponent<SpriteRenderer>();
+
         startingHealth = 10;
         health = startingHealth;
         fieldMinX = field.transform.position.x - 0.65f * field.transform.localScale.x;
@@ -104,21 +116,30 @@ public class BirdInTheNight : Boss {
         //top
         if (side == 0)
         {
+            sr.sprite = spriteDown;
             transform.position = new Vector2(Random.Range(fieldMinX, fieldMaxX), fieldMaxY);
         }
         //right
         else if (side == 1)
         {
+            if(sr.flipX)
+            {
+                sr.flipX = false;
+            }
+            sr.sprite = spriteLeft;
             transform.position = new Vector2(fieldMaxX, Random.Range(fieldMinY, fieldMaxY));
         }
         //bottom
         else if (side == 2)
         {
+            sr.sprite = spriteUp;
             transform.position = new Vector2(Random.Range(fieldMinX, fieldMaxX), fieldMinY);
         }
         //left
         else
         {
+            sr.sprite = spriteLeft;
+            sr.flipX = true;
             transform.position = new Vector2(fieldMinX, Random.Range(fieldMinY, fieldMaxY));
         }
 
