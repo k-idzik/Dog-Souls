@@ -860,11 +860,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010500921304, guid: 83c5650c6fa274347a307d9b36aecea9, type: 2}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4000010500921304, guid: 83c5650c6fa274347a307d9b36aecea9, type: 2}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1000011160158774, guid: 83c5650c6fa274347a307d9b36aecea9, type: 2}
       propertyPath: m_Name
@@ -873,6 +873,11 @@ Prefab:
     - target: {fileID: 1000011160158774, guid: 83c5650c6fa274347a307d9b36aecea9, type: 2}
       propertyPath: m_TagString
       value: boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 58000012942220892, guid: 83c5650c6fa274347a307d9b36aecea9,
+        type: 2}
+      propertyPath: m_Radius
+      value: 0.24843606
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000012508299674, guid: 83c5650c6fa274347a307d9b36aecea9, type: 2}
@@ -902,7 +907,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  bombCooldown: 0.25
+  missile: {fileID: 0}
+  bombCooldown: 0.4
   bomb: {fileID: 1000011797434896, guid: 8e1d8e3193ded214d9c0c85678fbeda7, type: 2}
   field: {fileID: 1825805606}
 --- !u!50 &2049971343

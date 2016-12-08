@@ -14,6 +14,8 @@ public class BirdInTheNight : Boss {
     private float fieldMinY;
     private float fieldMaxY;
     private bool vulnerable;
+    private int startingHealth;
+    private SpriteRenderer sprite;
     [SerializeField] private GameObject field; //input in Unity
     private double currentTime;
     private int sideMovement;
@@ -26,13 +28,15 @@ public class BirdInTheNight : Boss {
 	protected override void Start()
     {
         base.Start(); //Call the base start method
-
+        startingHealth = 10;
+        health = startingHealth;
         fieldMinX = field.transform.position.x - 0.65f * field.transform.localScale.x;
         fieldMaxX = field.transform.position.x + 0.65f * field.transform.localScale.x;
         fieldMinY = field.transform.position.y - 0.65f * field.transform.localScale.y;
         fieldMaxY = field.transform.position.y + 0.65f * field.transform.localScale.y;
         currentTime = 0;
         sideMovement = 0;
+        sprite = this.GetComponent<SpriteRenderer>();
         zapTimer = 0;
         timeStaysZapped = 6.0f;
         velocity = new Vector2(0f, 0f);
@@ -71,11 +75,11 @@ public class BirdInTheNight : Boss {
         if (!isVulnerable())
         {
             Fly();
-            this.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+            sprite.color = new Color(1f, 1f, 1f);
         }
         else
         {
-            this.GetComponent<SpriteRenderer>().color = new Color(100, 255, 100);
+            sprite.color = new Color(0.2f, 1f, 0.2f);
             FlyToCenter();
         }
         
@@ -175,6 +179,8 @@ public class BirdInTheNight : Boss {
         {
             vulnerable = true;
             zapTimer = timeStaysZapped;
+            float percentLifeLeft = health / startingHealth;
+            timeStaysZapped = Random.Range(2.0f + 2.0f * (1 - percentLifeLeft), 4.5f + 2.0f * (1 - percentLifeLeft));
             timeStaysZapped = Random.Range(4.0f, 6.5f);
         }
         if (coll.gameObject.tag == "weapon" && damageCooldown <= 0f && isVulnerable()) //If the boss collides with the player's weapon
