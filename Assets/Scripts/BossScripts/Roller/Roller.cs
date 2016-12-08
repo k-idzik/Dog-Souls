@@ -11,7 +11,6 @@ public class Roller : Boss
     private int[] selectedPylons; //The pylons to move
     private Vector2[] startPosition; //The start position of each pylon
     private Vector2[] endPosition; //The end position of each pylon
-    private bool stop; //If the roller should stop
     private GameObject player;
     private CircleCollider2D cCollider; //The roller's circle collider
 
@@ -24,6 +23,7 @@ public class Roller : Boss
     [SerializeField]
     private float aimTime; // amount of time before spike fires
     private GameObject reticle;
+    private SpriteRenderer reticleSR; //The reticle's sprite renderer
     private float aimTimer; // timer to track when a new missile will spawn
     private bool hasNotFired = true;
 
@@ -35,19 +35,27 @@ public class Roller : Boss
         player = GameObject.FindGameObjectWithTag("Player");
         reticle = GameObject.FindGameObjectWithTag("Reticle");
 
+        CircleCollider2D[] circleColliders = gameObject.GetComponents<CircleCollider2D>(); //Get the circle colliders
+        for (int i = 0; i < circleColliders.Length; i++) //For all of the circle colliders
+        {
+            if (circleColliders[i].radius == 1.28f) //If this is the right collider
+            {
+                cCollider = circleColliders[i]; //Save the circle collider
+            }
+        } 
+
         normalSprite = bossSR.sprite; //Get the normal sprite
 
         timer = 0; //Set the timer to 0
         aimTimer = aimTime;
 
-        stop = false; //The boss should not stop
-
+        reticleSR = reticle.GetComponent<SpriteRenderer>(); //Get the reticle's sprite renderer
         reticle.SetActive(false);
     }
 
     protected override void Update() //Update is called once per frame
     {
-        base.Update(); //Call the base update method
+        Blink(); //Call the blink method
 
         if (timer == 0) //To select pylons
         {
@@ -61,33 +69,42 @@ public class Roller : Boss
         {
             bossSR.color = Color.red; //Change the color of the boss to indicate anger
         }
-        else if (timer >= 4.05 && timer < 4.5) //Before the attack
+        else if (timer >= 4.05 && timer < 4.75) //Before the attack
+        {
+            bossSR.color = Color.white; //Change the color of the boss back to default
+            cCollider.isTrigger = true; //Make the collider a trigger
+        }
+        else if (timer >= 4.75 && timer < 6.75) //Make the boss attack
+        {
+            RollingAttack(new Vector2(0, 20f), -7.5f); //Roll
+        }
+        else if (timer >= 6.75 && timer < 13.75) //Make the boss attack
+        {
+            ShootSpike(); //Pew pew
+        }
+        else if (timer >= 13.75 && timer < 13.8) //Before the reverse
+        {
+            reticle.SetActive(false); //Disable the reticle
+            bossSR.color = Color.red; //Change the color of the boss to indicate anger
+        }
+        else if (timer >= 13.8 && timer < 14.5) //Before the reverse
         {
             bossSR.color = Color.white; //Change the color of the boss back to default
         }
-        else if (timer >= 4.5 && timer < 18) //Make the boss attack
+        else if (timer >= 14.5 && timer < 16.5) //To move pylons
         {
-            RollingAttack(new Vector2(0, -20f)); //Roll
-        }
-        else if (timer >= 18 && timer < 20) //To move pylons
-        {
-            stop = false; //Stop is false
             bossSR.sprite = normalSprite; //Reset the sprite
-            RollingAttack(new Vector2(0, 10f)); //Roll
+            ReverseRollingAttack(new Vector2(0, 10f), 7.5f); //Roll
             ResetPylons(); //Reset the pylons
         }
 
         timer += Time.deltaTime; //Increment the timer
 
-        if (timer >= 25) //To reset the cycle
+        if (timer >= 16.5) //To reset the cycle
         {
             timer = 0; //Reset the timer
-        }
-
-        // if boss is vulnerable
-        if(bossSR.sprite == vulnerableSprite)
-        {
-            ShootSpike();
+            cCollider.isTrigger = false; //Make the collider normal
+            hasNotFired = true; //Reset hasNotFired
         }
     }
 
@@ -162,10 +179,24 @@ public class Roller : Boss
         }
     }
 
-    private void RollingAttack(Vector2 moveVector) //Make the boss attack
+    private void RollingAttack(Vector2 moveVector, float stoppingPoint) //Make the boss attack
     {
-        if (!stop) //If stop is false
+        if (transform.position.y >= stoppingPoint) //If the roller should move
         {
+            transform.position -= (Vector3)moveVector * Time.deltaTime; //Move the boss to attack
+        }
+        else //If the roller is stopped
+        {
+            bossSR.sprite = vulnerableSprite; //Switch the roller's sprite
+            cCollider.enabled = false; //Disable the collider
+        }
+    }
+
+    private void ReverseRollingAttack(Vector2 moveVector, float stoppingPoint) //Move the boss back
+    {
+        if (transform.position.y <= stoppingPoint) //If stop is false
+        {
+            cCollider.enabled = true; //Enable the circle collider
             transform.position += (Vector3)moveVector * Time.deltaTime; //Move the boss to attack
         }
     }
@@ -188,6 +219,16 @@ public class Roller : Boss
                 aimTimer = aimTime;
 
                 hasNotFired = false;
+
+                reticleSR.color = Color.white; //Change the color of the reticle
+            }
+            else if (aimTimer <= .5f && aimTimer > 0)
+            {
+                aimTimer -= Time.deltaTime;
+
+                reticle.transform.position = player.transform.position;
+
+                reticleSR.color = Color.red; //Change the color of the reticle
             }
             else
             {
@@ -195,6 +236,10 @@ public class Roller : Boss
 
                 reticle.transform.position = player.transform.position;
             }
+        }
+        else //Reset
+        {
+            hasNotFired = true;
         }
     }
 
@@ -232,11 +277,14 @@ public class Roller : Boss
         {
             Knockback(); //Apply knockback
         }
-        else if (coll.gameObject.name == "BossRoom2Sprite") //If colliding with the room
-        {
-            stop = true; //Make the roller stop
-            bossSR.sprite = vulnerableSprite; //Switch the roller's sprite
+    }
 
+    protected override void OnTriggerStay2D(Collider2D coll) //If something collides with the boss
+    {
+        if (coll.gameObject.tag == "weapon" && damageCooldown <= 0f && bossSR.sprite == vulnerableSprite) //If the boss collides with the player's weapon and is vulnerable
+        {
+            health -= 1; //Decrement health
+            damageCooldown = 1; //Reset the damage cooldown
         }
     }
 }

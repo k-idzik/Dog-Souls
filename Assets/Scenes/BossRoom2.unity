@@ -1813,35 +1813,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 212000010529587314, guid: 0d5b7ba42e3b5374d9ccbf2c7c0f94e9,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300002, guid: 1c4ed7920a519df4fb3df6f91a05eb36,
-        type: 3}
-    - target: {fileID: 114000011270349444, guid: 0d5b7ba42e3b5374d9ccbf2c7c0f94e9,
-        type: 2}
-      propertyPath: vulnerableSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 1c4ed7920a519df4fb3df6f91a05eb36,
-        type: 3}
-    - target: {fileID: 212000012556828340, guid: 0d5b7ba42e3b5374d9ccbf2c7c0f94e9,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300002, guid: 1c4ed7920a519df4fb3df6f91a05eb36,
-        type: 3}
-    - target: {fileID: 114000011270349444, guid: 0d5b7ba42e3b5374d9ccbf2c7c0f94e9,
-        type: 2}
-      propertyPath: aimTime
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011270349444, guid: 0d5b7ba42e3b5374d9ccbf2c7c0f94e9,
-        type: 2}
-      propertyPath: missile
-      value: 
-      objectReference: {fileID: 1000013236481228, guid: 0bd017e79869dab44b34969e81c8229c,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d5b7ba42e3b5374d9ccbf2c7c0f94e9, type: 2}
   m_IsPrefabParent: 0
