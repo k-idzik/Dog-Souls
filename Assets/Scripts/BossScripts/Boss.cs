@@ -32,6 +32,11 @@ public abstract class Boss : MonoBehaviour
         {
             PhaseChange(); //Change the phase
         }
+
+        if (health == 0) //If the boss is dead
+        {
+            Destroy(gameObject); //He dead
+        }
     }
 
     protected IEnumerator Cooldown(float time) //Co-routine timer

@@ -167,11 +167,6 @@ public class RoboWiz : Boss
             // decrement the timer
             beamTimer -= Time.deltaTime;
         }
-
-        if(health == 0) //If the boss is dead
-        {
-            Destroy(gameObject); //He dead
-        }
 	}
 
     /// <summary>
