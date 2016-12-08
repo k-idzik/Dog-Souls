@@ -4,6 +4,7 @@ using System.Collections;
 public class Roller : Boss
 {
     [SerializeField] private Sprite vulnerableSprite; //The roller's vulnerable sprite
+    private Sprite normalSprite; //The roller's normal sprite
     private GameObject []pylons; //The moving pylons
     private float timer; //Timer for battle sequencing
     private int maxPylons; //The maximum number of pylons
@@ -11,8 +12,8 @@ public class Roller : Boss
     private Vector2[] startPosition; //The start position of each pylon
     private Vector2[] endPosition; //The end position of each pylon
     private bool stop; //If the roller should stop
-    private bool vulnerable = true;
     private GameObject player;
+    private CircleCollider2D cCollider; //The roller's circle collider
 
     // knockback variables
     private bool canKnockback = true; // bool for tracking whether or not the boss can knockback the player
@@ -22,7 +23,7 @@ public class Roller : Boss
     // spike shooting variables
     [SerializeField]
     private float aimTime; // amount of time before spike fires
-    GameObject reticle;
+    private GameObject reticle;
     private float aimTimer; // timer to track when a new missile will spawn
     private bool hasNotFired = true;
 
@@ -31,16 +32,15 @@ public class Roller : Boss
         base.Start(); //Call the base start method
 
         pylons = GameObject.FindGameObjectsWithTag("barrier"); //Find all the pylons
+        player = GameObject.FindGameObjectWithTag("Player");
+        reticle = GameObject.FindGameObjectWithTag("Reticle");
+
+        normalSprite = bossSR.sprite; //Get the normal sprite
 
         timer = 0; //Set the timer to 0
-
-        stop = false; //The boss should not stop
-
-        player = GameObject.FindGameObjectWithTag("Player");
-
         aimTimer = aimTime;
 
-        reticle = GameObject.FindGameObjectWithTag("Reticle");
+        stop = false; //The boss should not stop
 
         reticle.SetActive(false);
     }
@@ -53,16 +53,27 @@ public class Roller : Boss
         {
             SelectPylons(); //Select the pylons
         }
-        else if (timer >= 5 && timer < 10) //To move pylons
+        else if (timer >= 3 && timer < 4) //To move pylons
         {
             MovePylons(); //Move the pylons
         }
-        else if (!stop && timer >= 10 && timer < 20) //Make the boss attack
+        else if (timer >= 4 && timer < 4.05) //Before the attack
         {
-            Attack(); //Attack
+            bossSR.color = Color.red; //Change the color of the boss to indicate anger
         }
-        else if (timer >= 20 && timer < 25) //To move pylons
+        else if (timer >= 4.05 && timer < 4.5) //Before the attack
         {
+            bossSR.color = Color.white; //Change the color of the boss back to default
+        }
+        else if (timer >= 4.5 && timer < 18) //Make the boss attack
+        {
+            RollingAttack(new Vector2(0, -20f)); //Roll
+        }
+        else if (timer >= 18 && timer < 20) //To move pylons
+        {
+            stop = false; //Stop is false
+            bossSR.sprite = normalSprite; //Reset the sprite
+            RollingAttack(new Vector2(0, 10f)); //Roll
             ResetPylons(); //Reset the pylons
         }
 
@@ -74,7 +85,7 @@ public class Roller : Boss
         }
 
         // if boss is vulnerable
-        if(vulnerable)
+        if(bossSR.sprite == vulnerableSprite)
         {
             ShootSpike();
         }
@@ -151,11 +162,12 @@ public class Roller : Boss
         }
     }
 
-    private void Attack() //Make the boss attack
+    private void RollingAttack(Vector2 moveVector) //Make the boss attack
     {
-        bossSR.color = Color.red; //Change the color of the boss to indicate anger
-        transform.position += new Vector3(0, -8.5f, 0) * Time.deltaTime; //Move the boss to attack
-        bossSR.color = Color.white; //Change the color of the boss to indicate anger
+        if (!stop) //If stop is false
+        {
+            transform.position += (Vector3)moveVector * Time.deltaTime; //Move the boss to attack
+        }
     }
 
     /// <summary>
@@ -218,13 +230,13 @@ public class Roller : Boss
     {
         if (coll.transform.tag == "Player")
         {
-            Debug.Log("Player colliding");
-            Knockback();
+            Knockback(); //Apply knockback
         }
         else if (coll.gameObject.name == "BossRoom2Sprite") //If colliding with the room
         {
             stop = true; //Make the roller stop
             bossSR.sprite = vulnerableSprite; //Switch the roller's sprite
+
         }
     }
 }
