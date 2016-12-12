@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement; //Load scenes
 public abstract class Boss : MonoBehaviour
 {
     protected bool[] phases = new bool[4] { true, false, false, false }; //Array of booleans to hold the current state
-    [SerializeField] protected int health; //The player's health
+    protected int health; //The boss's health
     protected SpriteRenderer bossSR; //The boss's sprite renderer
     protected float damageCooldown; //The time between when the player can take damage
-    [SerializeField]
-    private GameObject missile; //The boss's magic missiles
+    [SerializeField] private GameObject missile; //The boss's magic missiles
+    public GameObject explosion; //The explosion to play on a boss's death
 
     public int Health //The boss's health
     {
@@ -21,6 +21,8 @@ public abstract class Boss : MonoBehaviour
 
     protected virtual void Start() //Use this for initialization
     {
+        explosion = Resources.Load<GameObject>("Prefabs/Bosses/BirdInTheNight/Explosion 1.prefab");
+        health = 1; //Give the boss 10 health
         bossSR = GetComponent<SpriteRenderer>(); //Get the boss's sprite renderer
         damageCooldown = -1; //Set the damageCooldown
     }
@@ -37,15 +39,8 @@ public abstract class Boss : MonoBehaviour
         if (health == 0) //If the boss is dead
         {
             Destroy(gameObject); //He dead
-            
-            if (gameObject.scene.name == "BossRoom0") //If this is the first boss
-            {
-                SceneManager.LoadScene("BossRoom1"); //Load the second boss
-            }
-            if (gameObject.scene.name == "BossRoom1") //If this is the second boss
-            {
-                SceneManager.LoadScene("BossRoom2"); //Load the third boss
-            }
+            Instantiate(explosion, transform.position, Quaternion.identity); //Instantiate the explosion
+            //SceneManager.LoadScene("MainRoom"); //Load the main room
         }
     }
 

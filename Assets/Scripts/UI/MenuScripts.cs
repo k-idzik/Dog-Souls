@@ -7,11 +7,10 @@ using UnityEngine.EventSystems; //Event systems
 
 public class MenuScripts : MonoBehaviour
 {
-    [SerializeField] private Canvas uIOverlay; //The UI overlay
-    //[SerializeField] private UnityStandardAssets._2D.PlatformerCharacter2D playerControlScript; //The player's control script 
-    [SerializeField] private Canvas pauseMenu; //The pause menu UI
-    [SerializeField] private Canvas keyboardControlMenu; //The keyboard controls menu UI
-    [SerializeField] private Canvas controllerControlMenu; //The controller controls menu UI
+    private Canvas uIOverlay; //The UI overlay
+    private Canvas pauseMenu; //The pause menu UI
+    private Canvas keyboardControlMenu; //The keyboard controls menu UI
+    private Canvas controllerControlMenu; //The controller controls menu UI
     private UnityEngine.UI.Text messageText; //The UI text messages
     private float messageTimer; //How long to display messages for
     private UnityEngine.UI.Image[] playerHealthIcons = new UnityEngine.UI.Image[5]; //The UI images for the player's health
@@ -21,22 +20,38 @@ public class MenuScripts : MonoBehaviour
     private UnityEngine.UI.Image[] bHealthOutlineIcons = new UnityEngine.UI.Image[10]; //The UI images for the boss's health outlines
     private Boss bossScript; //The inherited boss script
     private int bossHealth = 0; //The boss's health
-    //private UnityEngine.UI.Text qText; //The UI text for weapon changing
-    //private UnityEngine.UI.Text eText; //The UI text for weapon changing
-    //private UnityEngine.UI.Text lBText; //The UI text for weapon changing
-    //private UnityEngine.UI.Text rBText; //The UI text for weapon changing
-    //private bool controllerConnected; //If a controller is connected
-
-    //public bool ControllerConnected //ControllerConnected property
-    //{
-    //    get
-    //    {
-    //        return controllerConnected; //Return controllerConnected
-    //    }
-    //}
+    private bool controllerConnected; //If a controller is connected
 
     void Start() //Use this for initialization
     {
+        #region Get Canvases
+        Canvas[] menus = FindObjectsOfType<Canvas>(); //Get the canvases in the scene
+
+        for (int i = 0; i < menus.Length; i++) //For each canvas
+        {
+            if (menus[i].name == "UIOverlay") //If the canvas is the UI overlay
+            {
+                uIOverlay = menus[i]; //Assign the UI overlay
+            }
+            else if (menus[i].name == "PauseMenu") //If the canvas is the pause menu
+            {
+                pauseMenu = menus[i]; //Assign the pause menu
+                pauseMenu.gameObject.SetActive(false); //Disable the pause menu
+            }
+            else if(menus[i].name == "KeyboardControlMenu") //If the canvas is the keyboard controls menu
+            {
+                keyboardControlMenu = menus[i]; //Assign the keyboard controls menu
+                keyboardControlMenu.gameObject.SetActive(false); //Disable the keyboard controls menu
+            }
+            else if(menus[i].name == "ControllerControlMenu") //If the canvas is the controller controls menu
+            {
+                controllerControlMenu = menus[i]; //Assign the controller controls menu
+                controllerControlMenu.gameObject.SetActive(false); //Disable the controller controlls menu
+            }
+        }
+        #endregion
+
+        #region Get UI Overlay Components
         UnityEngine.UI.Image[] uIImages = uIOverlay.GetComponentsInChildren<UnityEngine.UI.Image>(); //Get the images from the children
         int playerHealthArrayTracker = 0; //The tracker for placing icons in the player's health
         int pHealthOutlineArrayTracker = 0; //The tracker for placing icons in the player's health outline
@@ -68,31 +83,18 @@ public class MenuScripts : MonoBehaviour
         }
 
         UnityEngine.UI.Text[] uIText = uIOverlay.GetComponentsInChildren<UnityEngine.UI.Text>(); //Temporarily store all of the UI text
+
         for (int i = 0; i < uIText.Length; i++) //For each UI text element
         {
-            //    if (uIText[i].name == "Q") //If the Q text is found
-            //    {
-            //        qText = uIText[i]; //Save the Q text
-            //    }
-            //    else if (uIText[i].name == "E") //If the E text is found
-            //    {
-            //        eText = uIText[i]; //Save the E text
-            //    }
-            //    else if (uIText[i].name == "LB") //If the LB text is found
-            //    {
-            //        lBText = uIText[i]; //Save the LB text
-            //    }
-            //    else if (uIText[i].name == "RB") //If the RB text is found
-            //    {
-            //        rBText = uIText[i]; //Save the RB text
-            //    }
             if (uIText[i].name == "Message") //If the message text is found
             {
                 messageText = uIText[i]; //Save the message text
                 messageTimer = 0; //Initialize the message timer
             }
         }
+        #endregion
 
+        #region Get Room Specific Components
         GameObject[] search = FindObjectsOfType<GameObject>(); //Get gameobjects from the scene
 
         Dictionary<string, Color> bossRoomColors = new Dictionary<string, Color>(); //Create a dictionary to store the boss rooms and associated colors
@@ -143,15 +145,16 @@ public class MenuScripts : MonoBehaviour
                 pHealthOutlineIcons[i].color = Color.grey; //Set the color for the outline of the player's health
             }
         }
+        #endregion
     }
 
     void Update() //Update is called once per frame
     {
-        if (Input.GetButtonDown("Pause") && !keyboardControlMenu.gameObject.activeInHierarchy && !controllerControlMenu.gameObject.activeInHierarchy/* && !inventoryMenu.gameObject.activeInHierarchy*/) //If the pause button is pressed and the control menu is not active and the inventory menu is not active
+        if (Input.GetButtonDown("Pause") && !keyboardControlMenu.gameObject.activeInHierarchy && !controllerControlMenu.gameObject.activeInHierarchy) //If the pause button is pressed and the control menu is not active
         {
             Pause(); //Pause or unpause the game
         }
-        else if ((Input.GetButtonDown("Pause") || Input.GetButtonDown("Cancel")) && pauseMenu.gameObject.activeInHierarchy && !keyboardControlMenu.gameObject.activeInHierarchy && !controllerControlMenu.gameObject.activeInHierarchy/* && !inventoryMenu.gameObject.activeInHierarchy*/) //If the pause or cancel button is pressed while the pause menu is active and the control menu is not active and the inventory menu is not active
+        else if ((Input.GetButtonDown("Pause") || Input.GetButtonDown("Cancel")) && pauseMenu.gameObject.activeInHierarchy && !keyboardControlMenu.gameObject.activeInHierarchy && !controllerControlMenu.gameObject.activeInHierarchy) //If the pause or cancel button is pressed while the pause menu is active and the control menu is not active
         {
             Pause(); //Pause or unpause the game
         }
@@ -162,13 +165,22 @@ public class MenuScripts : MonoBehaviour
             controllerControlMenu.gameObject.SetActive(false); //Disable the controller controls menu
             pauseMenu.gameObject.SetActive(true); //Enable the pause menu
         }
+
+        if (pauseMenu.gameObject.activeInHierarchy || keyboardControlMenu.gameObject.activeInHierarchy || controllerControlMenu.gameObject.activeInHierarchy) //If any menu is active
+        {
+            playerScript.enabled = false; //The player cannot do things
+        }
+        else //If no menus are open
+        {
+            playerScript.enabled = true; //The player can do things
+        }
         
         //if (Input.GetButtonDown("Heal")) //If the heal button is pressed
         //{
         //    Heal(); //Heal our savior Huebert
         //}
 
-        //ControllerConnectionManager(); //Manages controller connection behavior
+        ControllerConnectionManager(); //Manages controller connection behavior
 
         HealthUIUpdater(); //Update the player's health UI
         MessageTiming(7.5f); //Time how long messages appear for
@@ -176,6 +188,10 @@ public class MenuScripts : MonoBehaviour
         if (bossHealthIcons[0].enabled) //If there is a boss and he's not dead
         {
             BossUIUpdater(); //Update the boss UI
+        }
+        else if (!bossHealthIcons[0].enabled) //If the boss is dead
+        {
+            playerScript.Health = 5; //Give the player full health
         }
 
         if (playerScript.Health <= 0) //If he dead
@@ -248,7 +264,6 @@ public class MenuScripts : MonoBehaviour
             pauseMenu.gameObject.SetActive(true); //Enable the pause menu
             Time.timeScale = 0; //Pause the game
             messageText.enabled = false; //Hide messages
-            //uIOverlay.PlayerControlScript.M_Grounded = false; //Make the player not jump
         }
         else //If the pause menu is enabled
         {
@@ -278,16 +293,16 @@ public class MenuScripts : MonoBehaviour
     {
         if (!keyboardControlMenu.gameObject.activeInHierarchy && !controllerControlMenu.gameObject.activeInHierarchy) //If the keyboard controls menu is disabled and the controller controls menu is disabled
         {
-            //if (!controllerConnected) //If there is no controller connected
-            //{
+            if (!controllerConnected) //If there is no controller connected
+            {
                 keyboardControlMenu.gameObject.SetActive(true); //Enable the keyboard controls menu
                 pauseMenu.gameObject.SetActive(false); //Disable the pause menu
-            //}
-            //else //If there is a controller connected
-            //{
-            //    controllerControlMenu.gameObject.SetActive(true); //Enable the controller controls menu
-            //    pauseMenu.gameObject.SetActive(false); //Disable the pause menu
-            //}
+            }
+            else //If there is a controller connected
+            {
+                controllerControlMenu.gameObject.SetActive(true); //Enable the controller controls menu
+                pauseMenu.gameObject.SetActive(false); //Disable the pause menu
+            }
         }
         else //In any other case
         {
@@ -303,45 +318,26 @@ public class MenuScripts : MonoBehaviour
         Time.timeScale = 1; //Unpause the game
     }
 
-    //private void ControllerConnectionManager() //Manages controller connection behavior
-    //{
-    //    try //Try to do this
-    //    {
-    //        if (Input.GetJoystickNames()[0] == "") //If there is not a controller connected
-    //        {
-    //            controllerConnected = false; //There is no controller connected
-    //            qText.enabled = true; //Enable the Q text
-    //            eText.enabled = true; //Enable the E text
-    //            lBText.enabled = false; //Disable the LB text
-    //            rBText.enabled = false; //Disable the RB text
-    //        }
-    //        else //If there is a controller connected
-    //        {
-    //            controllerConnected = true; //There is a controller connected
-    //            qText.enabled = false; //Disable the Q text
-    //            eText.enabled = false; //Disable the E text
-    //            lBText.enabled = true; //Enable the LB text
-    //            rBText.enabled = true; //Enable the RB text
-    //        }
-    //    }
-    //    catch (IndexOutOfRangeException) //If the game is starting while no controller is connected
-    //    {
-    //        controllerConnected = false; //There is no controller connected
-    //        qText.enabled = true; //Enable the Q text
-    //        eText.enabled = true; //Enable the E text
-    //        lBText.enabled = false; //Disable the LB text
-    //        rBText.enabled = false; //Disable the RB text
-    //    }
-    //
-    //    if (controllerConnected && keyboardControlMenu.gameObject.activeInHierarchy && !controllerControlMenu.gameObject.activeInHierarchy) //If a controller is connected while the keyboard controls menu is enabled and the controller controls menu is disabled
-    //    {
-    //        keyboardControlMenu.gameObject.SetActive(false); //Disable the keyboard controls menu
-    //        controllerControlMenu.gameObject.SetActive(true); //Enable the controller controls menu
-    //    }
-    //    else if (!controllerConnected && !keyboardControlMenu.gameObject.activeInHierarchy && controllerControlMenu.gameObject.activeInHierarchy) //If a controller is disconnected while the keyboard controls menu is disabled and the controller controls menu is enabled
-    //    {
-    //        keyboardControlMenu.gameObject.SetActive(true); //Enable the keyboard controls menu
-    //        controllerControlMenu.gameObject.SetActive(false); //Disable the controller controls menu
-    //    }
-    //}
+    private void ControllerConnectionManager() //Manages controller connection behavior
+    {
+        if (Input.GetJoystickNames().Length == 0 || Input.GetJoystickNames()[0] == "") //If there is not a controller connected
+        {
+            controllerConnected = false; //There is no controller connected
+        }
+        else //If there is a controller connected
+        {
+            controllerConnected = true; //There is a controller connected
+        }
+    
+        if (controllerConnected && keyboardControlMenu.gameObject.activeInHierarchy && !controllerControlMenu.gameObject.activeInHierarchy) //If a controller is connected while the keyboard controls menu is enabled and the controller controls menu is disabled
+        {
+            keyboardControlMenu.gameObject.SetActive(false); //Disable the keyboard controls menu
+            controllerControlMenu.gameObject.SetActive(true); //Enable the controller controls menu
+        }
+        else if (!controllerConnected && !keyboardControlMenu.gameObject.activeInHierarchy && controllerControlMenu.gameObject.activeInHierarchy) //If a controller is disconnected while the keyboard controls menu is disabled and the controller controls menu is enabled
+        {
+            keyboardControlMenu.gameObject.SetActive(true); //Enable the keyboard controls menu
+            controllerControlMenu.gameObject.SetActive(false); //Disable the controller controls menu
+        }
+    }
 }

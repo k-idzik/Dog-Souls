@@ -61,6 +61,7 @@ public class Roller : Boss
         {
             reticle.SetActive(false); //Disable the reticle
             Destroy(gameObject); //He dead
+            Destroy(reticle); //Destroy the reticle
         }
 
         if (timer == 0) //To select pylons

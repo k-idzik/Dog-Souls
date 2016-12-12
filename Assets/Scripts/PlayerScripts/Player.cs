@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
+using System; //Exceptions
 using System.Collections;
-using System;
 
 public class Player : MonoBehaviour
 {
