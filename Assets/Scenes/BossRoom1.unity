@@ -1020,8 +1020,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e41c21b3cfd2a4b48a539f04b1b60d72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
   missile: {fileID: 0}
+  explosion: {fileID: 0}
   bombCooldown: 0.33
   bomb: {fileID: 1000013586818772, guid: 954c6bb52cc3545458dc9fcdae478a33, type: 2}
   field: {fileID: 1825805606}
@@ -1105,7 +1105,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000011637520350, guid: d1b62da1b5b242648a1c0ec5122ee90d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 4000011637520350, guid: d1b62da1b5b242648a1c0ec5122ee90d, type: 2}
       propertyPath: m_LocalPosition.y

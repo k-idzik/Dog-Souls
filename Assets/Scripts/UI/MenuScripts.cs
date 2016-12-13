@@ -112,7 +112,7 @@ public class MenuScripts : MonoBehaviour
             else if (search[i].tag == "boss") //If the current gameobject is the boss
             {
                 bossScript = search[i].GetComponent<Boss>(); //Set the boss
-                bossHealth = bossScript.Health; //Set the boss's health
+                bossHealth = 10; //Set the boss's health
 
                 bossRoomColors.TryGetValue(gameObject.scene.name, out bossOutlineColor); //Get the color for the outline of the boss's health
 

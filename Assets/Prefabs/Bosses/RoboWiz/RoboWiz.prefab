@@ -59,8 +59,8 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: -2.3, y: -1.1}
-      - {x: 2.3, y: -1.1}
+    - - {x: -2.3, y: -1.4}
+      - {x: 2.3, y: -1.4}
       - {x: 0, y: 1}
 --- !u!60 &60000012619483200
 PolygonCollider2D:
@@ -107,8 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34cf2896ddf7bb34ba86412c7982c6b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
   missile: {fileID: 1000013236481228, guid: 0bd017e79869dab44b34969e81c8229c, type: 2}
+  explosion: {fileID: 1000014124872710, guid: 07908ecf54f53ce4ab644eeb68191681, type: 2}
   shields:
   - {fileID: 0}
   - {fileID: 0}

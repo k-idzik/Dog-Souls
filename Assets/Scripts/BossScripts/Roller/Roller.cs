@@ -57,60 +57,61 @@ public class Roller : Boss
     {
         Blink(); //Call the blink method
 
-        if (health == 0) //If the boss is dead
+        if (health > 0) //If the roller is not dead
         {
-            reticle.SetActive(false); //Disable the reticle
-            Destroy(gameObject); //He dead
+            if (timer == 0) //To select pylons
+            {
+                SelectPylons(); //Select the pylons
+            }
+            else if (timer >= 3 && timer < 4) //To move pylons
+            {
+                MovePylons(); //Move the pylons
+            }
+            else if (timer >= 4 && timer < 4.05) //Before the attack
+            {
+                bossSR.color = Color.red; //Change the color of the boss to indicate anger
+            }
+            else if (timer >= 4.05 && timer < 4.75) //Before the attack
+            {
+                bossSR.color = Color.white; //Change the color of the boss back to default
+                cCollider.isTrigger = true; //Make the collider a trigger
+            }
+            else if (timer >= 4.75 && timer < 6.75) //Make the boss attack
+            {
+                RollingAttack(new Vector2(0, 20f), -7.5f); //Roll
+            }
+            else if (timer >= 6.75 && timer < 14.25) //Make the boss attack
+            {
+                ShootSpike(); //Pew pew
+            }
+            else if (timer >= 14.25 && timer < 14.3) //Before the reverse
+            {
+                bossSR.color = Color.red; //Change the color of the boss to indicate anger
+            }
+            else if (timer >= 14.3 && timer < 15) //Before the reverse
+            {
+                bossSR.color = Color.white; //Change the color of the boss back to default
+            }
+            else if (timer >= 15 && timer < 17) //To move pylons
+            {
+                bossSR.sprite = normalSprite; //Reset the sprite
+                ReverseRollingAttack(new Vector2(0, 10f), 7.5f); //Roll
+                ResetPylons(); //Reset the pylons
+            }
+
+            timer += Time.deltaTime; //Increment the timer
+
+            if (timer >= 17) //To reset the cycle
+            {
+                timer = 0; //Reset the timer
+                cCollider.isTrigger = false; //Make the collider normal
+                hasNotFired = true; //Reset hasNotFired
+            }
+        }
+        else //If the boss is dead
+        {
             Destroy(reticle); //Destroy the reticle
-        }
-
-        if (timer == 0) //To select pylons
-        {
-            SelectPylons(); //Select the pylons
-        }
-        else if (timer >= 3 && timer < 4) //To move pylons
-        {
-            MovePylons(); //Move the pylons
-        }
-        else if (timer >= 4 && timer < 4.05) //Before the attack
-        {
-            bossSR.color = Color.red; //Change the color of the boss to indicate anger
-        }
-        else if (timer >= 4.05 && timer < 4.75) //Before the attack
-        {
-            bossSR.color = Color.white; //Change the color of the boss back to default
-            cCollider.isTrigger = true; //Make the collider a trigger
-        }
-        else if (timer >= 4.75 && timer < 6.75) //Make the boss attack
-        {
-            RollingAttack(new Vector2(0, 20f), -7.5f); //Roll
-        }
-        else if (timer >= 6.75 && timer < 14.25) //Make the boss attack
-        {
-            ShootSpike(); //Pew pew
-        }
-        else if (timer >= 14.25 && timer < 14.3) //Before the reverse
-        {
-            bossSR.color = Color.red; //Change the color of the boss to indicate anger
-        }
-        else if (timer >= 14.3 && timer < 15) //Before the reverse
-        {
-            bossSR.color = Color.white; //Change the color of the boss back to default
-        }
-        else if (timer >= 15 && timer < 17) //To move pylons
-        {
-            bossSR.sprite = normalSprite; //Reset the sprite
-            ReverseRollingAttack(new Vector2(0, 10f), 7.5f); //Roll
-            ResetPylons(); //Reset the pylons
-        }
-
-        timer += Time.deltaTime; //Increment the timer
-
-        if (timer >= 17) //To reset the cycle
-        {
-            timer = 0; //Reset the timer
-            cCollider.isTrigger = false; //Make the collider normal
-            hasNotFired = true; //Reset hasNotFired
+            KillBoss(); //Kill the boss
         }
     }
 

@@ -1910,6 +1910,12 @@ Prefab:
       propertyPath: health
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011270349444, guid: 0d5b7ba42e3b5374d9ccbf2c7c0f94e9,
+        type: 2}
+      propertyPath: explosion
+      value: 
+      objectReference: {fileID: 1000014124872710, guid: 07908ecf54f53ce4ab644eeb68191681,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d5b7ba42e3b5374d9ccbf2c7c0f94e9, type: 2}
   m_IsPrefabParent: 0
