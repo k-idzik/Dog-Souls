@@ -40,8 +40,9 @@ public class BirdInTheNight : Boss {
 
         //sr = this.GetComponent<SpriteRenderer>();
 
-        startingHealth = 10;
-        health = startingHealth;
+        //startingHealth = 10;
+        //health = startingHealth;
+        startingHealth = health;
         fieldMinX = field.transform.position.x - 0.65f * field.transform.localScale.x;
         fieldMaxX = field.transform.position.x + 0.65f * field.transform.localScale.x;
         fieldMinY = field.transform.position.y - 0.65f * field.transform.localScale.y;
