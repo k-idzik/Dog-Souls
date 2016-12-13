@@ -17,7 +17,12 @@ public class Roller : Boss
     // knockback variables
     private bool canKnockback = true; // bool for tracking whether or not the boss can knockback the player
     [SerializeField]
-    private float knockbackScale; 
+    private float knockbackScale;
+
+    public AudioSource[] allSounds;
+    private AudioSource rushSound;
+    private AudioSource throwSound;
+    private bool canPlaySound;
 
     // spike shooting variables
     [SerializeField]
@@ -34,6 +39,11 @@ public class Roller : Boss
         pylons = GameObject.FindGameObjectsWithTag("barrier"); //Find all the pylons
         player = GameObject.FindGameObjectWithTag("Player");
         reticle = GameObject.FindGameObjectWithTag("Reticle");
+        allSounds = new AudioSource[10];
+        allSounds = this.GetComponents<AudioSource>();
+        rushSound = allSounds[0];
+        throwSound = allSounds[1];
+        canPlaySound = true;
 
         CircleCollider2D[] circleColliders = gameObject.GetComponents<CircleCollider2D>(); //Get the circle colliders
         for (int i = 0; i < circleColliders.Length; i++) //For all of the circle colliders
@@ -69,10 +79,16 @@ public class Roller : Boss
             }
             else if (timer >= 4 && timer < 4.05) //Before the attack
             {
+                if (canPlaySound)
+                {
+                    rushSound.Play();
+                }
+                canPlaySound = false;
                 bossSR.color = Color.red; //Change the color of the boss to indicate anger
             }
             else if (timer >= 4.05 && timer < 4.75) //Before the attack
             {
+                canPlaySound = true;
                 bossSR.color = Color.white; //Change the color of the boss back to default
                 cCollider.isTrigger = true; //Make the collider a trigger
             }
@@ -82,10 +98,16 @@ public class Roller : Boss
             }
             else if (timer >= 6.75 && timer < 14.25) //Make the boss attack
             {
+                //canPlaySound = true;
                 ShootSpike(); //Pew pew
             }
             else if (timer >= 14.25 && timer < 14.3) //Before the reverse
             {
+                if (canPlaySound)
+                {
+                    rushSound.Play();
+                }
+                canPlaySound = false;
                 bossSR.color = Color.red; //Change the color of the boss to indicate anger
             }
             else if (timer >= 14.3 && timer < 15) //Before the reverse
@@ -103,6 +125,7 @@ public class Roller : Boss
 
             if (timer >= 17) //To reset the cycle
             {
+                canPlaySound = true;
                 timer = 0; //Reset the timer
                 cCollider.isTrigger = false; //Make the collider normal
                 hasNotFired = true; //Reset hasNotFired
@@ -221,6 +244,7 @@ public class Roller : Boss
             // fire spike
             if (aimTimer <= 0)
             {
+                throwSound.Play();
                 SpawnMissile(TrackPlayer().normalized, transform.position);
 
                 aimTimer = aimTime;

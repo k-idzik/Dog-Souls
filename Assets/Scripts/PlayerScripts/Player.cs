@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] private SpriteRenderer startStandingSprite;
     private SpriteRenderer currStandingSprite;
     //[SerializeField] private bool canMove;
-
+    private AudioSource slashSound;
     private Animator animator;
     private float maxSpeed;
     private float speed;
@@ -77,6 +77,9 @@ public class Player : MonoBehaviour
         currLayer = startLayer;
         currStandingSprite = startStandingSprite;
         //canMove = true;
+
+        slashSound = this.GetComponent<AudioSource>();
+        //slashSound.clip = slashSound.GetComponent<AudioClip>();
 
         speed = 1.0f; //Set doggo's max speed
         maxSpeed = 6.0f;
@@ -411,6 +414,7 @@ public class Player : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1"))
             {
+                slashSound.Play();
                 Vector3 pos = this.transform.position;
                 Quaternion q = new Quaternion(0, 0, 0, 0);
                 int dir = animator.GetInteger("Direction");

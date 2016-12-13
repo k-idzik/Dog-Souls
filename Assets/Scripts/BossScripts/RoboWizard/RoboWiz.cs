@@ -13,6 +13,9 @@ public class RoboWiz : Boss
     [SerializeField] private float missileCooldown; // time between missile barrages
     [SerializeField] private float minionCooldown;
     [SerializeField] private float beamCooldown; //Time between beams
+    private AudioSource throwSound;
+    private AudioSource laserSound;
+    private AudioSource[] allSounds;
     private float missileTimer; // to count down between barrages of missiles
     private float minionTimer;
     private float beamTimer; //The beam timer
@@ -27,6 +30,11 @@ public class RoboWiz : Boss
 
         // assign missileAngle to 0
         missileAngle = 0;
+
+        allSounds = new AudioSource[10];
+        allSounds = this.GetComponents<AudioSource>();
+        throwSound = allSounds[0];
+        laserSound = allSounds[1];
 
         // calculate angle between missiles spawning
         angleBetweenMissiles = 360 / numMissiles;
@@ -175,6 +183,7 @@ public class RoboWiz : Boss
     /// </summary>
     private void FirstAttack() //The boss's first attack, sprinkler
     {
+        throwSound.Play();
         for (int i = 0; i < numMissiles; i++)
         {
             // spawn a missile at whatever the current missileAngle is
@@ -196,6 +205,7 @@ public class RoboWiz : Boss
 
     private void ThirdAttack() //The boss's third attack
     {
+        laserSound.Play();
         Instantiate(beam, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, Random.Range(0, 4) * 90)); //Instantiate a beam object
     }
 
