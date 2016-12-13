@@ -961,42 +961,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010500921304, guid: 83c5650c6fa274347a307d9b36aecea9, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000010500921304, guid: 83c5650c6fa274347a307d9b36aecea9, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1000011160158774, guid: 83c5650c6fa274347a307d9b36aecea9, type: 2}
       propertyPath: m_Name
       value: BirdInTheNight
       objectReference: {fileID: 0}
-    - target: {fileID: 1000011160158774, guid: 83c5650c6fa274347a307d9b36aecea9, type: 2}
-      propertyPath: m_TagString
-      value: boss
-      objectReference: {fileID: 0}
-    - target: {fileID: 58000012942220892, guid: 83c5650c6fa274347a307d9b36aecea9,
+    - target: {fileID: 114000013306694644, guid: 83c5650c6fa274347a307d9b36aecea9,
         type: 2}
-      propertyPath: m_Radius
-      value: 0.78434384
-      objectReference: {fileID: 0}
-    - target: {fileID: 95000013289871272, guid: 83c5650c6fa274347a307d9b36aecea9,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 212000012324541220, guid: 83c5650c6fa274347a307d9b36aecea9,
-        type: 2}
-      propertyPath: m_Sprite
+      propertyPath: field
       value: 
-      objectReference: {fileID: 21300000, guid: d67ee04ed3672cc4b93710ed03a879c9,
-        type: 3}
-    m_RemovedComponents:
-    - {fileID: 114000012508299674, guid: 83c5650c6fa274347a307d9b36aecea9, type: 2}
-    - {fileID: 58000012567671778, guid: 83c5650c6fa274347a307d9b36aecea9, type: 2}
-    - {fileID: 50000010216302216, guid: 83c5650c6fa274347a307d9b36aecea9, type: 2}
+      objectReference: {fileID: 1825805606}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 83c5650c6fa274347a307d9b36aecea9, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1825805606 stripped
@@ -1004,47 +978,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000012133187902, guid: d7a434eae3e846742a3b865324727580,
     type: 2}
   m_PrefabInternal: {fileID: 471320361}
---- !u!1 &2049971337 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000011160158774, guid: 83c5650c6fa274347a307d9b36aecea9,
-    type: 2}
-  m_PrefabInternal: {fileID: 1679837309}
---- !u!114 &2049971342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2049971337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e41c21b3cfd2a4b48a539f04b1b60d72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  missile: {fileID: 0}
-  explosion: {fileID: 0}
-  bombCooldown: 0.33
-  bomb: {fileID: 1000013586818772, guid: 954c6bb52cc3545458dc9fcdae478a33, type: 2}
-  field: {fileID: 1825805606}
-  spriteUp: {fileID: 21300000, guid: 9c071db2e14f2a94c966c4b6a0514267, type: 3}
-  spriteDown: {fileID: 21300000, guid: d67ee04ed3672cc4b93710ed03a879c9, type: 3}
-  spriteLeft: {fileID: 21300000, guid: e6032ddb128acba4693a22f0bf736aa6, type: 3}
---- !u!50 &2049971343
-Rigidbody2D:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2049971337}
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1001 &2083354950
 Prefab:
   m_ObjectHideFlags: 0
