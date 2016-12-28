@@ -16,19 +16,49 @@ Platform assembly: C:\Users\Mark\Documents\Dog-Souls\DogSouls_Data\Managed\Unity
 Loading C:\Users\Mark\Documents\Dog-Souls\DogSouls_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: C:\Users\Mark\Documents\Dog-Souls\DogSouls_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading C:\Users\Mark\Documents\Dog-Souls\DogSouls_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.189 seconds
+- Completed reload, in  0.092 seconds
 Platform assembly: C:\Users\Mark\Documents\Dog-Souls\DogSouls_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Mark\Documents\Dog-Souls\DogSouls_Data\Managed\System.dll (this message is harmless)
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.502217 ms
+UnloadTime: 55.786777 ms
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 9.916473 ms
+UnloadTime: 14.480384 ms
 
 Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 2479.
-Total: 2.202280 ms (FindLiveObjects: 0.169073 ms CreateObjectMapping: 0.109114 ms MarkObjects: 1.077102 ms  DeleteObjects: 0.845908 ms)
+Total: 1.658327 ms (FindLiveObjects: 0.118837 ms CreateObjectMapping: 0.071302 ms MarkObjects: 0.708165 ms  DeleteObjects: 0.759481 ms)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.917467 ms
+
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 679.
+Total: 3.043867 ms (FindLiveObjects: 0.035651 ms CreateObjectMapping: 0.037812 ms MarkObjects: 0.506140 ms  DeleteObjects: 2.463723 ms)
 
 Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
  
@@ -73,12 +103,110 @@ Sprite outline generation failed - could not read texture pixel data. Did you fo
 Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
  
 (Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.916529 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 679.
+Total: 0.957184 ms (FindLiveObjects: 0.060499 ms CreateObjectMapping: 0.061579 ms MarkObjects: 0.825922 ms  DeleteObjects: 0.007562 ms)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.732871 ms
+
+Unloading 103 unused Assets to reduce memory usage. Loaded Objects now: 230.
+Total: 2.487490 ms (FindLiveObjects: 0.022147 ms CreateObjectMapping: 0.034030 ms MarkObjects: 0.290072 ms  DeleteObjects: 2.140700 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.686018 ms
+
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 2479.
+Total: 2.219025 ms (FindLiveObjects: 0.146386 ms CreateObjectMapping: 0.091829 ms MarkObjects: 1.067379 ms  DeleteObjects: 0.911809 ms)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Unloading 7 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.473986 ms
+
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 709.
+Total: 2.988230 ms (FindLiveObjects: 0.048075 ms CreateObjectMapping: 0.056177 ms MarkObjects: 0.526667 ms  DeleteObjects: 2.356769 ms)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Unloading 7 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.426053 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 709.
+Total: 0.743276 ms (FindLiveObjects: 0.054557 ms CreateObjectMapping: 0.041053 ms MarkObjects: 0.638483 ms  DeleteObjects: 0.008102 ms)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.511940 ms
+
+Unloading 105 unused Assets to reduce memory usage. Loaded Objects now: 230.
+Total: 2.663586 ms (FindLiveObjects: 0.023767 ms CreateObjectMapping: 0.035651 ms MarkObjects: 0.331665 ms  DeleteObjects: 2.271962 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.602831 ms
+
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 2479.
+Total: 1.486012 ms (FindLiveObjects: 0.104253 ms CreateObjectMapping: 0.059959 ms MarkObjects: 0.713026 ms  DeleteObjects: 0.608233 ms)
 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 2.876414 ms
+UnloadTime: 2.666827 ms
 
 Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 739.
-Total: 2.731108 ms (FindLiveObjects: 0.063200 ms CreateObjectMapping: 0.062119 ms MarkObjects: 0.623898 ms  DeleteObjects: 1.981350 ms)
+Total: 2.758657 ms (FindLiveObjects: 0.045914 ms CreateObjectMapping: 0.059418 ms MarkObjects: 0.559617 ms  DeleteObjects: 2.093165 ms)
 
 Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
  
@@ -95,152 +223,6 @@ Sprite outline generation failed - could not read texture pixel data. Did you fo
 Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
  
 (Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 2.058054 ms
-
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 739.
-Total: 0.709785 ms (FindLiveObjects: 0.064280 ms CreateObjectMapping: 0.057258 ms MarkObjects: 0.580684 ms  DeleteObjects: 0.006482 ms)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 2.127736 ms
-
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 739.
-Total: 0.725450 ms (FindLiveObjects: 0.054017 ms CreateObjectMapping: 0.043213 ms MarkObjects: 0.621197 ms  DeleteObjects: 0.006482 ms)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
- 
-(Filename:  Line: 117)
-
-Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 2.079121 ms
-
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 739.
-Total: 0.723830 ms (FindLiveObjects: 0.052936 ms CreateObjectMapping: 0.043213 ms MarkObjects: 0.617956 ms  DeleteObjects: 0.009182 ms)
 
 Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
  
@@ -303,10 +285,22 @@ Sprite outline generation failed - could not read texture pixel data. Did you fo
 (Filename:  Line: 117)
 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 2.147722 ms
+UnloadTime: 2.034286 ms
 
 Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 739.
-Total: 0.818900 ms (FindLiveObjects: 0.071302 ms CreateObjectMapping: 0.068061 ms MarkObjects: 0.670353 ms  DeleteObjects: 0.007562 ms)
+Total: 1.023625 ms (FindLiveObjects: 0.076164 ms CreateObjectMapping: 0.056718 ms MarkObjects: 0.882640 ms  DeleteObjects: 0.007562 ms)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
 
 Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
  
@@ -349,10 +343,706 @@ Sprite outline generation failed - could not read texture pixel data. Did you fo
 (Filename:  Line: 117)
 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 2.199579 ms
+UnloadTime: 2.308153 ms
 
 Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 739.
-Total: 0.734633 ms (FindLiveObjects: 0.048075 ms CreateObjectMapping: 0.048615 ms MarkObjects: 0.628759 ms  DeleteObjects: 0.007022 ms)
+Total: 0.967987 ms (FindLiveObjects: 0.062119 ms CreateObjectMapping: 0.056177 ms MarkObjects: 0.841587 ms  DeleteObjects: 0.007022 ms)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.096946 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 739.
+Total: 0.783249 ms (FindLiveObjects: 0.051856 ms CreateObjectMapping: 0.044294 ms MarkObjects: 0.678995 ms  DeleteObjects: 0.007022 ms)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.060755 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 739.
+Total: 0.714107 ms (FindLiveObjects: 0.048075 ms CreateObjectMapping: 0.036731 ms MarkObjects: 0.621737 ms  DeleteObjects: 0.006482 ms)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.347046 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 739.
+Total: 1.064678 ms (FindLiveObjects: 0.049155 ms CreateObjectMapping: 0.059959 ms MarkObjects: 0.946921 ms  DeleteObjects: 0.008102 ms)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.051572 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 739.
+Total: 0.767043 ms (FindLiveObjects: 0.068601 ms CreateObjectMapping: 0.049695 ms MarkObjects: 0.640643 ms  DeleteObjects: 0.007022 ms)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.073719 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 739.
+Total: 0.764883 ms (FindLiveObjects: 0.050235 ms CreateObjectMapping: 0.038352 ms MarkObjects: 0.667652 ms  DeleteObjects: 0.007562 ms)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.926792 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 739.
+Total: 0.755700 ms (FindLiveObjects: 0.049155 ms CreateObjectMapping: 0.041053 ms MarkObjects: 0.657389 ms  DeleteObjects: 0.007022 ms)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.056433 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 739.
+Total: 0.747057 ms (FindLiveObjects: 0.046994 ms CreateObjectMapping: 0.041053 ms MarkObjects: 0.648206 ms  DeleteObjects: 0.010263 ms)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.821459 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 739.
+Total: 0.757320 ms (FindLiveObjects: 0.048075 ms CreateObjectMapping: 0.037812 ms MarkObjects: 0.662250 ms  DeleteObjects: 0.008102 ms)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.026184 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 739.
+Total: 0.876698 ms (FindLiveObjects: 0.075083 ms CreateObjectMapping: 0.059418 ms MarkObjects: 0.734093 ms  DeleteObjects: 0.007022 ms)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.269261 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 739.
+Total: 0.780008 ms (FindLiveObjects: 0.047535 ms CreateObjectMapping: 0.038352 ms MarkObjects: 0.686558 ms  DeleteObjects: 0.006482 ms)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.027804 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 739.
+Total: 0.791351 ms (FindLiveObjects: 0.053477 ms CreateObjectMapping: 0.038892 ms MarkObjects: 0.690879 ms  DeleteObjects: 0.007562 ms)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.170410 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 739.
+Total: 0.827002 ms (FindLiveObjects: 0.068601 ms CreateObjectMapping: 0.046994 ms MarkObjects: 0.703303 ms  DeleteObjects: 0.007562 ms)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.073719 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 739.
+Total: 0.802155 ms (FindLiveObjects: 0.051856 ms CreateObjectMapping: 0.038352 ms MarkObjects: 0.701683 ms  DeleteObjects: 0.009182 ms)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.307613 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 739.
+Total: 0.817820 ms (FindLiveObjects: 0.049695 ms CreateObjectMapping: 0.039972 ms MarkObjects: 0.720048 ms  DeleteObjects: 0.007022 ms)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
 
 Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
  
@@ -371,10 +1061,180 @@ Sprite outline generation failed - could not read texture pixel data. Did you fo
 (Filename:  Line: 117)
 
 Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 1.484932 ms
+UnloadTime: 2.604708 ms
 
 Unloading 133 unused Assets to reduce memory usage. Loaded Objects now: 230.
-Total: 2.598766 ms (FindLiveObjects: 0.026468 ms CreateObjectMapping: 0.035651 ms MarkObjects: 0.333826 ms  DeleteObjects: 2.202280 ms)
+Total: 2.994712 ms (FindLiveObjects: 0.023767 ms CreateObjectMapping: 0.035651 ms MarkObjects: 0.536930 ms  DeleteObjects: 2.397822 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.607153 ms
+
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 2479.
+Total: 1.813356 ms (FindLiveObjects: 0.142605 ms CreateObjectMapping: 0.059959 ms MarkObjects: 0.888582 ms  DeleteObjects: 0.721129 ms)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.574998 ms
+
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 679.
+Total: 3.245892 ms (FindLiveObjects: 0.049695 ms CreateObjectMapping: 0.060499 ms MarkObjects: 0.969608 ms  DeleteObjects: 2.165008 ms)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Sprite outline generation failed - could not read texture pixel data. Did you forget to make the texture readable?
+ 
+(Filename:  Line: 117)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.993233 ms
+
+Unloading 103 unused Assets to reduce memory usage. Loaded Objects now: 230.
+Total: 2.957440 ms (FindLiveObjects: 0.024307 ms CreateObjectMapping: 0.035651 ms MarkObjects: 0.592568 ms  DeleteObjects: 2.304372 ms)
 
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 1774 -> priority: 1 
+  Thread -> id: 25d8 -> priority: 1 
